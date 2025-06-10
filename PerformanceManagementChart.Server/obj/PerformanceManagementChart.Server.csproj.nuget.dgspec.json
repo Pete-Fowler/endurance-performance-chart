@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pete\\Code\\endurance-performance-chart\\PerformanceManagementChart.Server\\PerformanceManagementChart.Server.csproj": {}
+    "/home/pete/Code/endurance-performance-chart/PerformanceManagementChart.Server/PerformanceManagementChart.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pete\\Code\\endurance-performance-chart\\PerformanceManagementChart.Server\\PerformanceManagementChart.Server.csproj": {
+    "/home/pete/Code/endurance-performance-chart/PerformanceManagementChart.Server/PerformanceManagementChart.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pete\\Code\\endurance-performance-chart\\PerformanceManagementChart.Server\\PerformanceManagementChart.Server.csproj",
+        "projectUniqueName": "/home/pete/Code/endurance-performance-chart/PerformanceManagementChart.Server/PerformanceManagementChart.Server.csproj",
         "projectName": "PerformanceManagementChart.Server",
-        "projectPath": "C:\\Users\\pete\\Code\\endurance-performance-chart\\PerformanceManagementChart.Server\\PerformanceManagementChart.Server.csproj",
-        "packagesPath": "C:\\Users\\pete\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pete\\Code\\endurance-performance-chart\\PerformanceManagementChart.Server\\obj\\",
+        "projectPath": "/home/pete/Code/endurance-performance-chart/PerformanceManagementChart.Server/PerformanceManagementChart.Server.csproj",
+        "packagesPath": "/home/pete/.nuget/packages/",
+        "outputPath": "/home/pete/Code/endurance-performance-chart/PerformanceManagementChart.Server/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\pete\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/pete/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -78,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/pete/.dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
