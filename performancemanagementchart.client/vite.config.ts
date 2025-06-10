@@ -1,6 +1,10 @@
+
+
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
+/// <reference types="vitest" />
+
+import { defineConfig } from 'vitest/config';
 import plugin from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
@@ -42,20 +46,23 @@ export default defineConfig({
     plugins: [plugin()],
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
-        }
+            "@": fileURLToPath(new URL("./src", import.meta.url)),
+        },
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
+            "^/weatherforecast": {
                 target,
-                secure: false
-            }
+                secure: false,
+            },
         },
-        port: parseInt(env.DEV_SERVER_PORT || '49978'),
+        port: parseInt(env.DEV_SERVER_PORT || "49978"),
         https: {
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),
-        }
+        },
+    },
+    test: {
+        environment: "jsdom",
     }
-})
+});
