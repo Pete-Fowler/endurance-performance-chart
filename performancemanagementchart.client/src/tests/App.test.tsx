@@ -6,6 +6,6 @@ import App from "../App";
 
 test("renders app", () => {
     render(<App />);
-    expect(screen.getByText(/your app/i)).toBeInTheDocument();
+    expect(screen.getByText(/performance management chart/i)).toBeInTheDocument();
 });
   
