@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
 import './App.css';
+import { Container } from 'reactstrap';
 
+import PerformanceManagementChart from './PerformanceManagementChart/PerformanceManagementChart';
 
 
 export default function App() {
    
-    return <div>
+    return <Container>
         <h1>Performance Management Chart</h1>
-    </div>
+        <PerformanceManagementChart />
+    </Container>
 }
