@@ -1,0 +1,12 @@
+.chartRow {
+    display: flex;
+    align-items: start;
+    width: 100%;
+    margin: 0;
+}
+
+.formLegend {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}

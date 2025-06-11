@@ -10,8 +10,10 @@ import {
     Area,
     ReferenceArea,
 } from "recharts";
+import { Col, Row } from "reactstrap";
 
 import { colors } from "./Colors";
+import styles from "./PerformanceManagementChart.module.css";
 
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
 const data = [
@@ -27,7 +29,7 @@ export default function PerformanceManagementChart() {
     const { yellow, blue, gray, green, red, purple, black } = colors;
 
     return (
-        <div>
+        <>
             <ResponsiveContainer width="100%" height={400}>
                 <ComposedChart data={data} syncId={"pmc"}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -51,57 +53,68 @@ export default function PerformanceManagementChart() {
             </ResponsiveContainer>
 
             {/* Form */}
-            <ResponsiveContainer width="100%" height={250}>
-                <LineChart data={data} syncId="pmc">
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis domain={[-40, 30]} ticks={[-30, -10, 5, 20]} />
-                    <Tooltip />
-                    {/* Transition (yellow) */}
-                    <ReferenceArea
-                        y1={20}
-                        y2={30}
-                        fill={yellow}
-                        fillOpacity={.1}
-                    />
-                    {/* Fresh (blue) */}
-                    <ReferenceArea
-                        y1={5}
-                        y2={20}
-                        fill={blue}
-                        fillOpacity={0.1}
-                    />
-                    {/* Neutral (gray) */}
-                    <ReferenceArea
-                        y1={-10}
-                        y2={5}
-                        fill={gray}
-                        fillOpacity={0.1}
-                    />{" "}
-                    {/* Optimal (Green) */}
-                    <ReferenceArea
-                        y1={-30}
-                        y2={-10}
-                        fill={green}
-                        fillOpacity={0.1}
-                    />{" "}
-                    {/* High Risk (Red) */}
-                    <ReferenceArea
-                        y1={-40}
-                        y2={-30}
-                        fill={red}
-                        fillOpacity={0.1}
-                    />{" "}
-                    <Line
-                        dataKey="Form"
-                        stroke="black"
-                        dot={false}
-                        isAnimationActive={false}
-                    />
-                </LineChart>
-            </ResponsiveContainer>
-            <FormLegend />
-        </div>
+            <Row
+                className={styles.chartRow}
+            >
+                <Col>
+                    <ResponsiveContainer width="100%" height={250}>
+                        <LineChart data={data} syncId="pmc">
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date" />
+                            <YAxis
+                                domain={[-40, 30]}
+                                ticks={[-30, -10, 5, 20]}
+                            />
+                            <Tooltip />
+                            {/* Transition (yellow) */}
+                            <ReferenceArea
+                                y1={20}
+                                y2={30}
+                                fill={yellow}
+                                fillOpacity={0.1}
+                            />
+                            {/* Fresh (blue) */}
+                            <ReferenceArea
+                                y1={5}
+                                y2={20}
+                                fill={blue}
+                                fillOpacity={0.1}
+                            />
+                            {/* Neutral (gray) */}
+                            <ReferenceArea
+                                y1={-10}
+                                y2={5}
+                                fill={gray}
+                                fillOpacity={0.1}
+                            />{" "}
+                            {/* Optimal (Green) */}
+                            <ReferenceArea
+                                y1={-30}
+                                y2={-10}
+                                fill={green}
+                                fillOpacity={0.1}
+                            />{" "}
+                            {/* High Risk (Red) */}
+                            <ReferenceArea
+                                y1={-40}
+                                y2={-30}
+                                fill={red}
+                                fillOpacity={0.1}
+                            />{" "}
+                            <Line
+                                dataKey="Form"
+                                stroke="black"
+                                dot={false}
+                                isAnimationActive={false}
+                            />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </Col>
+                <Col>
+                    <FormLegend />
+                </Col>
+            </Row>
+        </>
     );
 }
 
@@ -109,40 +122,27 @@ export default function PerformanceManagementChart() {
 function FormLegend() {
     // Order: yellow, blue, gray, green, red (top to bottom)
     const zones = [
-        { label: "Transition (≥ 20)", color: "#ffe066" }, // yellow
-        { label: "Fresh (> 5)", color: "#74c0fc" }, // blue
-        { label: "Neutral (-10 to 5)", color: "#adb5bd" }, // gray
-        { label: "Green Zone (-10 to -30)", color: "#51cf66" }, // green
-        { label: "High Risk (≤ -30)", color: "#fa5252" }, // red
+        { label: "Transition", color: "#ffe066" }, // yellow
+        { label: "Fresh", color: "#74c0fc" }, // blue
+        { label: "Neutral", color: "#adb5bd" }, // gray
+        { label: "Green Zone", color: "#51cf66" }, // green
+        { label: "High Risk", color: "#fa5252" }, // red
     ];
     return (
-        <div style={{ marginLeft: 24 }}>
-            <h4>Form Zones</h4>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        <Row>
+            <Col className={styles.formLegend}>
                 {zones.map((zone) => (
-                    <li
+                    <div
                         key={zone.label}
                         style={{
-                            display: "flex",
-                            alignItems: "center",
-                            marginBottom: 8,
+                            color: zone.color,
                         }}
                     >
-                        <span
-                            style={{
-                                display: "inline-block",
-                                width: 16,
-                                height: 16,
-                                background: zone.color,
-                                borderRadius: 4,
-                                marginRight: 8,
-                                border: "1px solid #ccc",
-                            }}
-                        />
-                        <span>{zone.label}</span>
-                    </li>
+                       
+                        {zone.label}
+                    </div>
                 ))}
-            </ul>
-        </div>
+            </Col>
+        </Row>
     );
 }
