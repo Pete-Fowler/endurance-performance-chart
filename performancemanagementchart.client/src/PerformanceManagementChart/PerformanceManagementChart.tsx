@@ -5,10 +5,10 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend,
     ResponsiveContainer,
     ComposedChart,
     Area,
+    ReferenceArea,
 } from "recharts";
 
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
@@ -23,14 +23,13 @@ const data = [
 
 export default function PerformanceManagementChart() {
     return (
-        <div >
+        <div>
             <ResponsiveContainer width="100%" height={400}>
-                <ComposedChart data={data}>
+                <ComposedChart data={data} syncId={"pmc"}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
+                    {/* <Legend /> */}
                     <Line
                         type="monotone"
                         dataKey="Fatigue"
@@ -41,24 +40,59 @@ export default function PerformanceManagementChart() {
                         type="monotone"
                         dataKey="Fitness"
                         stroke="#34ace4"
+                        fill="#D9EEF9"
                         dot={false}
                     />
                 </ComposedChart>
             </ResponsiveContainer>
 
-                {/* Form */}
+            {/* Form */}
             <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={data} syncId="pmc">
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />
-                    <YAxis />
+                    <YAxis domain={[-40,30]}/>
                     <Tooltip />
-                    <Legend />
+                    <ReferenceArea
+                        y1={20}
+                        y2={100}
+                        fill="#ffe066"
+                        fillOpacity={0.2}
+                    />{" "}
+                    {/* Transition (yellow) */}
+                    <ReferenceArea
+                        y1={5}
+                        y2={20}
+                        fill="#74c0fc"
+                        fillOpacity={0.2}
+                    />{" "}
+                    {/* Fresh (blue) */}
+                    <ReferenceArea
+                        y1={-10}
+                        y2={5}
+                        fill="#adb5bd"
+                        fillOpacity={0.2}
+                    />{" "}
+                    {/* Neutral (gray) */}
+                    <ReferenceArea
+                        y1={-30}
+                        y2={-10}
+                        fill="#51cf66"
+                        fillOpacity={0.2}
+                    />{" "}
+                    {/* Green Zone (green) */}
+                    <ReferenceArea
+                        y1={-100}
+                        y2={-30}
+                        fill="#fa5252"
+                        fillOpacity={0.2}
+                    />{" "}
+                    {/* High Risk (red) */}
                     <Line
-                        type="monotone"
                         dataKey="Form"
-                        stroke="#999"
+                        stroke="black"
                         dot={false}
+                        isAnimationActive={false}
                     />
                 </LineChart>
             </ResponsiveContainer>
