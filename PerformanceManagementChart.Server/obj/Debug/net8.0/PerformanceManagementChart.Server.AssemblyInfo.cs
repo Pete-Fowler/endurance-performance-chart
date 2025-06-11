@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PerformanceManagementChart.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e374c1cddb75e9775d4b310654bd718fb31fb591")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27ee83d1608fcd7a5919feaf2022eb2a6c19b53a")]
 [assembly: System.Reflection.AssemblyProductAttribute("PerformanceManagementChart.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PerformanceManagementChart.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
