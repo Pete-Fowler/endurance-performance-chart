@@ -11,6 +11,8 @@ import {
     ReferenceArea,
 } from "recharts";
 
+import { colors } from "./Colors";
+
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
 const data = [
     { date: "2024-06-01", Fatigue: 80, Fitness: 70, Form: 10 },
@@ -22,6 +24,8 @@ const data = [
 ];
 
 export default function PerformanceManagementChart() {
+    const { yellow, blue, gray, green, red, purple, black } = colors;
+
     return (
         <div>
             <ResponsiveContainer width="100%" height={400}>
@@ -33,13 +37,13 @@ export default function PerformanceManagementChart() {
                     <Line
                         type="monotone"
                         dataKey="Fatigue"
-                        stroke="#63c"
+                        stroke={purple}
                         dot={false}
                     />
                     <Area
                         type="monotone"
                         dataKey="Fitness"
-                        stroke="#34ace4"
+                        stroke={blue}
                         fill="#D9EEF9"
                         dot={false}
                     />
@@ -51,43 +55,43 @@ export default function PerformanceManagementChart() {
                 <LineChart data={data} syncId="pmc">
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />
-                    <YAxis domain={[-40,30]}/>
+                    <YAxis domain={[-40, 30]} ticks={[-30, -10, 5, 20]} />
                     <Tooltip />
+                    {/* Transition (yellow) */}
                     <ReferenceArea
                         y1={20}
-                        y2={100}
-                        fill="#ffe066"
-                        fillOpacity={0.2}
-                    />{" "}
-                    {/* Transition (yellow) */}
+                        y2={30}
+                        fill={yellow}
+                        fillOpacity={.1}
+                    />
+                    {/* Fresh (blue) */}
                     <ReferenceArea
                         y1={5}
                         y2={20}
-                        fill="#74c0fc"
-                        fillOpacity={0.2}
-                    />{" "}
-                    {/* Fresh (blue) */}
+                        fill={blue}
+                        fillOpacity={0.1}
+                    />
+                    {/* Neutral (gray) */}
                     <ReferenceArea
                         y1={-10}
                         y2={5}
-                        fill="#adb5bd"
-                        fillOpacity={0.2}
+                        fill={gray}
+                        fillOpacity={0.1}
                     />{" "}
-                    {/* Neutral (gray) */}
+                    {/* Optimal (Green) */}
                     <ReferenceArea
                         y1={-30}
                         y2={-10}
-                        fill="#51cf66"
-                        fillOpacity={0.2}
+                        fill={green}
+                        fillOpacity={0.1}
                     />{" "}
-                    {/* Green Zone (green) */}
+                    {/* High Risk (Red) */}
                     <ReferenceArea
-                        y1={-100}
+                        y1={-40}
                         y2={-30}
-                        fill="#fa5252"
-                        fillOpacity={0.2}
+                        fill={red}
+                        fillOpacity={0.1}
                     />{" "}
-                    {/* High Risk (red) */}
                     <Line
                         dataKey="Form"
                         stroke="black"
