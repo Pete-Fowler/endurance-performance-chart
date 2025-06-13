@@ -5,8 +5,3 @@
     margin: 0;
 }
 
-.formLegend {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-}
