@@ -18,13 +18,14 @@ import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitness from "./Components/CurrentFitness/CurrentFitness";
 
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
+// need activity: Type, load/tss, intensity, duration, distance, heart rate, pace, name, time
 const data = [
-    { date: "2024-06-01", fatigue: 80, fitness: 70, form: 10 },
-    { date: "2024-06-02", fatigue: 85, fitness: 72, form: 13 },
-    { date: "2024-06-03", fatigue: 78, fitness: 74, form: 4 },
-    { date: "2024-06-04", fatigue: 90, fitness: 76, form: 14 },
-    { date: "2024-06-05", fatigue: 88, fitness: 78, form: 10 },
-    { date: "2024-06-06", fatigue: 82, fitness: 80, form: 2 },
+    { date: "2024-06-01", Fatigue: 80, Fitness: 70, Form: 10 },
+    { date: "2024-06-02", Fatigue: 85, Fitness: 72, Form: 13 },
+    { date: "2024-06-03", Fatigue: 78, Fitness: 74, Form: 4 },
+    { date: "2024-06-04", Fatigue: 90, Fitness: 76, Form: 14 },
+    { date: "2024-06-05", Fatigue: 88, Fitness: 78, Form: 10 },
+    { date: "2024-06-06", Fatigue: 82, Fitness: 80, Form: 2 },
 ];
 
 export default function PerformanceManagementChart() {
@@ -32,28 +33,31 @@ export default function PerformanceManagementChart() {
 
     return (
         <Container size="lg">
-            <Row className="mt-5"><h1 className="text-center">Performance Management Chart</h1></Row>
+            <Row className="mt-5">
+                <h1 className="text-center">Performance Management Chart</h1>
+            </Row>
             <Row>
                 <Col xs="11">
                     <ResponsiveContainer
                         minWidth="380px"
                         width="100%"
                         height={400}
+                        data-testid="fatigue-fitness-chart"
                     >
-                        <ComposedChart data={data} syncId={"pmc"}>
+                        <ComposedChart data={data} syncId="pmc">
                             <CartesianGrid strokeDasharray="3 3" />
                             <YAxis />
                             <Tooltip />
                             {/* <Legend /> */}
                             <Line
                                 type="monotone"
-                                dataKey="fatigue"
+                                dataKey="Fatigue"
                                 stroke={purple}
                                 dot={false}
                             />
                             <Area
                                 type="monotone"
-                                dataKey="fitness"
+                                dataKey="Fitness"
                                 stroke={blue}
                                 fill="#D9EEF9"
                                 dot={false}
@@ -61,14 +65,20 @@ export default function PerformanceManagementChart() {
                         </ComposedChart>
                     </ResponsiveContainer>
                 </Col>
-                <Col xs="1" className="ps-0"><CurrentFitness currentFitness={data[data.length-1]}/></Col>
+                <Col xs="1" className="ps-0">
+                    <CurrentFitness currentFitness={data[data.length - 1]} />
+                </Col>
             </Row>
 
             {/* Form */}
 
             <Row>
                 <Col>
-                    <ResponsiveContainer width="100%" height={250}>
+                    <ResponsiveContainer
+                        width="100%"
+                        height={250}
+                        data-testid="form-chart"
+                    >
                         <LineChart data={data} syncId="pmc">
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="date" />
@@ -113,7 +123,7 @@ export default function PerformanceManagementChart() {
                                 fillOpacity={0.1}
                             />{" "}
                             <Line
-                                dataKey="form"
+                                dataKey="Form"
                                 type="monotone"
                                 stroke="black"
                                 dot={false}

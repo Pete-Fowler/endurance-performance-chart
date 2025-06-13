@@ -1,4 +1,4 @@
-import { Row, Col } from "reactstrap";
+import { Col } from "reactstrap";
 import type { IFitnessData } from "../../Interfaces";
 import styles from "./CurrentFitness.module.css";
 import { colors } from "../../Colors";
@@ -12,13 +12,13 @@ export default function CurrentFitness({currentFitness}: IProps)
     return (
         <Col className={styles.fitnessBox}>
             <div style={{ color: colors.gray }}>
-                Form: {currentFitness.form}
+                Form: {currentFitness.Form}
             </div>
             <div style={{ color: colors.blue }}>
-                Fitness: {currentFitness.fitness}
+                Fitness: {currentFitness.Fitness}
             </div>
             <div style={{ color: colors.purple }}>
-                Fatigue: {currentFitness.fatigue}
+                Fatigue: {currentFitness.Fatigue}
             </div>
         </Col>
     );
