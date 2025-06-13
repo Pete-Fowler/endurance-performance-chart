@@ -15,15 +15,16 @@ import { Col, Container, Row } from "reactstrap";
 import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
+import CurrentFitness from "./Components/CurrentFitness/CurrentFitness";
 
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
 const data = [
-    { date: "2024-06-01", Fatigue: 80, Fitness: 70, Form: 10 },
-    { date: "2024-06-02", Fatigue: 85, Fitness: 72, Form: 13 },
-    { date: "2024-06-03", Fatigue: 78, Fitness: 74, Form: 4 },
-    { date: "2024-06-04", Fatigue: 90, Fitness: 76, Form: 14 },
-    { date: "2024-06-05", Fatigue: 88, Fitness: 78, Form: 10 },
-    { date: "2024-06-06", Fatigue: 82, Fitness: 80, Form: 2 },
+    { date: "2024-06-01", fatigue: 80, fitness: 70, form: 10 },
+    { date: "2024-06-02", fatigue: 85, fitness: 72, form: 13 },
+    { date: "2024-06-03", fatigue: 78, fitness: 74, form: 4 },
+    { date: "2024-06-04", fatigue: 90, fitness: 76, form: 14 },
+    { date: "2024-06-05", fatigue: 88, fitness: 78, form: 10 },
+    { date: "2024-06-06", fatigue: 82, fitness: 80, form: 2 },
 ];
 
 export default function PerformanceManagementChart() {
@@ -46,13 +47,13 @@ export default function PerformanceManagementChart() {
                             {/* <Legend /> */}
                             <Line
                                 type="monotone"
-                                dataKey="Fatigue"
+                                dataKey="fatigue"
                                 stroke={purple}
                                 dot={false}
                             />
                             <Area
                                 type="monotone"
-                                dataKey="Fitness"
+                                dataKey="fitness"
                                 stroke={blue}
                                 fill="#D9EEF9"
                                 dot={false}
@@ -60,7 +61,7 @@ export default function PerformanceManagementChart() {
                         </ComposedChart>
                     </ResponsiveContainer>
                 </Col>
-                <Col xs="1"></Col>
+                <Col xs="1" className="ps-0"><CurrentFitness currentFitness={data[data.length-1]}/></Col>
             </Row>
 
             {/* Form */}
@@ -112,7 +113,8 @@ export default function PerformanceManagementChart() {
                                 fillOpacity={0.1}
                             />{" "}
                             <Line
-                                dataKey="Form"
+                                dataKey="form"
+                                type="monotone"
                                 stroke="black"
                                 dot={false}
                                 isAnimationActive={false}
@@ -127,3 +129,4 @@ export default function PerformanceManagementChart() {
         </Container>
     );
 }
+

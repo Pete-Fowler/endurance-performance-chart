@@ -1,0 +1,9 @@
+.fitnessBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: left;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
