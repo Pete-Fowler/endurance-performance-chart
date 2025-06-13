@@ -10,7 +10,7 @@ import {
     Area,
     ReferenceArea,
 } from "recharts";
-import { Col, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 
 import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
@@ -29,92 +29,98 @@ export default function PerformanceManagementChart() {
     const { yellow, blue, gray, green, red, purple, black } = colors;
 
     return (
-        <>
-            <ResponsiveContainer width="100%" height={400}>
-                <ComposedChart data={data} syncId={"pmc"}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <YAxis />
-                    <Tooltip />
-                    {/* <Legend /> */}
-                    <Line
-                        type="monotone"
-                        dataKey="Fatigue"
-                        stroke={purple}
-                        dot={false}
-                    />
-                    <Area
-                        type="monotone"
-                        dataKey="Fitness"
-                        stroke={blue}
-                        fill="#D9EEF9"
-                        dot={false}
-                    />
-                </ComposedChart>
-            </ResponsiveContainer>
-
-            {/* Form */}
-            <Row
-                className={styles.chartRow}
-            >
-                <Col>
-                    <ResponsiveContainer width="100%" height={250}>
-                        <LineChart data={data} syncId="pmc">
+        <Container fluid >
+            <Row>
+                <Col xs="12">
+                    <ResponsiveContainer minWidth="400px" width="100%" height={400}>
+                        <ComposedChart data={data} syncId={"pmc"}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis
-                                domain={[-40, 30]}
-                                ticks={[-30, -10, 5, 20]}
-                            />
+                            <YAxis />
                             <Tooltip />
-                            {/* Transition (yellow) */}
-                            <ReferenceArea
-                                y1={20}
-                                y2={30}
-                                fill={yellow}
-                                fillOpacity={0.1}
-                            />
-                            {/* Fresh (blue) */}
-                            <ReferenceArea
-                                y1={5}
-                                y2={20}
-                                fill={blue}
-                                fillOpacity={0.1}
-                            />
-                            {/* Neutral (gray) */}
-                            <ReferenceArea
-                                y1={-10}
-                                y2={5}
-                                fill={gray}
-                                fillOpacity={0.1}
-                            />{" "}
-                            {/* Optimal (Green) */}
-                            <ReferenceArea
-                                y1={-30}
-                                y2={-10}
-                                fill={green}
-                                fillOpacity={0.1}
-                            />{" "}
-                            {/* High Risk (Red) */}
-                            <ReferenceArea
-                                y1={-40}
-                                y2={-30}
-                                fill={red}
-                                fillOpacity={0.1}
-                            />{" "}
+                            {/* <Legend /> */}
                             <Line
-                                dataKey="Form"
-                                stroke="black"
+                                type="monotone"
+                                dataKey="Fatigue"
+                                stroke={purple}
                                 dot={false}
-                                isAnimationActive={false}
                             />
-                        </LineChart>
+                            <Area
+                                type="monotone"
+                                dataKey="Fitness"
+                                stroke={blue}
+                                fill="#D9EEF9"
+                                dot={false}
+                            />
+                        </ComposedChart>
                     </ResponsiveContainer>
                 </Col>
-                <Col>
-                    <FormLegend />
-                </Col>
             </Row>
-        </>
+        
+            {/* Form */}
+
+          <Row>
+              <Col xs="12">
+              
+                      <ResponsiveContainer width="100%" height={250}>
+                          <LineChart data={data} syncId="pmc">
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="date" />
+                              <YAxis
+                                  domain={[-40, 30]}
+                                  ticks={[-30, -10, 5, 20]}
+                              />
+                              <Tooltip />
+                              {/* Transition (yellow) */}
+                              <ReferenceArea
+                                  y1={20}
+                                  y2={30}
+                                  fill={yellow}
+                                  fillOpacity={0.1}
+                              />
+                              {/* Fresh (blue) */}
+                              <ReferenceArea
+                                  y1={5}
+                                  y2={20}
+                                  fill={blue}
+                                  fillOpacity={0.1}
+                              />
+                              {/* Neutral (gray) */}
+                              <ReferenceArea
+                                  y1={-10}
+                                  y2={5}
+                                  fill={gray}
+                                  fillOpacity={0.1}
+                              />{" "}
+                              {/* Optimal (Green) */}
+                              <ReferenceArea
+                                  y1={-30}
+                                  y2={-10}
+                                  fill={green}
+                                  fillOpacity={0.1}
+                              />{" "}
+                              {/* High Risk (Red) */}
+                              <ReferenceArea
+                                  y1={-40}
+                                  y2={-30}
+                                  fill={red}
+                                  fillOpacity={0.1}
+                              />{" "}
+                              <Line
+                                  dataKey="Form"
+                                  stroke="black"
+                                  dot={false}
+                                  isAnimationActive={false}
+                              />
+                          </LineChart>
+                      </ResponsiveContainer>
+              </Col>
+              <Col>
+                            <FormLegend />
+                  
+              </Col>
+          </Row>
+
+        </Container>
     );
 }
 
