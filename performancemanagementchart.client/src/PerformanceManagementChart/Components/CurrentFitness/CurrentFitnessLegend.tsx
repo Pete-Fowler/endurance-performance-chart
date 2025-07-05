@@ -1,17 +1,17 @@
 import { Col } from "reactstrap";
 import type { IFitnessData } from "../../Interfaces";
-import styles from "./CurrentFitness.module.css";
+import styles from "./CurrentFitnessLegend.module.css";
 import { colors } from "../../Colors";
 
 interface IProps {
     currentFitness: IFitnessData;
 }
 
-export default function CurrentFitness({currentFitness}: IProps) 
+export default function CurrentFitnessLegend({currentFitness}: IProps) 
 {
     return (
         <Col className={styles.fitnessBox}>
-            <div style={{ color: colors.gray, fontWeight: "bold" }}>
+            <div style={{ color: colors.gray, fontWeight: "bold" }}> 
                 Form: {currentFitness.Form}
             </div>
             <div style={{ color: colors.blue, fontWeight: "bold" }}>

@@ -15,7 +15,7 @@ import { Col, Container, Row } from "reactstrap";
 import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
-import CurrentFitness from "./Components/CurrentFitness/CurrentFitnessLegend";
+import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
 
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
 // need activity: Type, load/tss, intensity, duration, distance, heart rate, pace, name, time
@@ -66,7 +66,7 @@ export default function PerformanceManagementChart() {
                     </ResponsiveContainer>
                 </Col>
                 <Col xs="1" className="ps-0">
-                    <CurrentFitness currentFitness={data[data.length - 1]} />
+                    <CurrentFitnessLegend currentFitness={data[data.length - 1]} />
                 </Col>
             </Row>
 

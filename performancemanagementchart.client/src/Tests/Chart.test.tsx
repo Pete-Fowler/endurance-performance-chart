@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
-import { render, screen } from "@testing-library/react";
-import { expect, test } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, expect, test } from "vitest";
 import App from "../App";
 import PerformanceManagementChart from "../PerformanceManagementChart/PerformanceManagementChart";
 
@@ -10,9 +10,13 @@ global.ResizeObserver = class {
     disconnect() {}
 };
 
+afterEach(() => {
+    cleanup();
+});
+
 test("Renders fitness chart", () => {
     render(<PerformanceManagementChart />);
-    expect(screen.getByText(/form:/i)).toBeInTheDocument();
+    expect(screen.getByText(/form:/i)).toBeInTheDocument(); 
     expect(screen.getByText(/fitness/i)).toBeInTheDocument();
     expect(
         screen.getByText(/fatigue/i)
