@@ -11,7 +11,7 @@ namespace PerformanceManagementChart.Server.Models
         /// <summary>
         /// Miles / hour
         /// </summary>
-        public double ThreshholdPace { get; set; } = 8.41;
+        public double ThreshholdPace { get; set; } = 8.33;
         public Activity? Activity { get; set; }
     }
 
@@ -22,7 +22,7 @@ namespace PerformanceManagementChart.Server.Models
         /// <summary>
         /// Seconds
         /// </summary>
-        public int Duration { get; set; } 
+        public int Duration { get; set; }
 
         /// <summary>
         /// Miles
