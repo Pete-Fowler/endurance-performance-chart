@@ -1,3 +1,5 @@
-performancemanagementchart.client/obj/
+**/obj/
 
-performancemanagementchart.client/obj/Debug//package.g.props
+**/bin/
+
+**package.g.props

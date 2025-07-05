@@ -19,6 +19,7 @@ export function FormLegend() {
                         key={zone.label}
                         style={{
                             color: zone.color,
+                            fontWeight: "bold",
                         }}
                     >
                         {zone.label}
