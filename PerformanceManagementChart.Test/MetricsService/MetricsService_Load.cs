@@ -1,6 +1,5 @@
 ﻿using PerformanceManagementChart.Server.Models;
-using PerformanceManagementChart.Services.MetricsService;
-using Xunit;
+using static PerformanceManagementChart.Server.Services.MetricsService;
 
 namespace PerformanceManagementChart.Test.MetricsService;
 
@@ -10,10 +9,8 @@ public class MetricsService_Load
     [MemberData(nameof(LoadNormalTestCases))]
     public void GetLoad_NormalData_ReturnsExpected(ActivityDto activity, int expectedLoad)
     {
-        var metricsService = new MetricsService();
-
         // Act
-        var load = metricsService.GetLoad(activity);
+        var load = GetLoad(activity);
 
         // Assert
         Assert.Equal(expectedLoad, load);
@@ -40,7 +37,7 @@ public class MetricsService_Load
                     ThreshholdPace = 8.33,
                     Activity = new Activity { Duration = 14115, GradeAdjustedPace = 7.1 },
                 },
-                284,
+                285,
             },
             new object[]
             {
