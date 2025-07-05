@@ -16,16 +16,16 @@ import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
+import type { IFitnessData } from "./Interfaces";
 
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
-// need activity: Type, load/tss, intensity, duration, distance, heart rate, pace, name, time
-const data = [
-    { date: "2024-06-01", Fatigue: 80, Fitness: 70, Form: 10 },
-    { date: "2024-06-02", Fatigue: 85, Fitness: 72, Form: 13 },
-    { date: "2024-06-03", Fatigue: 78, Fitness: 74, Form: 4 },
-    { date: "2024-06-04", Fatigue: 90, Fitness: 76, Form: 14 },
-    { date: "2024-06-05", Fatigue: 88, Fitness: 78, Form: 10 },
-    { date: "2024-06-06", Fatigue: 82, Fitness: 80, Form: 2 },
+const data: IFitnessData[] = [
+    { Date: "2024-06-01", Fatigue: 80, Fitness: 70, Form: 10 },
+    { Date: "2024-06-02", Fatigue: 85, Fitness: 72, Form: 13 },
+    { Date: "2024-06-03", Fatigue: 78, Fitness: 74, Form: 4 },
+    { Date: "2024-06-04", Fatigue: 90, Fitness: 76, Form: 14 },
+    { Date: "2024-06-05", Fatigue: 88, Fitness: 78, Form: 10 },
+    { Date: "2024-06-06", Fatigue: 82, Fitness: 80, Form: 2 },
 ];
 
 export default function PerformanceManagementChart() {
