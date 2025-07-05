@@ -1,0 +1,251 @@
+
+namespace PerformanceManagementChart.Server.Models
+{
+    public class IntervalsIcuActivity
+    {
+        public string id { get; set; } = "";
+        public string type { get; set; } = "";
+
+        /// <summary>
+        /// Seconds
+        /// </summary>
+        public int elapsed_time { get; set; }
+        public string name { get; set; } = "";
+        public string? description { get; set; }
+        public DateTime start_date { get; set; }
+
+        /// <summary>
+        /// Meters
+        /// </summary>
+        public double distance { get; set; }
+
+        /// <summary>
+        /// Seconds
+        /// </summary>
+        public double moving_time { get; set; }
+
+        /// <summary>
+        /// Meters / second
+        /// </summary>
+        public double average_speed { get; set; }
+
+        public int average_heartrate { get; set; }
+
+        /// <summary>
+        /// Grade adjusted pace, m/s
+        /// </summary>
+        public double gap { get; set; }
+
+        /// <summary>
+        /// meters / sec
+        /// </summary>
+        public double threshhold_pace { get; set; }
+    }
+}
+
+/*
+{
+        "id": "i82213961",
+        "start_date_local": "2018-04-16T10:56:18",
+        "type": "Run",
+        "icu_ignore_time": false,
+        "icu_pm_cp": null,
+        "icu_pm_w_prime": null,
+        "icu_pm_p_max": null,
+        "icu_pm_ftp": null,
+        "icu_pm_ftp_secs": null,
+        "icu_pm_ftp_watts": null,
+        "icu_ignore_power": false,
+        "icu_rolling_cp": null,
+        "icu_rolling_w_prime": null,
+        "icu_rolling_p_max": null,
+        "icu_rolling_ftp": null,
+        "icu_rolling_ftp_delta": null,
+        "icu_training_load": 228,
+        "icu_atl": 74.64269,
+        "icu_ctl": 58.793667,
+        "paired_event_id": null,
+        "icu_ftp": null,
+        "icu_joules": null,
+        "icu_recording_time": 14114,
+        "elapsed_time": 14115,
+        "icu_weighted_avg_watts": null,
+        "carbs_used": null,
+        "name": "Hopkinton Running",
+        "description": null,
+        "start_date": "2018-04-16T14:56:18Z",
+        "distance": 42581.87,
+        "icu_distance": 42581.87,
+        "moving_time": 13962,
+        "coasting_time": null,
+        "total_elevation_gain": 608.0,
+        "total_elevation_loss": 741.0,
+        "timezone": null,
+        "trainer": null,
+        "sub_type": null,
+        "commute": false,
+        "race": false,
+        "max_speed": 3.751,
+        "average_speed": 3.017,
+        "device_watts": null,
+        "has_heartrate": true,
+        "max_heartrate": 155,
+        "average_heartrate": 129,
+        "average_cadence": 87.594376,
+        "calories": 2062,
+        "average_temp": null,
+        "min_temp": null,
+        "max_temp": null,
+        "avg_lr_balance": null,
+        "gap": 3.1337214,
+        "gap_model": "STRAVA_RUN",
+        "use_elevation_correction": true,
+        "gear": null,
+        "perceived_exertion": null,
+        "device_name": "GARMIN FR235",
+        "power_meter": null,
+        "power_meter_serial": null,
+        "power_meter_battery": null,
+        "crank_length": null,
+        "external_id": "pf4711_19715400304.fit",
+        "file_sport_index": 0,
+        "file_type": "fit",
+        "icu_athlete_id": "i360301",
+        "created": "2025-06-08T16:30:18.267+00:00",
+        "icu_sync_date": "2025-06-08T16:30:31.435+00:00",
+        "analyzed": "2025-06-08T16:30:31.435+00:00",
+        "icu_w_prime": null,
+        "threshold_pace": null,
+        "icu_hr_zones": [
+            126,
+            134,
+            141,
+            149,
+            153,
+            158,
+            165
+        ],
+        "pace_zones": null,
+        "lthr": 150,
+        "icu_resting_hr": 46,
+        "icu_weight": 82.644,
+        "icu_power_zones": null,
+        "icu_sweet_spot_min": 0,
+        "icu_sweet_spot_max": 0,
+        "icu_power_spike_threshold": null,
+        "trimp": 396.36667,
+        "icu_warmup_time": 300,
+        "icu_cooldown_time": 300,
+        "icu_chat_id": null,
+        "icu_ignore_hr": false,
+        "ignore_velocity": false,
+        "ignore_pace": false,
+        "ignore_parts": null,
+        "icu_training_load_data": 100,
+        "interval_summary": [
+            "1x 3h55m 129bpm"
+        ],
+        "skyline_chart_bytes": "CAcSA5huARoCVkwiAgIBKAI=",
+        "stream_types": [
+            "time",
+            "cadence",
+            "heartrate",
+            "distance",
+            "altitude",
+            "latlng",
+            "velocity_smooth",
+            "fixed_altitude"
+        ],
+        "has_weather": false,
+        "has_segments": false,
+        "power_field_names": null,
+        "power_field": null,
+        "icu_zone_times": null,
+        "icu_hr_zone_times": [
+            4267,
+            5298,
+            3790,
+            560,
+            23,
+            18,
+            0
+        ],
+        "pace_zone_times": null,
+        "gap_zone_times": null,
+        "use_gap_zone_times": true,
+        "tiz_order": "POWER_HR_PACE",
+        "polarization_index": -0.19,
+        "icu_achievements": null,
+        "icu_intervals_edited": null,
+        "lock_intervals": null,
+        "icu_lap_count": 1,
+        "icu_joules_above_ftp": null,
+        "icu_max_wbal_depletion": null,
+        "icu_hrr": {
+            "start_index": 3719,
+            "end_index": 3779,
+            "start_time": 3725,
+            "end_time": 3785,
+            "start_bpm": 155,
+            "end_bpm": 144,
+            "average_watts": null,
+            "hrr": 11
+        },
+        "icu_sync_error": null,
+        "icu_color": null,
+        "icu_power_hr_z2": null,
+        "icu_power_hr_z2_mins": null,
+        "icu_cadence_z2": null,
+        "icu_rpe": null,
+        "feel": null,
+        "kg_lifted": null,
+        "decoupling": null,
+        "icu_median_time_delta": 1,
+        "p30s_exponent": null,
+        "workout_shift_secs": null,
+        "strava_id": null,
+        "lengths": null,
+        "pool_length": null,
+        "compliance": null,
+        "coach_tick": null,
+        "source": "GARMIN_CONNECT",
+        "oauth_client_id": null,
+        "oauth_client_name": null,
+        "average_altitude": 51.669548,
+        "min_altitude": 4.0,
+        "max_altitude": 145.0,
+        "power_load": null,
+        "hr_load": 228,
+        "pace_load": null,
+        "hr_load_type": "HRSS",
+        "pace_load_type": null,
+        "tags": null,
+        "attachments": null,
+        "recording_stops": null,
+        "average_weather_temp": null,
+        "min_weather_temp": null,
+        "max_weather_temp": null,
+        "average_feels_like": null,
+        "min_feels_like": null,
+        "max_feels_like": null,
+        "average_wind_speed": null,
+        "average_wind_gust": null,
+        "prevailing_wind_deg": null,
+        "headwind_percent": null,
+        "tailwind_percent": null,
+        "average_clouds": null,
+        "max_rain": null,
+        "max_snow": null,
+        "carbs_ingested": null,
+        "route_id": null,
+        "pace": 3.0498405,
+        "athlete_max_hr": 165,
+        "group": "f421f8fb",
+        "icu_intensity": 76.25944,
+        "icu_efficiency_factor": null,
+        "icu_power_hr": null,
+        "session_rpe": null,
+        "average_stride": 1.044533,
+        "icu_average_watts": null,
+        "icu_variability_index": null
+    }*/
