@@ -11,13 +11,13 @@ export default function CurrentFitness({currentFitness}: IProps)
 {
     return (
         <Col className={styles.fitnessBox}>
-            <div style={{ color: colors.gray }}>
+            <div style={{ color: colors.gray, fontWeight: "bold" }}>
                 Form: {currentFitness.Form}
             </div>
-            <div style={{ color: colors.blue }}>
+            <div style={{ color: colors.blue, fontWeight: "bold" }}>
                 Fitness: {currentFitness.Fitness}
             </div>
-            <div style={{ color: colors.purple }}>
+            <div style={{ color: colors.purple, fontWeight: "bold" }}>
                 Fatigue: {currentFitness.Fatigue}
             </div>
         </Col>
