@@ -17,13 +17,12 @@ public class MetricsService_AcuteChronicLoad
         List<ActivityDto> expectedActivityData
     )
     {
-        var results = MetricsService.AddNonActivityDays(activities);
+        var results = AddNonActivityDays(activities);
 
         Assert.Equal(expectedActivityData.Count, results.Count);
 
         for (int i = 0; i < expectedActivityData.Count; i++)
         {
-            Assert.True(false);
             Assert.Equivalent(expectedActivityData[i], results[i]);
         }
     }
