@@ -9,13 +9,20 @@ public class MetricsService_Load
     [MemberData(nameof(LoadNormalTestCases))]
     public void GetLoad_NormalData_ReturnsExpected(ActivityDto activity, int expectedLoad)
     {
-        // Act
         var load = GetLoad(activity);
 
-        // Assert
         Assert.Equal(expectedLoad, load);
         // IF = 7.1 / 8.33 = .85
         // TSS = (14115 * 7.1 * .85) / (8.33 * 3600) * 100 = 284.060...
+    }
+
+    [Theory]
+    [MemberData(nameof(LoadCasesThatShouldReturnZero))]
+    public void GetLoad_NoActivity_ReturnsZero(ActivityDto activity, int expectedLoad)
+    {
+        var load = GetLoad(activity);
+
+        Assert.Equal(0, expectedLoad);
     }
 
     public static IEnumerable<object[]> LoadNormalTestCases =>
@@ -56,6 +63,34 @@ public class MetricsService_Load
                     Activity = new Activity { Duration = 7200, GradeAdjustedPace = 8.33 },
                 },
                 200,
+            },
+        };
+
+    public static IEnumerable<object[]> LoadCasesThatShouldReturnZero =>
+        new List<object[]>
+        {
+            new object[]
+            {
+                new ActivityDto
+                {
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Duration = 0, GradeAdjustedPace = 8.33 },
+                },
+                0,
+            },
+            new object[]
+            {
+                new ActivityDto
+                {
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Duration = 3600, GradeAdjustedPace = 0 },
+                },
+                0,
+            },
+            new object[]
+            {
+                new ActivityDto { ThreshholdPace = 8.33, Activity = null },
+                0,
             },
         };
 }
