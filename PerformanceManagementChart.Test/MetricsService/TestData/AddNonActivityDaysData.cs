@@ -5,7 +5,7 @@ using static PerformanceManagementChart.Server.Services.MetricsService;
 
 namespace PerformanceManagementChart.Test.MetricsService;
 
-public class NormalActivityDtos : IEnumerable<object[]>
+public class AddNonActivityDaysData : IEnumerable<object[]>
 {
     public IEnumerator<object[]> GetEnumerator()
     {

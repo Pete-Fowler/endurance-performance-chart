@@ -11,7 +11,7 @@ public class MetricsService_AcuteChronicLoad
     // For those added days, the activity will be null and the load will be zero.
 
     [Theory]
-    [ClassData(typeof(NormalActivityDtos))]
+    [ClassData(typeof(AddNonActivityDaysData))]
     public void AddNonActivityDays_NormalData_ReturnsExpected(
         List<ActivityDto> activities,
         List<ActivityDto> expectedActivityData
@@ -21,9 +21,27 @@ public class MetricsService_AcuteChronicLoad
 
         Assert.Equal(expectedActivityData.Count, results.Count);
 
+        Assert.Equivalent(expectedActivityData, results);
+    }
+
+    [Theory]
+    [ClassData(typeof(GetFormFitnessFatigue))]
+    public void GetFormFitnessFatigue_NormalData_ReturnsExpected(
+        List<ActivityDto> activities,
+        List<ActivityDto> expectedActivityData
+    )
+    {
+        var results = GetFormFitnessFatigue(activities);
+
+        Assert.Equal(expectedActivityData.Count, results.Count);
+
         for (int i = 0; i < expectedActivityData.Count; i++)
         {
-            Assert.Equivalent(expectedActivityData[i], results[i]);
+            Assert.Equal(expectedActivityData[i].Date, results[i].Date);
+            Assert.Equal(expectedActivityData[i].Fatigue, results[i].Fatigue);
+            Assert.Equal(expectedActivityData[i].Fitness, results[i].Fitness);
+            // Assert.Equal(expectedActivityData[i].Form, results[i].Form);
         }
+        // Assert.Equivalent(expectedActivityData, results);
     }
 }

@@ -5,7 +5,7 @@ namespace PerformanceManagementChart.Server.Services;
 public static class MetricsService
 {
     /// <summary>
-    /// Calculates the Training Stress Score (TSS) based on the activity data.
+    /// Calculates the Load / Training Stress Score (TSS) for a single activity.
     /// </summary>
     /// <param name="activityData">The activity data.</param>
     /// <returns>The calculated TSS.</returns>
@@ -61,5 +61,66 @@ public static class MetricsService
         }
 
         return newActivityData;
+    }
+
+    /// <summary>
+    /// Calculates the Form, Fitness, and Fatigue metrics for a list of activities.
+    /// </summary>
+    /// <param name="activities">The list of activities.</param>
+    /// <returns>A new list of activities with Form, Fitness, and Fatigue calculated.</returns>
+    public static List<ActivityDto> GetFormFitnessFatigue(List<ActivityDto> activities)
+    {
+        if (activities == null || activities.Count == 0)
+        {
+            return new List<ActivityDto>();
+        }
+
+        // Calculate the 7-day and 42-day rolling averages for Fatigue, Fitness, and Form
+        var result = new List<ActivityDto>();
+
+        for (int i = 0; i < activities.Count; i++)
+        {
+            var current = activities[i];
+            var sevenDayAvg = GetRollingAverage(activities, i, 7);
+            var fortyTwoDayAvg = GetRollingAverage(activities, i, 42);
+
+            result.Add(
+                new ActivityDto
+                {
+                    Date = current.Date,
+                    Fatigue = (int)sevenDayAvg,
+                    Fitness = (int)fortyTwoDayAvg,
+                    Form = (int)(fortyTwoDayAvg - sevenDayAvg),
+                    ThreshholdPace = current.ThreshholdPace,
+                    Activity = current.Activity,
+                }
+            );
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Gets the rolling average of activity loads over a specified number of days.
+    /// </summary>
+    /// <param name="activities">The list of activities.</param>
+    /// <param name="index">The index of the activity to start the rolling average from.</param>
+    /// <param name="days">The number of days to include in the rolling average.</param>
+    /// <returns>The average load over the specified number of days.</returns>
+    private static double GetRollingAverage(List<ActivityDto> activities, int index, int days)
+    {
+        DateTime startDate = activities[index].Date.AddDays(-(days - 1));
+        DateTime endDate = activities[index].Date.Date;
+
+        var relevantActivities = activities
+            .Where(a => a.Date.Date >= startDate && a.Date.Date <= endDate)
+            .Select(a => a.Activity?.Load ?? 0);
+
+        if (!relevantActivities.Any())
+        {
+            return 0;
+        }
+
+        return relevantActivities.Average();
     }
 }
