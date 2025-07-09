@@ -10,7 +10,6 @@ namespace PerformanceManagementChart.Test.IntervalsIcuApiServiceTests;
 
 public class IntervalsIcuApiService_Activities
 {
-
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly Mock<HttpMessageHandler> _mockHandler;
 

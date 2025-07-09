@@ -1,4 +1,5 @@
 using System.Net.WebSockets;
+using System.Text;
 using System.Text.Json;
 using PerformanceManagementChart.Server.Models;
 
@@ -38,12 +39,18 @@ public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
     private HttpClient GetClient()
     {
         var client = _httpClientFactory.CreateClient();
-        client.DefaultRequestHeaders.Accept.Clear();
-        client.DefaultRequestHeaders.Accept.Add(
-            new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
-        );
-        client.DefaultRequestHeaders.Add("User-Agent", "PerformanceManagementChart.Client");
-        client.DefaultRequestHeaders.Add("X-Api-Key", "YOUR_API_KEY_HERE"); // Replace with your actual API key
+       
+        var apiKey = Environment.GetEnvironmentVariable("INTERVALS_ICU_API_KEY");
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            throw new InvalidOperationException("API key for Intervals.icu is not set in environment variables.");
+        }
+
+        var authString = $"API_KEY:{apiKey}";
+        var base64AuthString = Convert.ToBase64String(Encoding.UTF8.GetBytes(authString));
+        client.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64AuthString);
+            
         return client;
     }
 }
