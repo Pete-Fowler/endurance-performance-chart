@@ -1,7 +1,7 @@
 ﻿using PerformanceManagementChart.Server.Models;
-using static PerformanceManagementChart.Server.Services.MetricsService;
+using PerformanceManagementChart.Server.Services;
 
-namespace PerformanceManagementChart.Test.MetricsService;
+namespace PerformanceManagementChart.Test.MetricsService_Test;
 
 public class MetricsService_Load
 {
@@ -9,7 +9,8 @@ public class MetricsService_Load
     [MemberData(nameof(LoadNormalTestCases))]
     public void GetLoad_NormalData_ReturnsExpected(ActivityDto activity, int expectedLoad)
     {
-        var load = GetLoad(activity);
+        var service = new MetricsService();
+        var load = service.GetLoad(activity);
 
         Assert.Equal(expectedLoad, load);
         // IF = 7.1 / 8.33 = .85
@@ -20,9 +21,10 @@ public class MetricsService_Load
     [MemberData(nameof(LoadCasesThatShouldReturnZero))]
     public void GetLoad_NoActivity_ReturnsZero(ActivityDto activity, int expectedLoad)
     {
-        var load = GetLoad(activity);
+        var service = new MetricsService();
+        var load = service.GetLoad(activity);
 
-        Assert.Equal(0, expectedLoad);
+        Assert.Equal(load, expectedLoad);
     }
 
     public static IEnumerable<object[]> LoadNormalTestCases =>

@@ -3,7 +3,7 @@ using System.Text;
 using PerformanceManagementChart.Server.Models;
 using static PerformanceManagementChart.Server.Services.MetricsService;
 
-namespace PerformanceManagementChart.Test.MetricsService;
+namespace PerformanceManagementChart.Test.MetricsService_Test;
 
 public class AddNonActivityDaysData : IEnumerable<object[]>
 {

@@ -2,14 +2,14 @@ using PerformanceManagementChart.Server.Models;
 
 namespace PerformanceManagementChart.Server.Services;
 
-public static class MetricsService
+public class MetricsService : IMetricsService
 {
     /// <summary>
     /// Calculates the Load / Training Stress Score (TSS) for a single activity.
     /// </summary>
     /// <param name="activityData">The activity data.</param>
     /// <returns>The calculated TSS.</returns>
-    public static int GetLoad(ActivityDto activityData)
+    public int GetLoad(ActivityDto activityData)
     {
         Activity? activity = activityData.Activity;
         if (activity == null)
@@ -32,7 +32,7 @@ public static class MetricsService
     /// </summary>
     /// <param name="activities">The list of activities. Must be sorted by date ascending</param>
     /// <returns>A new list of activities with non-activity days added.</returns>
-    public static List<ActivityDto> AddNonActivityDays(List<ActivityDto> activities)
+    public List<ActivityDto> AddNonActivityDays(List<ActivityDto> activities)
     {
         if (activities == null || activities.Count == 0)
         {
@@ -68,7 +68,7 @@ public static class MetricsService
     /// </summary>
     /// <param name="activities">The list of activities.</param>
     /// <returns>A new list of activities with Form, Fitness, and Fatigue calculated.</returns>
-    public static List<ActivityDto> GetFormFitnessFatigue(List<ActivityDto> activities)
+    public List<ActivityDto> GetFormFitnessFatigue(List<ActivityDto> activities)
     {
         if (activities == null || activities.Count == 0)
         {

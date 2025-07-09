@@ -1,8 +1,8 @@
 using System.Text;
 using PerformanceManagementChart.Server.Models;
-using static PerformanceManagementChart.Server.Services.MetricsService;
+using PerformanceManagementChart.Server.Services;
 
-namespace PerformanceManagementChart.Test.MetricsService;
+namespace PerformanceManagementChart.Test.MetricsService_Test;
 
 public class MetricsService_AcuteChronicLoad
 {
@@ -17,7 +17,8 @@ public class MetricsService_AcuteChronicLoad
         List<ActivityDto> expectedActivityData
     )
     {
-        var results = AddNonActivityDays(activities);
+        var svc = new MetricsService();
+        var results = svc.AddNonActivityDays(activities);
 
         Assert.Equal(expectedActivityData.Count, results.Count);
 
@@ -31,7 +32,8 @@ public class MetricsService_AcuteChronicLoad
         List<ActivityDto> expectedActivityData
     )
     {
-        var results = GetFormFitnessFatigue(activities);
+        var svc = new MetricsService();
+        var results = svc.GetFormFitnessFatigue(activities);
 
         Assert.Equal(expectedActivityData.Count, results.Count);
 
