@@ -90,7 +90,7 @@ public static class MetricsService
                     Date = current.Date,
                     Fatigue = (int)sevenDayAvg,
                     Fitness = (int)fortyTwoDayAvg,
-                    Form = (int)(fortyTwoDayAvg - sevenDayAvg),
+                    Form = (int)fortyTwoDayAvg - (int)sevenDayAvg,
                     ThreshholdPace = current.ThreshholdPace,
                     Activity = current.Activity,
                 }
@@ -109,18 +109,24 @@ public static class MetricsService
     /// <returns>The average load over the specified number of days.</returns>
     private static double GetRollingAverage(List<ActivityDto> activities, int index, int days)
     {
-        DateTime startDate = activities[index].Date.AddDays(-(days - 1));
         DateTime endDate = activities[index].Date.Date;
+        DateTime startDate = endDate.AddDays(-(days - 1));
 
+        // Group activities by date and sum loads for each day
         var relevantActivities = activities
+            .Take(index + 1)
             .Where(a => a.Date.Date >= startDate && a.Date.Date <= endDate)
-            .Select(a => a.Activity?.Load ?? 0);
+            .GroupBy(a => a.Date.Date)
+            .ToDictionary(
+                g => g.Key,
+                g => g.Sum(a => a.Activity?.Load ?? 0) 
+            );
 
         if (!relevantActivities.Any())
         {
             return 0;
         }
 
-        return relevantActivities.Average();
+        return relevantActivities.Values.Average();
     }
 }
