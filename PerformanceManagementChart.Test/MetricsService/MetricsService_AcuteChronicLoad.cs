@@ -40,7 +40,7 @@ public class MetricsService_AcuteChronicLoad
             Assert.Equal(expectedActivityData[i].Date, results[i].Date);
             Assert.Equal(expectedActivityData[i].Fatigue, results[i].Fatigue);
             Assert.Equal(expectedActivityData[i].Fitness, results[i].Fitness);
-            // Assert.Equal(expectedActivityData[i].Form, results[i].Form);
+            Assert.Equal(expectedActivityData[i].Form, results[i].Form);
         }
         // Assert.Equivalent(expectedActivityData, results);
     }
