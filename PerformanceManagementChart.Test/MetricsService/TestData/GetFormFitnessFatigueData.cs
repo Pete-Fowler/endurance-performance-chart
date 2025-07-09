@@ -7,6 +7,8 @@ namespace PerformanceManagementChart.Test.MetricsService;
 
 public class GetFormFitnessFatigue : IEnumerable<object[]>
 {
+    // Test has no zero days between activity days for simplicity. 
+    // Don't call AddNonActivityDays in the test to keep the tests independent
     public IEnumerator<object[]> GetEnumerator()
     {
         // 2 day consecutive average
@@ -107,6 +109,60 @@ public class GetFormFitnessFatigue : IEnumerable<object[]>
             },
         };
 
+        // 2 activities, with 1 zero load day in between
+        yield return new object[]
+        {
+            // Input
+            new List<ActivityDto>
+            {
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 2),
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 3),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 110 },
+                },
+            },
+            // Expected
+            new List<ActivityDto>
+            {
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    Fatigue = 100,
+                    Fitness = 100,
+                    Form = 0,
+                    Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 2),
+                    Fatigue = 50,
+                    Fitness = 50,
+                    Form = 0,
+                    Activity = new Activity { Load = 0 }, 
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 3),
+                    Fatigue = 70,
+                    Fitness = 70,  
+                    Form = 0,   
+                    Activity = new Activity { Load = 110 },
+                },
+            },
+        };
+        
         // 2 activities 8 days apart
         yield return new object[]
         {
@@ -146,7 +202,7 @@ public class GetFormFitnessFatigue : IEnumerable<object[]>
                     Activity = new Activity { Load = 110 },
                 },
             },
-        };
+};
 
         // 2 activities 43 days apart
         yield return new object[]
