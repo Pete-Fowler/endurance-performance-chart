@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using PerformanceManagementChart.Server.Models;
 
 namespace PerformanceManagementChart.Server.Controllers
 {
     [ApiController]
+    [Route("api/fitness-chart")]
     public class FitnessChartController : ControllerBase
     {
         private readonly ILogger _logger;
@@ -12,16 +14,10 @@ namespace PerformanceManagementChart.Server.Controllers
             _logger = logger;
         }
 
-        // [HttpGet(Name = "GetPerformanceData")]
-        // public IEnumerable<PerformanceData> Get()
-        // {
-        //     return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //     {
-        //         Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-        //         TemperatureC = Random.Shared.Next(-20, 55),
-        //         Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //     })
-        //     .ToArray();
-        // }
+        [HttpGet]
+        public IEnumerable<ActivityDto> GetFitnessChartData()
+        {
+            throw new NotImplementedException("This method is not implemented yet.");
+        }
     }
 }
