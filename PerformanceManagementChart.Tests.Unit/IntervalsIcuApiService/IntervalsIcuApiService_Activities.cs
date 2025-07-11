@@ -31,7 +31,6 @@ public class IntervalsIcuApiService_Activities
         var httpClient = new HttpClient(_mockHandler.Object);
         mockFactory.Setup(x => x.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
-
         _httpClientFactory = mockFactory.Object;
     }
 
@@ -50,21 +49,18 @@ public class IntervalsIcuApiService_Activities
         Assert.Equal(expectedUrl, result);
     }
 
-    // Now test that the load method it makes an http request to the expected url 
+    // Now test that the load method it makes an http request to the expected url
     [Theory]
     [InlineData(
-
         "https://intervals.icu/api/v1/athlete/12345/activities?oldest=2018-01-01&newest=2018-04-16"
     )]
-    public async Task LoadActivitiesAsync(
-        string expectedUrl
-    )
+    public async Task LoadActivitiesAsync(string expectedUrl)
     {
         // Arrange
         var activityDtos = new List<ActivityDto>
         {
             new ActivityDto { },
-            new ActivityDto { }
+            new ActivityDto { },
         };
 
         _mockHandler
@@ -74,11 +70,17 @@ public class IntervalsIcuApiService_Activities
                 ItExpr.IsAny<HttpRequestMessage>(),
                 ItExpr.IsAny<CancellationToken>()
             )
-            .ReturnsAsync(new HttpResponseMessage
-            {
-                StatusCode = HttpStatusCode.OK,
-                Content = new StringContent(JsonSerializer.Serialize(activityDtos), Encoding.UTF8, "application/json")
-            });
+            .ReturnsAsync(
+                new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent(
+                        JsonSerializer.Serialize(activityDtos),
+                        Encoding.UTF8,
+                        "application/json"
+                    ),
+                }
+            );
 
         var apiService = new IntervalsIcuApiService(_httpClientFactory);
         var athleteId = 12345;
@@ -95,8 +97,9 @@ public class IntervalsIcuApiService_Activities
                 "SendAsync",
                 Times.Once(),
                 ItExpr.Is<HttpRequestMessage>(req =>
-                    req.Method == HttpMethod.Get &&
-                    req.RequestUri.ToString() == expectedUrl
+                    req.Method == HttpMethod.Get
+                    && req.RequestUri != null
+                    && req.RequestUri.ToString() == expectedUrl
                 ),
                 ItExpr.IsAny<CancellationToken>()
             );
