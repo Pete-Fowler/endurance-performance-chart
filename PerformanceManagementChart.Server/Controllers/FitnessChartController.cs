@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace PerformanceManagementChart.Server.Controllers
 {
     [ApiController]
-    public class PerformanceManagementController : ControllerBase
+    public class FitnessChartController : ControllerBase
     {
-        private readonly ILogger<PerformanceManagementController> _logger;
+        private readonly ILogger _logger;
 
-        public PerformanceManagementController(ILogger<PerformanceManagementController> logger)
+        public FitnessChartController(ILogger logger)
         {
             _logger = logger;
         }
