@@ -18,7 +18,7 @@ public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
         DateOnly endDate
     )
     {
-        var url = GetUrl($"athlete/{athleteId}/activities?oldest={startDate}&newest={endDate}");
+        var url = GetUrl($"athlete/{athleteId}/activities?oldest={startDate.ToString("yyyy-MM-dd")}&newest={endDate.ToString("yyyy-MM-dd")}");
 
         var client = GetClient();
         var response = await client.GetAsync(url);

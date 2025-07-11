@@ -3,15 +3,19 @@ using PerformanceManagementChart.Server.Services;
 
 namespace PerformanceManagementChart.Test.MetricsService_Test;
 
-public class MetricsService_Load
+public class MetricsServiceTests
 {
     [Theory]
     [MemberData(nameof(LoadNormalTestCases))]
     public void GetLoad_NormalData_ReturnsExpected(ActivityDto activity, int expectedLoad)
     {
+        // Arrange
         var service = new MetricsService();
+
+        // Act
         var load = service.GetLoad(activity);
 
+        // Assert
         Assert.Equal(expectedLoad, load);
         // IF = 7.1 / 8.33 = .85
         // TSS = (14115 * 7.1 * .85) / (8.33 * 3600) * 100 = 284.060...
@@ -21,9 +25,13 @@ public class MetricsService_Load
     [MemberData(nameof(LoadCasesThatShouldReturnZero))]
     public void GetLoad_NoActivity_ReturnsZero(ActivityDto activity, int expectedLoad)
     {
+        // Arrange
         var service = new MetricsService();
+
+        // Act
         var load = service.GetLoad(activity);
 
+        // Assert   
         Assert.Equal(load, expectedLoad);
     }
 

@@ -17,9 +17,13 @@ public class MetricsService_AcuteChronicLoad
         List<ActivityDto> expectedActivityData
     )
     {
+        // Arrange
         var svc = new MetricsService();
+     
+        // Act
         var results = svc.AddNonActivityDays(activities);
 
+        // Assert
         Assert.Equal(expectedActivityData.Count, results.Count);
 
         Assert.Equivalent(expectedActivityData, results);
@@ -32,9 +36,13 @@ public class MetricsService_AcuteChronicLoad
         List<ActivityDto> expectedActivityData
     )
     {
+        // Arrange
         var svc = new MetricsService();
+
+        // Act
         var results = svc.GetFormFitnessFatigue(activities);
 
+        // Assert
         Assert.Equal(expectedActivityData.Count, results.Count);
 
         for (int i = 0; i < expectedActivityData.Count; i++)

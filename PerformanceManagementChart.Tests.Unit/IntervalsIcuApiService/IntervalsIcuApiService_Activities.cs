@@ -44,6 +44,7 @@ public class IntervalsIcuApiService_Activities
     public void GetUrl_ReturnsExpected(string inputUrl, string expectedUrl)
     {
         var apiService = new IntervalsIcuApiService(_httpClientFactory);
+
         var result = apiService.GetUrl(inputUrl);
 
         Assert.Equal(expectedUrl, result);
@@ -55,12 +56,11 @@ public class IntervalsIcuApiService_Activities
 
         "https://intervals.icu/api/v1/athlete/12345/activities?oldest=2018-01-01&newest=2018-04-16"
     )]
-    [InlineData("https://intervals.icu/api/v1/athlete/6789/activities")]
     public async Task LoadActivitiesAsync(
         string expectedUrl
     )
     {
-        // add a couple activityDto returned from mock handler
+        // Arrange
         var activityDtos = new List<ActivityDto>
         {
             new ActivityDto { },
@@ -84,9 +84,11 @@ public class IntervalsIcuApiService_Activities
         var athleteId = 12345;
         var startDate = new DateOnly(2018, 1, 1);
         var endDate = new DateOnly(2018, 4, 16);
+
+        // Act
         var activities = await apiService.LoadActivitiesAsync(athleteId, startDate, endDate);
 
-        // Verify that the HttpClient was called with the expected URL
+        // Assert
         _mockHandler
             .Protected()
             .Verify(
@@ -99,6 +101,6 @@ public class IntervalsIcuApiService_Activities
                 ItExpr.IsAny<CancellationToken>()
             );
         Assert.NotNull(activities);
-        Assert.IsType<List<ActivityDto>>(activities); 
+        Assert.IsType<List<ActivityDto>>(activities);
     }
 }
