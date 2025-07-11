@@ -3,7 +3,7 @@ using System.Text;
 using PerformanceManagementChart.Server.Models;
 using static PerformanceManagementChart.Server.Services.MetricsService;
 
-namespace PerformanceManagementChart.Test.MetricsService_Test;
+namespace PerformanceManagementChart.Tests.MetricsService_Test;
 
 public class GetFormFitnessFatigue : IEnumerable<object[]>
 {

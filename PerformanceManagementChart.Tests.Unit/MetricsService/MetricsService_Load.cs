@@ -1,7 +1,7 @@
 ﻿using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
 
-namespace PerformanceManagementChart.Test.MetricsService_Test;
+namespace PerformanceManagementChart.Tests.MetricsService_Test;
 
 public class MetricsServiceTests
 {

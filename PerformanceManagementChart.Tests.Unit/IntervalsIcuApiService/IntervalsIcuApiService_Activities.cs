@@ -6,7 +6,7 @@ using Moq.Protected;
 using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
 
-namespace PerformanceManagementChart.Test.IntervalsIcuApiServiceTests;
+namespace PerformanceManagementChart.Tests.IntervalsIcuApiServiceTests;
 
 public class IntervalsIcuApiService_Activities
 {
