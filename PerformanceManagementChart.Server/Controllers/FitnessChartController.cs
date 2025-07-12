@@ -33,6 +33,11 @@ namespace PerformanceManagementChart.Server.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(athleteId) || startDate > endDate)
+                {
+                    return BadRequest("Invalid parameters provided.");
+                }
+
                 _logger.LogInformation(
                     "Retrieving fitness chart data for athlete {AthleteId} from {StartDate} to {EndDate}",
                     athleteId,

@@ -121,4 +121,41 @@ public class FitnessChartControllerTests
         Assert.NotNull(notFoundResult);
         Assert.Equal("No activities found for the specified date range.", notFoundResult.Value);
     }
+
+    [Fact]
+    public async Task GetFitnessChartData_InvalidParameterString_ReturnsBadRequest()
+    {
+        // Arrange
+        string athleteId = null;
+        DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
+        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1));
+
+        // Act
+        var result = await _controller.GetFitnessChartData(athleteId, startDate, endDate);
+
+        // Assert
+        Assert.IsType<BadRequestObjectResult>(result.Result);
+        var badRequestResult = result.Result as BadRequestObjectResult;
+        Assert.NotNull(badRequestResult);
+        Assert.Equal("Invalid parameters provided.", badRequestResult.Value);
+    }
+
+    // Verify that end date before start date returns BadRequest
+    [Fact]
+    public async Task GetFitnessChartData_EndDateBeforeStartDate_ReturnsBadRequest()
+    {
+        // Arrange
+        string athleteId = "athleteId";
+        DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
+        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1));
+
+        // Act
+        var result = await _controller.GetFitnessChartData(athleteId, startDate, endDate);
+
+        // Assert
+        Assert.IsType<BadRequestObjectResult>(result.Result);
+        var badRequestResult = result.Result as BadRequestObjectResult;
+        Assert.NotNull(badRequestResult);
+        Assert.Equal("Invalid parameters provided.", badRequestResult.Value);
+    }
 }
