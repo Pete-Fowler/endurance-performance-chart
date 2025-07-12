@@ -5,6 +5,36 @@ namespace PerformanceManagementChart.Server.Services;
 public class MetricsService : IMetricsService
 {
     /// <summary>
+    /// Transforms API data into a format suitable for performance management charts.
+    /// </summary>
+    /// <param name="activities">The list of activities.</param>
+    /// <returns>A list of transformed activity data.</returns>
+    public List<ActivityDto> TransformApiData(List<ActivityDto> activities)
+    {
+        if (activities == null || activities.Count == 0)
+        {
+            return new List<ActivityDto>();
+        }
+
+        foreach (var activity in activities)
+        {
+            if (activity.Activity != null)
+            {
+                activity.Activity.Load = GetLoad(activity);
+            }
+        }
+
+        List<ActivityDto> activitiesWithNonActivityDays = AddNonActivityDays(activities);
+
+        List<ActivityDto> transformedActivities = GetFormFitnessFatigue(
+            activitiesWithNonActivityDays
+        );
+
+        return transformedActivities;
+    }
+
+    ///
+    /// <summary>
     /// Calculates the Load / Training Stress Score (TSS) for a single activity.
     /// </summary>
     /// <param name="activityData">The activity data.</param>
@@ -117,10 +147,7 @@ public class MetricsService : IMetricsService
             .Take(index + 1)
             .Where(a => a.Date.Date >= startDate && a.Date.Date <= endDate)
             .GroupBy(a => a.Date.Date)
-            .ToDictionary(
-                g => g.Key,
-                g => g.Sum(a => a.Activity?.Load ?? 0) 
-            );
+            .ToDictionary(g => g.Key, g => g.Sum(a => a.Activity?.Load ?? 0));
 
         if (!relevantActivities.Any())
         {

@@ -15,9 +15,9 @@ namespace PerformanceManagementChart.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ActivityDto> GetFitnessChartData()
+        public ActionResult<IEnumerable<ActivityDto>> GetFitnessChartData()
         {
-            throw new NotImplementedException("This method is not implemented yet.");
+            return new List<ActivityDto>();
         }
     }
 }

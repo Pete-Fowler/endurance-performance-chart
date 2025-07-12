@@ -1,6 +1,9 @@
 using System.Text;
 using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
+using PerformanceManagementChart.Tests.MetricsService_Test.TestData;
+
+// using static PerformanceManagementChart.Server.Services.MetricsService;
 
 namespace PerformanceManagementChart.Tests.MetricsService_Test;
 
@@ -19,7 +22,7 @@ public class MetricsService_AcuteChronicLoad
     {
         // Arrange
         var svc = new MetricsService();
-     
+
         // Act
         var results = svc.AddNonActivityDays(activities);
 
@@ -51,6 +54,31 @@ public class MetricsService_AcuteChronicLoad
             Assert.Equal(expectedActivityData[i].Fatigue, results[i].Fatigue);
             Assert.Equal(expectedActivityData[i].Fitness, results[i].Fitness);
             Assert.Equal(expectedActivityData[i].Form, results[i].Form);
+        }
+    }
+
+    [Theory]
+    [ClassData(typeof(TransformApiDataData))]
+    public void TransformApiData_AddsNonactivityDaysLoadAndFormFitnessFatigue(
+        List<ActivityDto> activityData,
+        List<ActivityDto> expectedActivityData
+    )
+    {
+        // Arrange
+        var svc = new MetricsService();
+
+        // Act
+        var transformedActivities = svc.TransformApiData(activityData);
+
+        // Assert
+        Assert.Equal(expectedActivityData.Count, transformedActivities.Count);
+        for (int i = 0; i < expectedActivityData.Count; i++)
+        {
+            Assert.Equal(expectedActivityData[i].Date, transformedActivities[i].Date);
+            Assert.Equal(
+                expectedActivityData[i].Activity.Load,
+                transformedActivities[i].Activity.Load
+            );
         }
     }
 }
