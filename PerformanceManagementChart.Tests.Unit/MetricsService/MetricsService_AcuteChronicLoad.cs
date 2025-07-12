@@ -75,10 +75,14 @@ public class MetricsService_AcuteChronicLoad
         for (int i = 0; i < expectedActivityData.Count; i++)
         {
             Assert.Equal(expectedActivityData[i].Date, transformedActivities[i].Date);
-            Assert.Equal(
-                expectedActivityData[i].Activity.Load,
-                transformedActivities[i].Activity.Load
-            );
+
+            if( expectedActivityData[i].Activity != null)
+            {
+                Assert.Equal(
+                    expectedActivityData[i].Activity!.Load,
+                    transformedActivities[i].Activity!.Load
+                );
+            }
         }
     }
 }

@@ -13,12 +13,14 @@ public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
     protected override string BaseUrl => "https://intervals.icu/api/v1/";
 
     public override async Task<List<ActivityDto>> LoadActivitiesAsync(
-        int athleteId,
+        string athleteId,
         DateOnly startDate,
         DateOnly endDate
     )
     {
-        var url = GetUrl($"athlete/{athleteId}/activities?oldest={startDate.ToString("yyyy-MM-dd")}&newest={endDate.ToString("yyyy-MM-dd")}");
+        var url = GetUrl(
+            $"athlete/{athleteId}/activities?oldest={startDate.ToString("yyyy-MM-dd")}&newest={endDate.ToString("yyyy-MM-dd")}"
+        );
 
         var client = GetClient();
         var response = await client.GetAsync(url);

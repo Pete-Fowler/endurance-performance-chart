@@ -83,7 +83,7 @@ public class IntervalsIcuApiService_Activities
             );
 
         var apiService = new IntervalsIcuApiService(_httpClientFactory);
-        var athleteId = 12345;
+        var athleteId = "12345";
         var startDate = new DateOnly(2018, 1, 1);
         var endDate = new DateOnly(2018, 4, 16);
 

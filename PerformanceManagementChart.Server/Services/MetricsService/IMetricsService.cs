@@ -5,6 +5,13 @@ namespace PerformanceManagementChart.Server.Services;
 public interface IMetricsService
 {
     /// <summary>
+    /// Transforms the raw activity data from the API into a format suitable for the fitness chart.
+    /// </summary>
+    /// <param name="rawActivityData">The raw activity data.</param>
+    /// <returns>A list of transformed activity data.</returns>
+    List<ActivityDto> TransformApiData(List<ActivityDto> rawActivityData);
+
+    /// <summary>
     /// Calculates the Load / Training Stress Score (TSS) for a single activity.
     /// </summary>
     /// <param name="activityData">The activity data.</param>

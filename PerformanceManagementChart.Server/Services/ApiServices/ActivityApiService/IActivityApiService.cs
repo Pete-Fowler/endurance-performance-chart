@@ -12,7 +12,7 @@ public interface IActivityApiService
     /// <param name="endDate">The end date for the activities.</param>
     /// <returns>A task that represents the asynchronous operation, containing a list of activities.</returns
     Task<List<ActivityDto>> LoadActivitiesAsync(
-        int athleteId,
+        string athleteId,
         DateOnly startDate,
         DateOnly endDate
     );

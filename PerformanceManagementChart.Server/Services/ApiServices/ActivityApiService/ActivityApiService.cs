@@ -34,7 +34,7 @@ public abstract class ActivityApiService
     /// <param name="endDate">The end date for the activities.</param>
     /// <returns>A task that represents the asynchronous operation, containing a list of activities.</returns>
     public abstract Task<List<ActivityDto>> LoadActivitiesAsync(
-        int athleteId,
+        string athleteId,
         DateOnly startDate,
         DateOnly endDate
     );
