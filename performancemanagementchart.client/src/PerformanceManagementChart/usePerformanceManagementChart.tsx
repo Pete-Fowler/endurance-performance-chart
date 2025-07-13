@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { IActivityDto } from "./Interfaces";
 
-export default function usePerformanceManagementChart() {
+export function usePerformanceManagementChart() {
     const [activities, setActivities] = useState<IActivityDto[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);

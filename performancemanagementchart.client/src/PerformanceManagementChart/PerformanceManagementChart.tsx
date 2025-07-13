@@ -10,33 +10,28 @@ import {
     Area,
     ReferenceArea,
 } from "recharts";
-import { Col, Container, Row } from "reactstrap";
+import { Col, Container, Row, Spinner } from "reactstrap";
 
 import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
 import type { IActivityDto } from "./Interfaces";
-
-// Placeholder data: dates and three metrics (ATL, CTL, TSB)
-const data: IActivityDto[] = [
-    { Date: "2024-06-01", Fatigue: 80, Fitness: 70, Form: 10 },
-    { Date: "2024-06-02", Fatigue: 85, Fitness: 72, Form: 13 },
-    { Date: "2024-06-03", Fatigue: 78, Fitness: 74, Form: 4 },
-    { Date: "2024-06-04", Fatigue: 90, Fitness: 76, Form: 14 },
-    { Date: "2024-06-05", Fatigue: 88, Fitness: 78, Form: 10 },
-    { Date: "2024-06-06", Fatigue: 82, Fitness: 80, Form: 2 },
-];
+import { usePerformanceManagementChart } from "./usePerformanceManagementChart";
 
 export default function PerformanceManagementChart() {
+    const { activities, isLoading, error } = usePerformanceManagementChart();
+
     const { yellow, blue, gray, green, red, purple } = colors;
 
     return (
-        <Container size="lg">
-            <Row className="mt-5">
-                <h1 className="text-center">Performance Management Chart</h1>
-            </Row>
-            <Row>
+        <>
+            {isLoading && <Spinner />}
+            <Container size="lg">
+                <Row className="mt-5">
+                    <h1 className="text-center">Performance Management Chart</h1>
+                </Row>
+                <Row>
                 <Col xs="11">
                     <ResponsiveContainer
                         minWidth="380px"
@@ -44,7 +39,7 @@ export default function PerformanceManagementChart() {
                         height={400}
                         data-testid="fatigue-fitness-chart"
                     >
-                        <ComposedChart data={data} syncId="pmc">
+                        <ComposedChart data={activities} syncId="pmc">
                             <CartesianGrid strokeDasharray="3 3" />
                             <YAxis />
                             <Tooltip />
@@ -66,7 +61,7 @@ export default function PerformanceManagementChart() {
                     </ResponsiveContainer>
                 </Col>
                 <Col xs="1" className="ps-0">
-                    <CurrentFitnessLegend currentFitness={data[data.length - 1]} />
+                    <CurrentFitnessLegend currentFitness={activities[activities.length - 1]} />
                 </Col>
             </Row>
 
@@ -79,7 +74,7 @@ export default function PerformanceManagementChart() {
                         height={250}
                         data-testid="form-chart"
                     >
-                        <LineChart data={data} syncId="pmc">
+                        <LineChart data={activities} syncId="pmc">
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="date" />
                             <YAxis
@@ -137,6 +132,7 @@ export default function PerformanceManagementChart() {
                 </Col>
             </Row>
         </Container>
+        </>
     );
 }
 
