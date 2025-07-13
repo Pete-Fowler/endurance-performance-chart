@@ -17,6 +17,8 @@ export function usePerformanceManagementChart() {
                 const response = await fetch("/api/activities");
                 const json = await response.json();
 
+                console.log("/api/activities response:", json);
+
                 if (!response.ok) {
                     const message = json?.message || json?.title;
                     setError(message || "Failed to load activities");
