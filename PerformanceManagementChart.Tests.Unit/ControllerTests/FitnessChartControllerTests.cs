@@ -6,24 +6,27 @@ using Moq;
 using PerformanceManagementChart.Server.Controllers;
 using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
+using PerformanceManagementChart.Server.Services.ApiServices.ActivityApiServiceFactory;
 
 namespace PerformanceManagementChart.Tests.Controllers;
 
 public class FitnessChartControllerTests
 {
     private readonly FitnessChartController _controller;
-    private readonly Mock<IActivityApiService> _mockApiService;
+    private readonly string _serviceType = "intervals";
+    private readonly Mock<IActivityApiServiceFactory> _mockActivityApiServiceFactory;
     private readonly Mock<IMetricsService> _mockMetricsService;
 
     public FitnessChartControllerTests()
     {
         NullLogger logger = NullLogger.Instance;
 
-        _mockApiService = new Mock<IActivityApiService>();
+        _mockActivityApiServiceFactory = new Mock<IActivityApiServiceFactory>();
         _mockMetricsService = new Mock<IMetricsService>();
+
         _controller = new FitnessChartController(
             logger,
-            _mockApiService.Object,
+            _mockActivityApiServiceFactory.Object,
             _mockMetricsService.Object
         );
     }
@@ -57,7 +60,9 @@ public class FitnessChartControllerTests
     public async Task GetFitnessChartData_CallsServiceMethods()
     {
         // Arrange
-        _mockApiService
+        var mockApiService = new Mock<IActivityApiService>();
+
+        mockApiService
             .Setup(x =>
                 x.LoadActivitiesAsync(
                     It.IsAny<string>(),
@@ -66,9 +71,15 @@ public class FitnessChartControllerTests
                 )
             )
             .ReturnsAsync(new List<ActivityDto> { new ActivityDto() });
+
+        _mockActivityApiServiceFactory
+            .Setup(x => x.GetActivityApiService(_serviceType))
+            .Returns(mockApiService.Object);
+
         _mockMetricsService
             .Setup(x => x.TransformApiData(It.IsAny<List<ActivityDto>>()))
             .Returns(new List<ActivityDto> { new ActivityDto() });
+
 
         // Act
         var result = await _controller.GetFitnessChartData(
@@ -78,7 +89,7 @@ public class FitnessChartControllerTests
         );
 
         // Assert
-        _mockApiService.Verify(
+        mockApiService.Verify(
             x =>
                 x.LoadActivitiesAsync(
                     It.IsAny<string>(),
@@ -97,6 +108,20 @@ public class FitnessChartControllerTests
     public async Task GetFitnessChartData_NoActivities_ReturnsNotFound()
     {
         // Arrange
+        var mockApiService = new Mock<IActivityApiService>();
+        mockApiService
+            .Setup(x =>
+                x.LoadActivitiesAsync(
+                    It.IsAny<string>(),
+                    It.IsAny<DateOnly>(),
+                    It.IsAny<DateOnly>()
+                )
+            )
+            .ReturnsAsync(new List<ActivityDto>());
+
+        _mockActivityApiServiceFactory
+            .Setup(x => x.GetActivityApiService(_serviceType))
+            .Returns(mockApiService.Object);
 
         // Act
         var result = await _controller.GetFitnessChartData(
@@ -106,7 +131,7 @@ public class FitnessChartControllerTests
         );
 
         // Assert
-        _mockApiService.Verify(
+        mockApiService.Verify(
             x =>
                 x.LoadActivitiesAsync(
                     It.IsAny<string>(),
@@ -147,7 +172,7 @@ public class FitnessChartControllerTests
         // Arrange
         string athleteId = "athleteId";
         DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
-        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1));
+        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1)); 
 
         // Act
         var result = await _controller.GetFitnessChartData(athleteId, startDate, endDate);

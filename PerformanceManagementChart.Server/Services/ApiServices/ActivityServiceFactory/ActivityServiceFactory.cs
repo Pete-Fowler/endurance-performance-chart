@@ -1,12 +1,12 @@
 using System;
 
-namespace PerformanceManagementChart.Server.Services.ApiServices.ActivityServiceFactory;
+namespace PerformanceManagementChart.Server.Services.ApiServices.ActivityApiServiceFactory;
 
-public class ActivityServiceFactory
+public class ActivityApiServiceFactory
 {
     private readonly IntervalsIcuApiService _intervalsApiService;
 
-    public ActivityServiceFactory(IntervalsIcuApiService intervalsApiService)
+    public ActivityApiServiceFactory(IntervalsIcuApiService intervalsApiService)
     {
         _intervalsApiService = intervalsApiService;
     }
@@ -19,7 +19,7 @@ public class ActivityServiceFactory
     /// <param name="serviceType"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    public IActivityApiService GetActivityApiService(string serviceType = "intervals")
+    public IActivityApiService GetActivityApiService(string serviceType)
     {
         return serviceType switch
         {

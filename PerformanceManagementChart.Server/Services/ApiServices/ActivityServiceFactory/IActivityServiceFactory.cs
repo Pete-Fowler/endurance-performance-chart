@@ -1,8 +1,8 @@
 using System;
 
-namespace PerformanceManagementChart.Server.Services.ApiServices.ActivityServiceFactory;
+namespace PerformanceManagementChart.Server.Services.ApiServices.ActivityApiServiceFactory;
 
-public interface IActivityServiceFactory
+public interface IActivityApiServiceFactory
 {
     public IActivityApiService GetActivityApiService(string serviceType);
 

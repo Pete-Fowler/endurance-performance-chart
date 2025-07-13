@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
+using PerformanceManagementChart.Server.Services.ApiServices.ActivityApiServiceFactory;
 
 namespace PerformanceManagementChart.Server.Controllers
 {
@@ -10,12 +11,12 @@ namespace PerformanceManagementChart.Server.Controllers
     public class FitnessChartController : ControllerBase
     {
         private readonly ILogger _logger;
-        private readonly Func<string, IActivityApiService> _activityApiServiceFactory;
+        private readonly IActivityApiServiceFactory _activityApiServiceFactory;
         private readonly IMetricsService _metricsService;
 
         public FitnessChartController(
             ILogger logger,
-            Func<string, IActivityApiService> apiServiceFactory,
+            IActivityApiServiceFactory apiServiceFactory,
             IMetricsService metricsService
         )
         {
@@ -38,10 +39,11 @@ namespace PerformanceManagementChart.Server.Controllers
                     return BadRequest("Invalid parameters provided.");
                 }
 
-                // For a fully developed app, would get the correct service from user 
-                // info from JWT or session cookie. Hard coding it for this demo.
+                // For a fully developed app, would get the correct service from user
+                // identity / claims info from JWT or session cookie. Hard coding it for this demo.
 
-                IActivityApiService activityApiService = _activityApiServiceFactory("intervals");
+                IActivityApiService activityApiService =
+                    _activityApiServiceFactory.GetActivityApiService("intervals");
 
                 _logger.LogInformation(
                     "Retrieving fitness chart data for athlete {AthleteId} from {StartDate} to {EndDate}",
