@@ -16,10 +16,10 @@ import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
-import type { IFitnessData } from "./Interfaces";
+import type { IActivityDto } from "./Interfaces";
 
 // Placeholder data: dates and three metrics (ATL, CTL, TSB)
-const data: IFitnessData[] = [
+const data: IActivityDto[] = [
     { Date: "2024-06-01", Fatigue: 80, Fitness: 70, Form: 10 },
     { Date: "2024-06-02", Fatigue: 85, Fitness: 72, Form: 13 },
     { Date: "2024-06-03", Fatigue: 78, Fitness: 74, Form: 4 },
@@ -29,7 +29,7 @@ const data: IFitnessData[] = [
 ];
 
 export default function PerformanceManagementChart() {
-    const { yellow, blue, gray, green, red, purple, black } = colors;
+    const { yellow, blue, gray, green, red, purple } = colors;
 
     return (
         <Container size="lg">
