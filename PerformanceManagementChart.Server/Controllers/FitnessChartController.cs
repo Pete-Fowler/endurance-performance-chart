@@ -10,17 +10,17 @@ namespace PerformanceManagementChart.Server.Controllers
     public class FitnessChartController : ControllerBase
     {
         private readonly ILogger _logger;
-        private readonly IActivityApiService _activityApiService;
+        private readonly Func<string, IActivityApiService> _activityApiServiceFactory;
         private readonly IMetricsService _metricsService;
 
         public FitnessChartController(
             ILogger logger,
-            IActivityApiService activityApiService,
+            Func<string, IActivityApiService> apiServiceFactory,
             IMetricsService metricsService
         )
         {
             _logger = logger;
-            _activityApiService = activityApiService;
+            _activityApiServiceFactory = apiServiceFactory;
             _metricsService = metricsService;
         }
 
@@ -38,6 +38,11 @@ namespace PerformanceManagementChart.Server.Controllers
                     return BadRequest("Invalid parameters provided.");
                 }
 
+                // For a fully developed app, would get the correct service from user 
+                // info from JWT or session cookie. Hard coding it for this demo.
+
+                IActivityApiService activityApiService = _activityApiServiceFactory("intervals");
+
                 _logger.LogInformation(
                     "Retrieving fitness chart data for athlete {AthleteId} from {StartDate} to {EndDate}",
                     athleteId,
@@ -45,7 +50,7 @@ namespace PerformanceManagementChart.Server.Controllers
                     endDate
                 );
 
-                List<ActivityDto> rawActivityData = await _activityApiService.LoadActivitiesAsync(
+                List<ActivityDto> rawActivityData = await activityApiService.LoadActivitiesAsync(
                     athleteId,
                     startDate,
                     endDate

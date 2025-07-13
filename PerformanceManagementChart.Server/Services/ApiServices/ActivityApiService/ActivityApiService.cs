@@ -2,7 +2,7 @@ using PerformanceManagementChart.Server.Models;
 
 namespace PerformanceManagementChart.Server.Services;
 
-public abstract class ActivityApiService
+public abstract class ActivityApiService : IActivityApiService
 {
     protected IHttpClientFactory _httpClientFactory;
 
