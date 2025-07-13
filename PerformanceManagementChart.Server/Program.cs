@@ -1,4 +1,5 @@
 using PerformanceManagementChart.Server.Services;
+using PerformanceManagementChart.Server.Services.ApiServices.ActivityApiServiceFactory;
 
 DotNetEnv.Env.Load();
 
@@ -12,9 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<IMetricsService, MetricsService>();
 builder.Services.AddScoped<IntervalsIcuApiService>();
-builder.Services.AddScoped<IActivityApiService, ActivityApiService>();
+builder.Services.AddScoped<IActivityApiServiceFactory, ActivityApiServiceFactory>();
 
 var app = builder.Build();
 

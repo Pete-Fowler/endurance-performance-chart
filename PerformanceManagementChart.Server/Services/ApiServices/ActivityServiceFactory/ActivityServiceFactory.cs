@@ -2,7 +2,7 @@ using System;
 
 namespace PerformanceManagementChart.Server.Services.ApiServices.ActivityApiServiceFactory;
 
-public class ActivityApiServiceFactory
+public class ActivityApiServiceFactory : IActivityApiServiceFactory
 {
     private readonly IntervalsIcuApiService _intervalsApiService;
 

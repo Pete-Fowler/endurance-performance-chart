@@ -14,10 +14,10 @@ export function usePerformanceManagementChart() {
             setError(null);
 
             try {
-                const response = await fetch("/api/activities");
+                const response = await fetch("/api/fitness-chart");
                 const json = await response.json();
 
-                console.log("/api/activities response:", json);
+                console.log("/api/fitness-chart response:", json);
 
                 if (!response.ok) {
                     const message = json?.message || json?.title;
