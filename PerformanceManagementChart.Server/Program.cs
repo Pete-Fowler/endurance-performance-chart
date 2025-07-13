@@ -14,16 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IMetricsService, MetricsService>();
 builder.Services.AddScoped<IntervalsIcuApiService>();
-builder.Services.AddScoped<Func<string, IActivityApiService>>(provider =>
-    serviceType =>
-    {
-        return serviceType switch
-        {
-            "intervals" => provider.GetRequiredService<IntervalsIcuApiService>(),
-            _ => throw new ArgumentException("Unknown activity api service type."),
-        };
-    }
-);
+builder.Services.AddScoped<IActivityApiService, ActivityApiService>();
 
 var app = builder.Build();
 
