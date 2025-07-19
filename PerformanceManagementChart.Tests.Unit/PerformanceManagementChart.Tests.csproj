@@ -23,4 +23,10 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+  <None Update="IntervalsIcuApiServiceTests/TestData/ApiResults.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
 </Project>

@@ -29,4 +29,10 @@
   </None>
 </ItemGroup>
 
+<ItemGroup>
+  <None Update="PerformanceManagementChart.Tests.Unit/IntervalsIcuApiServiceTests/TestData/ApiResults.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
 </Project>
