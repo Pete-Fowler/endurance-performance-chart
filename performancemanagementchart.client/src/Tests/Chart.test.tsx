@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, expect, test } from "vitest";
+import { afterEach, expect, test, vi } from "vitest";
 import App from "../App";
 import PerformanceManagementChart from "../PerformanceManagementChart/PerformanceManagementChart";
 
@@ -33,3 +33,23 @@ test("Renders form chart", () => {
     expect(screen.getByText(/high risk/i)).toBeInTheDocument();
 });
 
+test("Fetches back end API on page load", async () => {
+    const fetchMock = vi.spyOn(global, "fetch").mockResolvedValue({
+        ok: true,
+        json: async () => [
+            {
+                id: 1,
+                date: "2023-10-01",
+                activityType: "Running",
+                duration: 30,
+                distance: 5,
+                caloriesBurned: 300,
+            },
+        ],
+    } as Response);
+
+    render(<App />);
+    
+    expect(fetchMock).toHaveBeenCalledWith("/api/fitness-chart");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+});
