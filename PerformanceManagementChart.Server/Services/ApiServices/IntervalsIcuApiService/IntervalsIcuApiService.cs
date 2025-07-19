@@ -38,7 +38,7 @@ public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
         return activities;
     }
 
-    private HttpClient GetClient()
+    private HttpClient GetClient() 
     {
         var client = _httpClientFactory.CreateClient();
 

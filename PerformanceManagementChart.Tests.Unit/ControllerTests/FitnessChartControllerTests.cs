@@ -19,7 +19,7 @@ public class FitnessChartControllerTests
 
     public FitnessChartControllerTests()
     {
-        NullLogger logger = NullLogger.Instance;
+        NullLogger<FitnessChartController> logger = NullLogger<FitnessChartController>.Instance;
 
         _mockActivityApiServiceFactory = new Mock<IActivityApiServiceFactory>();
         _mockMetricsService = new Mock<IMetricsService>();

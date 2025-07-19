@@ -10,12 +10,12 @@ namespace PerformanceManagementChart.Server.Controllers
     [Route("api/fitness-chart")]
     public class FitnessChartController : ControllerBase
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<FitnessChartController> _logger;
         private readonly IActivityApiServiceFactory _activityApiServiceFactory;
         private readonly IMetricsService _metricsService;
 
         public FitnessChartController(
-            ILogger logger,
+            ILogger<FitnessChartController> logger,
             IActivityApiServiceFactory apiServiceFactory,
             IMetricsService metricsService
         )
