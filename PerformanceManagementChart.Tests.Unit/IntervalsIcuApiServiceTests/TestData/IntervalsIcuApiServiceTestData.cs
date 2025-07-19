@@ -12,9 +12,7 @@ public class IntervalsIcuApiServiceTestData : IEnumerable<object[]>
     {
         yield return new object[]
         {
-            System.IO.File.ReadAllText(
-                "IntervalsIcuApiServiceTests/TestData/ApiResults.json"
-            ),
+            
         };
     }
 }

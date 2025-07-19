@@ -111,7 +111,7 @@ public class IntervalsIcuApiService_Activities
     [Theory]
     [ClassData(typeof(IntervalsIcuApiServiceTestData))]
     public async Task LoadActivitiesAsync_GetsIntervalsIcuActivityData_ReturnsActivityDto(
-        string apiResponse
+        string apiResponse, List<ActivityDto> expectedReturnValue
     )
     {
         // Arrange
