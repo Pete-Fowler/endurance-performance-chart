@@ -172,7 +172,7 @@ public class FitnessChartControllerTests
         // Arrange
         string athleteId = "athleteId";
         DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
-        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1)); 
+        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1));
 
         // Act
         var result = await _controller.GetFitnessChartData(athleteId, startDate, endDate);

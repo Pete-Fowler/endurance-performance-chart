@@ -5,6 +5,7 @@ using Moq;
 using Moq.Protected;
 using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
+using PerformanceManagementChart.Tests.MetricsServiceTests.TestData;
 
 namespace PerformanceManagementChart.Tests.IntervalsIcuApiServiceTests;
 
@@ -12,6 +13,7 @@ public class IntervalsIcuApiService_Activities
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly Mock<HttpMessageHandler> _mockHandler;
+    private readonly IntervalsIcuApiService _apiService;
 
     public IntervalsIcuApiService_Activities()
     {
@@ -49,12 +51,11 @@ public class IntervalsIcuApiService_Activities
         Assert.Equal(expectedUrl, result);
     }
 
-    // Now test that the load method it makes an http request to the expected url
     [Theory]
     [InlineData(
         "https://intervals.icu/api/v1/athlete/12345/activities?oldest=2018-01-01&newest=2018-04-16"
     )]
-    public async Task LoadActivitiesAsync(string expectedUrl)
+    public async Task LoadActivitiesAsync_CallsExpectedUrl(string expectedUrl)
     {
         // Arrange
         var activityDtos = new List<ActivityDto>
@@ -105,5 +106,42 @@ public class IntervalsIcuApiService_Activities
             );
         Assert.NotNull(activities);
         Assert.IsType<List<ActivityDto>>(activities);
+    }
+
+    [Theory]
+    [ClassData(typeof(IntervalsIcuApiServiceTestData))]
+    public async Task LoadActivitiesAsync_GetsIntervalsIcuActivityData_ReturnsActivityDto(
+        string apiResponse
+    )
+    {
+        // Arrange
+
+        _mockHandler
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>()
+            )
+            .ReturnsAsync(
+                new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent(apiResponse, Encoding.UTF8, "application/json"),
+                }
+            );
+
+        var apiService = new IntervalsIcuApiService(_httpClientFactory);
+        var athleteId = "12345";
+        var startDate = new DateOnly(2018, 1, 1);
+        var endDate = new DateOnly(2018, 4, 16);
+
+        // Act
+        var activities = await apiService.LoadActivitiesAsync(athleteId, startDate, endDate);
+
+        // Assert 
+        Assert.NotNull(activities);
+        Assert.Equal(3, activities.Count);
+        Assert.All(activities, activity => Assert.NotNull(activity.Activity));
     }
 }
