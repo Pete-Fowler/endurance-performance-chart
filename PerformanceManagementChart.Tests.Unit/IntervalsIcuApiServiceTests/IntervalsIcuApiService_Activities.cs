@@ -15,7 +15,7 @@ public class IntervalsIcuApiService_Activities
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly Mock<HttpMessageHandler> _mockHandler;
 
-    public IntervalsIcuApiService_Activities()
+    public IntervalsIcuApiService_Activities() 
     {
         DotNetEnv.Env.Load();
 
@@ -140,6 +140,6 @@ public class IntervalsIcuApiService_Activities
 
         // Assert
         activities.Should().NotBeNull();
-        activities.Should().BeEquivalentTo(expectedReturnValue); 
+        activities.Should().BeEquivalentTo(expectedReturnValue);
     }
 }

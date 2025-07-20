@@ -27,10 +27,10 @@ public class IntervalsIcuApiServiceTestData : IEnumerable<object[]>
                     {
                         Type = "Run",
                         Duration = 14115,
-                        Distance = 26.4591,
+                        Distance = 26.46,
                         AvgHeartRate = 129,
-                        AvgPace = 6.748847,
-                        GradeAdjustedPace = 7.0099467485160005,
+                        AvgPace = 6.75,
+                        GradeAdjustedPace = 7.01,
                         Name = "Hopkinton Running",
                         Time = new DateTime(2018, 4, 16, 14, 56, 18, DateTimeKind.Utc)
                     }
@@ -39,21 +39,16 @@ public class IntervalsIcuApiServiceTestData : IEnumerable<object[]>
                 new ActivityDto
                 {
                     Date = new DateTime(2018, 4, 15),
-                    Fatigue = 80,
-                    Fitness = 180,
-                    Form = 40,
                     ThreshholdPace = 8.33,
                     Activity = new Activity
                     {
                         Type = "Run",
-                        Duration = 3600,
-                        Distance = 3.1,
-                        Load = 120,
-                        Intensity = 0.75,
+                        Duration = 1815,
+                        Distance = 3.11,
                         AvgHeartRate = 125,
-                        AvgPace = 6.16,
+                        AvgPace = 6.17,
                         GradeAdjustedPace = 6.31,
-                        Name = "Brookline Running - CHANGE THIS",
+                        Name = "Brookline Running",
                         Time = new DateTime(2018, 4, 15, 13, 8, 43, DateTimeKind.Utc)
                     }
                 }
