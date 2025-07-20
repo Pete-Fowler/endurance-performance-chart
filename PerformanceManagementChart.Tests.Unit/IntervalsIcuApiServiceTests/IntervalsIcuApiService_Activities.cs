@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Moq;
 using Moq.Protected;
+using FluentAssertions;
 using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
 using PerformanceManagementChart.Tests.MetricsServiceTests.TestData;
@@ -13,7 +14,6 @@ public class IntervalsIcuApiService_Activities
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly Mock<HttpMessageHandler> _mockHandler;
-    private readonly IntervalsIcuApiService _apiService;
 
     public IntervalsIcuApiService_Activities()
     {
@@ -110,12 +110,11 @@ public class IntervalsIcuApiService_Activities
 
     [Theory]
     [ClassData(typeof(IntervalsIcuApiServiceTestData))]
-    public async Task LoadActivitiesAsync_GetsIntervalsIcuActivityData_ReturnsActivityDto(
+    public async Task LoadActivitiesAsync_GetsIntervalsIcuActivityData_ReturnsActivityDtoWithCorrectProperties(
         string apiResponse, List<ActivityDto> expectedReturnValue
     )
     {
         // Arrange
-
         _mockHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
@@ -139,9 +138,8 @@ public class IntervalsIcuApiService_Activities
         // Act
         var activities = await apiService.LoadActivitiesAsync(athleteId, startDate, endDate);
 
-        // Assert 
-        Assert.NotNull(activities);
-        Assert.Equal(3, activities.Count);
-        Assert.All(activities, activity => Assert.NotNull(activity.Activity));
+        // Assert
+        activities.Should().NotBeNull();
+        activities.Should().BeEquivalentTo(expectedReturnValue); 
     }
 }
