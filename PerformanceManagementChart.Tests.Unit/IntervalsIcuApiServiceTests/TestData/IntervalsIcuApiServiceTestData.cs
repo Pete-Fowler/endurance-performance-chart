@@ -21,6 +21,22 @@ public class IntervalsIcuApiServiceTestData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
+                    Date = new DateTime(2018, 4, 15),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity
+                    {
+                        Type = "Run",
+                        Duration = 1815,
+                        Distance = 3.11,
+                        AvgHeartRate = 125,
+                        AvgPace = 6.17,
+                        GradeAdjustedPace = 6.31,
+                        Name = "Brookline Running",
+                        Time = new DateTime(2018, 4, 15, 13, 8, 43, DateTimeKind.Utc)
+                    }
+                },
+                new ActivityDto
+                {
                     Date = new DateTime(2018, 4, 16),
                     ThreshholdPace = 8.33,
                     Activity = new Activity
@@ -35,23 +51,6 @@ public class IntervalsIcuApiServiceTestData : IEnumerable<object[]>
                         Time = new DateTime(2018, 4, 16, 14, 56, 18, DateTimeKind.Utc)
                     }
                 },
-                // make another from the second activity in ApiResults.json
-                new ActivityDto
-                {
-                    Date = new DateTime(2018, 4, 15),
-                    ThreshholdPace = 8.33,
-                    Activity = new Activity
-                    {
-                        Type = "Run",
-                        Duration = 1815,
-                        Distance = 3.11,
-                        AvgHeartRate = 125,
-                        AvgPace = 6.17,
-                        GradeAdjustedPace = 6.31,
-                        Name = "Brookline Running",
-                        Time = new DateTime(2018, 4, 15, 13, 8, 43, DateTimeKind.Utc)
-                    }
-                }
             },
         };
     }

@@ -55,6 +55,11 @@ public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
             })
             .ToList();
 
+        if (activityDtos.Count > 1 && activityDtos[0].Date > activityDtos[^1].Date)
+        {
+            activityDtos = activityDtos.OrderBy(a => a.Date).ToList();
+        }
+
         return activityDtos;
     }
 

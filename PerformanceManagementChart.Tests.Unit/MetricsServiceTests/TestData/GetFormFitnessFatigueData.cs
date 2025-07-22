@@ -5,9 +5,9 @@ using static PerformanceManagementChart.Server.Services.MetricsService;
 
 namespace PerformanceManagementChart.Tests.MetricsService_Test;
 
-public class GetFormFitnessFatigue : IEnumerable<object[]>
+public class GetFormFitnessFatigueData : IEnumerable<object[]>
 {
-    // Test has no zero days between activity days for simplicity. 
+    // Test has no zero days between activity days for simplicity.
     // Don't call AddNonActivityDays in the test to keep the tests independent
     public IEnumerator<object[]> GetEnumerator()
     {
@@ -19,15 +19,15 @@ public class GetFormFitnessFatigue : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
-                    ThreshholdPace = 8.33,
-                    Activity = new Activity { Load = 100 },
-                },
-                new ActivityDto
-                {
                     Date = new DateTime(2023, 1, 2),
                     ThreshholdPace = 8.33,
                     Activity = new Activity { Load = 110 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 100 },
                 },
             },
 
@@ -36,19 +36,19 @@ public class GetFormFitnessFatigue : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
-                    Fatigue = 100,
-                    Fitness = 100,
-                    Form = 0,
-                    Activity = new Activity { Load = 100 },
-                },
-                new ActivityDto
-                {
                     Date = new DateTime(2023, 1, 2),
                     Fatigue = 105,
                     Fitness = 105,
                     Form = 0,
                     Activity = new Activity { Load = 110 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    Fatigue = 100,
+                    Fitness = 100,
+                    Form = 0,
+                    Activity = new Activity { Load = 100 },
                 },
             },
         };
@@ -150,7 +150,7 @@ public class GetFormFitnessFatigue : IEnumerable<object[]>
                     Fatigue = 50,
                     Fitness = 50,
                     Form = 0,
-                    Activity = new Activity { Load = 0 }, 
+                    Activity = new Activity { Load = 0 },
                 },
                 new ActivityDto
                 {

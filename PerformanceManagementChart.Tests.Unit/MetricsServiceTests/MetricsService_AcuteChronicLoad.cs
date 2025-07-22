@@ -33,7 +33,7 @@ public class MetricsService_AcuteChronicLoad
     }
 
     [Theory]
-    [ClassData(typeof(GetFormFitnessFatigue))]
+    [ClassData(typeof(GetFormFitnessFatigueData))]
     public void GetFormFitnessFatigue_NormalData_ReturnsExpected(
         List<ActivityDto> activities,
         List<ActivityDto> expectedActivityData
