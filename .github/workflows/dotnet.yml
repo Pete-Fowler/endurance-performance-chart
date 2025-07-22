@@ -13,7 +13,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      INTERVALS_ICU_API_KEY: ${{ secrets.INTERVALS_ICU_API_KEY }}
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
