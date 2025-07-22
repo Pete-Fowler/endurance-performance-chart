@@ -1,4 +1,5 @@
 using System.Text;
+using FluentAssertions;
 using PerformanceManagementChart.Server.Models;
 using PerformanceManagementChart.Server.Services;
 using PerformanceManagementChart.Tests.MetricsService_Test.TestData;
@@ -27,9 +28,9 @@ public class MetricsService_AcuteChronicLoad
         var results = svc.AddNonActivityDays(activities);
 
         // Assert
-        Assert.Equal(expectedActivityData.Count, results.Count);
-
-        Assert.Equivalent(expectedActivityData, results);
+        results
+            .Should()
+            .BeEquivalentTo(expectedActivityData, options => options.WithStrictOrdering());
     }
 
     [Theory]
@@ -46,15 +47,9 @@ public class MetricsService_AcuteChronicLoad
         var results = svc.GetFormFitnessFatigue(activities);
 
         // Assert
-        Assert.Equal(expectedActivityData.Count, results.Count);
-
-        for (int i = 0; i < expectedActivityData.Count; i++)
-        {
-            Assert.Equal(expectedActivityData[i].Date, results[i].Date);
-            Assert.Equal(expectedActivityData[i].Fatigue, results[i].Fatigue);
-            Assert.Equal(expectedActivityData[i].Fitness, results[i].Fitness);
-            Assert.Equal(expectedActivityData[i].Form, results[i].Form);
-        }
+        results
+            .Should()
+            .BeEquivalentTo(expectedActivityData, options => options.WithStrictOrdering());
     }
 
     [Theory]
@@ -71,18 +66,8 @@ public class MetricsService_AcuteChronicLoad
         var transformedActivities = svc.TransformApiData(activityData);
 
         // Assert
-        Assert.Equal(expectedActivityData.Count, transformedActivities.Count);
-        for (int i = 0; i < expectedActivityData.Count; i++)
-        {
-            Assert.Equal(expectedActivityData[i].Date, transformedActivities[i].Date);
-
-            if( expectedActivityData[i].Activity != null)
-            {
-                Assert.Equal(
-                    expectedActivityData[i].Activity!.Load,
-                    transformedActivities[i].Activity!.Load
-                );
-            }
-        }
+        transformedActivities
+            .Should()
+            .BeEquivalentTo(expectedActivityData, options => options.WithStrictOrdering());
     }
 }

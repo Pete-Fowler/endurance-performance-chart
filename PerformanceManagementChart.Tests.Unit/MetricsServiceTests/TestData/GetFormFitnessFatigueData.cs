@@ -19,15 +19,15 @@ public class GetFormFitnessFatigueData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2),
-                    ThreshholdPace = 8.33,
-                    Activity = new Activity { Load = 110 },
-                },
-                new ActivityDto
-                {
                     Date = new DateTime(2023, 1, 1),
                     ThreshholdPace = 8.33,
                     Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 2),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 110 },
                 },
             },
 
@@ -36,19 +36,19 @@ public class GetFormFitnessFatigueData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2),
-                    Fatigue = 105,
-                    Fitness = 105,
-                    Form = 0,
-                    Activity = new Activity { Load = 110 },
-                },
-                new ActivityDto
-                {
                     Date = new DateTime(2023, 1, 1),
                     Fatigue = 100,
                     Fitness = 100,
                     Form = 0,
                     Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 2),
+                    Fatigue = 105,
+                    Fitness = 105,
+                    Form = 0,
+                    Activity = new Activity { Load = 110 },
                 },
             },
         };
