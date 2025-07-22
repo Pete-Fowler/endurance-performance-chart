@@ -20,33 +20,20 @@ public class TransformApiDataData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
-                    ThreshholdPace = 8.33,
-                    Activity = new Activity { GradeAdjustedPace = 8, Duration = 2500 },
-                },
-                new ActivityDto
-                {
                     Date = new DateTime(2023, 1, 2),
                     ThreshholdPace = 8.33,
                     Activity = new Activity { GradeAdjustedPace = 7.5, Duration = 3600 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { GradeAdjustedPace = 8, Duration = 2500 },
                 },
             },
             // Expected
             new List<ActivityDto>
             {
-                new ActivityDto
-                {
-                    Date = new DateTime(2023, 1, 1),
-                    Fatigue = 64,
-                    Fitness = 64,
-                    Form = 0,
-                    Activity = new Activity
-                    {
-                        GradeAdjustedPace = 8,
-                        Duration = 2500,
-                        Load = 64,
-                    },
-                },
                 new ActivityDto
                 {
                     Date = new DateTime(2023, 1, 2),
@@ -58,6 +45,19 @@ public class TransformApiDataData : IEnumerable<object[]>
                         GradeAdjustedPace = 7.5,
                         Duration = 3600,
                         Load = 81,
+                    },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    Fatigue = 64,
+                    Fitness = 64,
+                    Form = 0,
+                    Activity = new Activity
+                    {
+                        GradeAdjustedPace = 8,
+                        Duration = 2500,
+                        Load = 64,
                     },
                 },
             },
