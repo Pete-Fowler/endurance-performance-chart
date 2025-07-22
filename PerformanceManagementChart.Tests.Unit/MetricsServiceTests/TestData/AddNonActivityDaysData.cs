@@ -89,13 +89,8 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
-                    Activity = new Activity { Load = 100 },
-                },
-                new ActivityDto
-                {
-                    Date = new DateTime(2023, 1, 2, 10, 0, 0),
-                    Activity = new Activity { Load = 200 },
+                    Date = new DateTime(2023, 1, 4),
+                    Activity = new Activity { Load = 400 },
                 },
                 new ActivityDto
                 {
@@ -104,16 +99,27 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 4),
-                    Activity = new Activity { Load = 400 },
+                    Date = new DateTime(2023, 1, 2, 10, 0, 0),
+                    Activity = new Activity { Load = 200 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    Activity = new Activity { Load = 100 },
                 },
             },
             new List<ActivityDto>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
-                    Activity = new Activity { Load = 100 },
+                    Date = new DateTime(2023, 1, 4),
+                    Activity = new Activity { Load = 400 },
+                },
+                new ActivityDto { Date = new DateTime(2023, 1, 3) },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 2, 12, 0, 0),
+                    Activity = new Activity { Load = 300 },
                 },
                 new ActivityDto
                 {
@@ -122,14 +128,8 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2, 12, 0, 0),
-                    Activity = new Activity { Load = 300 },
-                },
-                new ActivityDto { Date = new DateTime(2023, 1, 3) },
-                new ActivityDto
-                {
-                    Date = new DateTime(2023, 1, 4),
-                    Activity = new Activity { Load = 400 },
+                    Date = new DateTime(2023, 1, 1),
+                    Activity = new Activity { Load = 100 },
                 },
             },
         };
