@@ -10,9 +10,10 @@ import {
     Area,
     ReferenceArea,
 } from "recharts";
-import { Col, Container, Row, Spinner } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import { format, parseISO } from "date-fns";
 
+import { FullScreenSpinner } from "./Components/FullScreenSpinner";
 import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
@@ -27,8 +28,8 @@ export default function PerformanceManagementChart() {
 
     return (
         <>
-            {isLoading && <Spinner />}
-            <Container size="lg">
+            {isLoading && <FullScreenSpinner />}
+            <Container size="lg" className={styles.chartContainer}>
                 <Row className="mt-5">
                     <h1 className="text-center">
                         Performance Management Chart

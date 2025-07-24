@@ -5,3 +5,14 @@
     margin: 0;
 }
 
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    color: #007bff;
+    z-index: 1000;
+    height: 100px;
+    width: 100px;
+    font-size: 40px;
+}
