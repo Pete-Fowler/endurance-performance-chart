@@ -69,8 +69,8 @@ public class MetricsService : IMetricsService
             return new List<ActivityDto>();
         }
 
-        DateTime endDate = activities[0].Date;
-        DateTime startDate = activities[activities.Count - 1].Date;
+        DateTime startDate = activities[0].Date;
+        DateTime endDate = activities[activities.Count - 1].Date;
 
         List<ActivityDto> newActivityData = new List<ActivityDto>();
 
@@ -78,7 +78,7 @@ public class MetricsService : IMetricsService
             .GroupBy(a => a.Date.Date)
             .ToDictionary(g => g.Key, g => g.ToList());
 
-        for (DateTime date = endDate.Date; date >= startDate.Date; date = date.AddDays(-1))
+        for (DateTime date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
         {
             if (!activityDict.TryGetValue(date, out List<ActivityDto>? activitiesOnDate))
             {
