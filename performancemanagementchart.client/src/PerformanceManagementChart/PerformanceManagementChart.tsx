@@ -18,7 +18,6 @@ import { colors } from "./Colors";
 import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
-import type { IActivityDto } from "./Interfaces";
 import { usePerformanceManagementChart } from "./usePerformanceManagementChart";
 
 export default function PerformanceManagementChart() {
@@ -110,35 +109,35 @@ export default function PerformanceManagementChart() {
                                     y1={20}
                                     y2={30}
                                     fill={yellow}
-                                    fillOpacity={0.1}
+                                    fillOpacity={0.2}
                                 />
                                 {/* Fresh (blue) */}
                                 <ReferenceArea
                                     y1={5}
                                     y2={20}
                                     fill={blue}
-                                    fillOpacity={0.1}
+                                    fillOpacity={0.2}
                                 />
                                 {/* Neutral (gray) */}
                                 <ReferenceArea
                                     y1={-10}
                                     y2={5}
                                     fill={gray}
-                                    fillOpacity={0.1}
+                                    fillOpacity={0.2}
                                 />{" "}
                                 {/* Optimal (Green) */}
                                 <ReferenceArea
                                     y1={-30}
                                     y2={-10}
                                     fill={green}
-                                    fillOpacity={0.1}
+                                    fillOpacity={0.2}
                                 />{" "}
                                 {/* High Risk (Red) */}
                                 <ReferenceArea
                                     y1={-40}
                                     y2={-30}
                                     fill={red}
-                                    fillOpacity={0.1}
+                                    fillOpacity={0.2}
                                 />{" "}
                                 <Line
                                     dataKey="form"
