@@ -19,6 +19,7 @@ import styles from "./PerformanceManagementChart.module.css";
 import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
 import { usePerformanceManagementChart } from "./usePerformanceManagementChart";
+import { CustomTooltip } from "./Components/CustomTooltip/CustomTooltip";
 
 export default function PerformanceManagementChart() {
     const { activities, isLoading, error } = usePerformanceManagementChart();
@@ -45,7 +46,7 @@ export default function PerformanceManagementChart() {
                             <ComposedChart data={activities} syncId="pmc">
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <YAxis />
-                                <Tooltip />
+                                <Tooltip content={<CustomTooltip />} />
                                 {/* <Legend /> */}
                                 <Line
                                     type="basis"
@@ -103,7 +104,7 @@ export default function PerformanceManagementChart() {
                                     domain={[-40, 30]}
                                     ticks={[-30, -10, 5, 20]}
                                 />
-                                <Tooltip />
+                                {/* <Tooltip /> */}
                                 {/* Transition (yellow) */}
                                 <ReferenceArea
                                     y1={20}
