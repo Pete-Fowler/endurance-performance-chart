@@ -49,13 +49,13 @@ export default function PerformanceManagementChart() {
                                 <Tooltip />
                                 {/* <Legend /> */}
                                 <Line
-                                    type="monotone"
+                                    type="basis"
                                     dataKey="fatigue"
                                     stroke={purple}
                                     dot={false}
                                 />
                                 <Area
-                                    type="monotone"
+                                    type="basis"
                                     dataKey="fitness"
                                     stroke={blue}
                                     fill="#D9EEF9"
@@ -142,7 +142,7 @@ export default function PerformanceManagementChart() {
                                 />{" "}
                                 <Line
                                     dataKey="form"
-                                    type="monotone"
+                                    type="basis"
                                     stroke="black"
                                     dot={false}
                                     isAnimationActive={false}
