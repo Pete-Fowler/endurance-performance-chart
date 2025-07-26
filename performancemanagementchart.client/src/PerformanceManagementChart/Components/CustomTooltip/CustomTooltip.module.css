@@ -48,6 +48,23 @@
     color: var(--gray);
 }
 
+.floatingDate {
+    position: absolute;
+    left: 50%;
+    top: 620px;
+    transform: translate(-50%, 0);
+    z-index: 1100;
+    background: rgba(255,255,255,0.95);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--darkGray);
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
 /* Activity tooltip at bottom */
 .activityTooltip {
     position: absolute;
