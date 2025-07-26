@@ -11,7 +11,7 @@ import {
     ReferenceArea,
 } from "recharts";
 import { Col, Container, Row } from "reactstrap";
-import { format, parseISO } from "date-fns";
+import { addMonths, format, isAfter, parseISO, startOfMonth } from "date-fns";
 
 import { FullScreenSpinner } from "./Components/FullScreenSpinner";
 import { colors } from "./Colors";
@@ -22,7 +22,7 @@ import { usePerformanceManagementChart } from "./usePerformanceManagementChart";
 import { CustomTooltip } from "./Components/CustomTooltip/CustomTooltip";
 
 export default function PerformanceManagementChart() {
-    const { activities, isLoading, error } = usePerformanceManagementChart();
+    const { activities, isLoading, error, getMonthlyTicks } = usePerformanceManagementChart();
 
     const { yellow, blue, gray, green, red, purple } = colors;
 
@@ -98,7 +98,7 @@ export default function PerformanceManagementChart() {
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis
                                     dataKey="date"
-                                    interval={10}
+                                    ticks={getMonthlyTicks()}
                                     tick={({ x, y, payload }) => (
                                         <text
                                             x={x}
@@ -110,7 +110,7 @@ export default function PerformanceManagementChart() {
                                         >
                                             {format(
                                                 parseISO(payload.value),
-                                                "MMM d"
+                                                "MMM"
                                             )}
                                         </text>
                                     )}

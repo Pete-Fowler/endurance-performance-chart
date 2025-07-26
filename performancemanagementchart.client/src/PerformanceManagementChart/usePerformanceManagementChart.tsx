@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { IActivityDto } from "./Interfaces";
+import { format, parseISO } from "date-fns";
 
 export function usePerformanceManagementChart() {
     const [activities, setActivities] = useState<IActivityDto[]>([]);
@@ -41,9 +42,24 @@ export function usePerformanceManagementChart() {
         }
     }, []);
 
+    const getMonthlyTicks = () => {
+        if (!activities.length) return [];
+        const seenMonths = new Set();
+        const ticks = [];
+        for (const activity of activities) {
+            const month = format(parseISO(activity.date), "yyyy-MM");
+            if (!seenMonths.has(month)) {
+                seenMonths.add(month);
+                ticks.push(activity.date);
+            }
+        }
+        return ticks;
+    };
+
     return {
         activities,
         isLoading,
         error,
+        getMonthlyTicks,
     };
 }

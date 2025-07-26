@@ -19,14 +19,14 @@ export default function CurrentFitnessLegend({currentFitness}: IProps)
                     ? format(parseISO(currentFitness.date), "EEE MMM d")
                     : "No date"}
             </div>
-            <div style={{ color: colors.gray, fontWeight: "bold" }}>
-                Form: {currentFitness?.form}
-            </div>
             <div style={{ color: colors.blue, fontWeight: "bold" }}>
                 Fitness: {currentFitness?.fitness}
             </div>
             <div style={{ color: colors.purple, fontWeight: "bold" }}>
                 Fatigue: {currentFitness?.fatigue}
+            </div>
+            <div style={{ color: colors.gray, fontWeight: "bold" }}>
+                Form: {currentFitness?.form}
             </div>
         </aside>
     );
