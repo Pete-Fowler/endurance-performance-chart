@@ -53,7 +53,6 @@ export default function PerformanceManagementChart() {
                             minWidth="380px"
                             width="100%"
                             height={400}
-                            data-testid="fatigue-fitness-chart"
                         >
                             <ComposedChart data={activities} syncId="pmc">
                                 <CartesianGrid strokeDasharray="3 3" />

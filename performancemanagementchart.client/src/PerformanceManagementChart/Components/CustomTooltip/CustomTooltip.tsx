@@ -15,7 +15,7 @@ export const CustomTooltip = ({
     label,
     coordinate
 }: TooltipProps<ValueType, NameType>) => {
-    const isVisible = active && payload?.length;
+    const isVisible = true;
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
     const left = coordinate ? `${coordinate.x}px` : "50%";
 
@@ -26,7 +26,7 @@ export const CustomTooltip = ({
                 className={styles.customTooltip}
                 style={{ left, visibility: isVisible ? "visible" : "hidden", position: "absolute", top: "-60px", transform: "translate(-50%, 0)", zIndex: 1000 }}
             >
-                {isVisible && (
+                {isVisible && data && (
                     <section>
                         <Row className={styles.formFitnessFatigue}>
 
@@ -61,37 +61,32 @@ export const CustomTooltip = ({
             {/* Activity section at bottom, moves horizontally with mouse */}
             {isVisible && data?.activity && (
                 <aside
-                    className={styles.customTooltip}
-                    style={{ left, position: "absolute", top: "calc(100% + 10px)", transform: "translate(-50%, 0)", zIndex: 1000, minWidth: "400px", background: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", padding: "8px 16px", borderRadius: "6px" }}
+                    className={`${styles.activityTooltip}`}
+                    style={{ left }}
                 >
                     <Row className={styles.activityRow}>
-
                         {/* Duration & Distance */}
                         <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div style={{ fontWeight: 600 }}>{Formatter.formatDuration(data.activity.duration)}</div>
-                            <div style={{ color: '#555', fontSize: '13px' }}>{data.activity.distance?.toFixed(2)}mi</div>
+                            <div className={styles.activityLoad}>{Formatter.formatDuration(data.activity.duration)}</div>
+                            <div className={styles.activityDistance}>{data.activity.distance?.toFixed(2)}mi</div>
                         </Col>
-
                         {/* Load & Intensity */}
                         <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div style={{ fontWeight: 600, color: Formatter.getIntensityColor(data.activity.intensity) }}>{data.activity.load}</div>
-                            <div style={{ color: Formatter.getIntensityColor(data.activity.intensity), fontSize: '13px' }}>{data.activity.intensity.toFixed(2)}</div>
+                            <div className={styles.activityIntensity} style={{ color: Formatter.getIntensityColor(data.activity.intensity) }}>{data.activity.load}</div>
+                            <div className={styles.activityIntensityFactor} style={{ color: Formatter.getIntensityColor(data.activity.intensity) }}>{data.activity.intensity.toFixed(2)}</div>
                         </Col>
-
                         {/* Heart Rate */}
                         <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div style={{ fontWeight: 600, color: '#ff4136' }}>{data.activity.avgHeartRate}bpm</div>
+                            <div className={styles.activityHeartRate}>{data.activity.avgHeartRate}bpm</div>
                         </Col>
-
                         {/* Pace */}
                         <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div style={{ fontWeight: 600, color: '#0074d9' }}>{Formatter.formatPace(data.activity.avgPace)}</div>
+                            <div className={styles.activityPace}>{Formatter.formatPace(data.activity.avgPace)}</div>
                         </Col>
-
                         {/* Name & Time */}
                         <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div style={{ fontWeight: 600 }}>{data.activity.name}</div>
-                            <div style={{ color: '#555', fontSize: '13px' }}>{data.activity.time ? format(parseISO(data.activity.time), "h:mmaaa") : ""}</div>
+                            <div className={styles.activityName}>{data.activity.name}</div>
+                            <div className={styles.activityTime}>{data.activity.time ? format(parseISO(data.activity.time), "h:mmaaa") : ""}</div>
                         </Col>
                     </Row>
                 </aside>
