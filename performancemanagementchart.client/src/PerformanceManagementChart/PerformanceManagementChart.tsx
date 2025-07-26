@@ -36,6 +36,8 @@ export default function PerformanceManagementChart() {
             )}
             {isLoading && <FullScreenSpinner />}
             <Container size="lg" className={styles.chartContainer}>
+
+                {/* Header */}
                 <Row className="mt-5">
                     <h1 className="text-center">
                         Performance Management Chart
@@ -47,6 +49,8 @@ export default function PerformanceManagementChart() {
                         <div style={{ height: "40px" }} />
                     </Col>
                 </Row>
+
+                {/* Fitness / Fatigue Chart */}
                 <Row>
                     <Col xs="11">
                         <ResponsiveContainer

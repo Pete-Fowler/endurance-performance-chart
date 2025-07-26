@@ -1,21 +1,21 @@
 export interface IActivityDto {
-    Date: string;
-    Fatigue: number;
-    Fitness: number;
-    Form: number;
-    ThreshholdPace?: number;
-    Activity?: IActivity;
+    date: string;
+    fatigue: number;
+    fitness: number;
+    form: number;
+    threshholdPace?: number;
+    activity?: IActivity;
 }
 
 export interface IActivity {
-    Type: string;
-    Duration: number; // in seconds
-    Distance: number; // in miles
-    Load: number;
-    Intensity: number;
-    AvgHeartRate: number;
-    AvgPace: number; // in miles/hour
-    GradeAdjustedPace: number; // in miles/hour
-    Name: string;
-    Time: string; // ISO date string
+    type: string;
+    duration: number; // in seconds
+    distance: number; // in miles
+    load: number;
+    intensity: number;
+    avgHeartRate: number;
+    avgPace: number; // in miles/hour
+    gradeAdjustedPace: number; // in miles/hour
+    name: string;
+    time: string; // ISO date string
 }
