@@ -28,6 +28,12 @@ export default function PerformanceManagementChart() {
 
     return (
         <>
+            {error && (
+                <div className="text-center mt-5">
+                    <h2>Error loading data</h2>
+                    <p>{error}</p>
+                </div>
+            )}
             {isLoading && <FullScreenSpinner />}
             <Container size="lg" className={styles.chartContainer}>
                 <Row className="mt-5">
@@ -38,7 +44,7 @@ export default function PerformanceManagementChart() {
                 <Row>
                     {/* Creates vertical space for custom tooltip above chart */}
                     <Col xs="12">
-                        <div style={{ height: "60px" }} />
+                        <div style={{ height: "40px" }} />
                     </Col>
                 </Row>
                 <Row>

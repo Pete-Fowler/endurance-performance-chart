@@ -1,6 +1,6 @@
 .customTooltip {
     position: absolute;
-    top: -60px;
+    top: -35px;
     transform: translate(-50%, 0);
     z-index: 100;
 }
@@ -9,5 +9,33 @@
 
     display: flex;
     flex-wrap: nowrap;
-    gap: 40px;
+}
+
+.topRow {
+    font-size: 14px;
+}
+
+.bottomRow {
+    font-weight: 600;
+}
+
+.topRow, .bottomRow {
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+.date {
+    color: var(--darkGray);
+}
+
+.fitness {
+    color: var(--blue);
+}
+
+.fatigue {
+    color: var(--purple);
+}
+
+.form {
+    color: var(--gray);
 }

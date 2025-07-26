@@ -25,29 +25,27 @@ export const CustomTooltip = ({
             style={{ left, visibility: isVisible ? "visible" : "hidden" }}
         >
             {isVisible && (
-                <section className={styles.formFitnessFatigue} >
-                    <Row className={styles.date}>
-                        <Col>
-                            <Row><Col>Date</Col></Row>{" "}
-                            <Row><Col>{format(parseISO(data.date), "EEE MMM d")}</Col></Row>
+                <section>
+                    <Row className={styles.formFitnessFatigue}>
+                        <Col className="text-center">
+                            <div className={styles.topRow}>
+                                {format(parseISO(data.date), "EEE")}
+                            </div>
+                            <div className={`${styles.bottomRow} ${styles.date}`}>
+                                {format(parseISO(data.date), "MMM d")}
+                            </div>
                         </Col>
-                    </Row>
-                    <Row className={styles.fitness}>
-                        <Col>
-                            <Row>Fitness</Row>
-                            <Row>{data?.fitness}</Row>
+                        <Col className="text-center">
+                            <div className={styles.topRow}>Fitness</div>
+                            <div className={`${styles.bottomRow} ${styles.fitness}`}>{data?.fitness}</div>
                         </Col>
-                    </Row>
-                    <Row className={styles.fatigue}>
-                        <Col>
-                            <Row>Fatigue</Row>
-                            <Row>{data?.fatigue}</Row>
+                        <Col className="text-center">
+                            <div className={styles.topRow}>Fatigue</div>
+                            <div className={`${styles.bottomRow} ${styles.fatigue}`}>{data?.fatigue}</div>
                         </Col>
-                    </Row>
-                    <Row className={styles.form}>
-                        <Col>
-                            <Row>Form</Row>
-                            <Row>{data?.form}</Row>
+                        <Col className="text-center">
+                            <div className={styles.topRow}>Form</div>
+                            <div className={`${styles.bottomRow} ${styles.form}`}>{data?.form}</div>
                         </Col>
                     </Row>
                 </section>
