@@ -82,7 +82,7 @@ export const CustomTooltip = ({
 
                         {/* Duration & Distance */}
                         <Col className={styles.contentCenteredCol}>
-                            <div className={styles.activityLoad}>
+                            <div className={styles.activityDuration}>
                                 {Formatter.formatDuration(
                                     data.activity.duration
                                 )}
@@ -95,14 +95,14 @@ export const CustomTooltip = ({
                         {/* Load & Intensity */}
                         <Col className={styles.contentCenteredCol}>
                             <div
-                                className={styles.activityIntensity}
+                                className={styles.activityLoad}
                                 style={{
-                                    color: Formatter.getIntensityColor(
-                                        data.activity.intensity
+                                    color: Formatter.getLoadColor(
+                                        data.activity.load
                                     ),
                                 }}
                             >
-                                {data.activity.load}
+                                Load {data.activity.load}
                             </div>
                             <div
                                 className={styles.activityIntensityFactor}
@@ -112,7 +112,7 @@ export const CustomTooltip = ({
                                     ),
                                 }}
                             >
-                                {data.activity.intensity.toFixed(2)}
+                                {data.activity.intensity.toFixed(2)}%
                             </div>
                         </Col>
 

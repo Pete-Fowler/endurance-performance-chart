@@ -14,7 +14,14 @@ export class Formatter {
         const sec = Math.round((pace - min) * 60);
         return `${min}:${sec.toString().padStart(2, "0")}/mi`;
     }
-    
+
+    static getLoadColor(load: number) {
+        if (load < 50) return "#2ecc40"; // green
+        if (load < 70) return "#ffdc00"; // yellow
+        if (load < 85) return "#ff851b"; // orange
+        return "#ff4136"; // red
+    }
+
     static getIntensityColor(intensity: number) {
         if (intensity < 0.7) return "#2ecc40"; // green
         if (intensity < 0.85) return "#ffdc00"; // yellow

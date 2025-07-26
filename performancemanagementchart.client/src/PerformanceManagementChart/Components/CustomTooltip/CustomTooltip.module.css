@@ -7,7 +7,6 @@
 }
 
 .formFitnessFatigue {
-
     display: flex;
     flex-wrap: nowrap;
 }
@@ -27,7 +26,8 @@
     font-weight: 600;
 }
 
-.topRow, .bottomRow {
+.topRow,
+.bottomRow {
     white-space: nowrap;
     line-height: 1.2;
 }
@@ -56,39 +56,46 @@
     z-index: 1000;
     min-width: 400px;
     background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 8px 16px;
     border-radius: 6px;
-}
-.activityRow {
-    /* Add any row-specific styles here */
-}
-.activityLoad {
+    font-size: 12px;
     font-weight: 600;
 }
+
+.activityRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
 .activityDistance {
     color: #555;
-    font-size: 13px;
+}
+
+.activityLoad {
+    white-space: nowrap;
 }
 .activityIntensity {
     font-weight: 600;
     /* color set inline for dynamic intensity */
 }
-.activityIntensityFactor {
-    font-size: 13px;
-}
+
 .activityHeartRate {
     font-weight: 600;
     color: #ff4136;
 }
+
 .activityPace {
     font-weight: 600;
     color: #0074d9;
 }
+
 .activityName {
+    white-space: nowrap;
     font-weight: 600;
 }
+
 .activityTime {
     color: #555;
-    font-size: 13px;
 }
