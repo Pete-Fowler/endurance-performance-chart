@@ -3,10 +3,11 @@ import type {
     ValueType,
     NameType,
 } from "recharts/types/component/DefaultTooltipContent";
-import { format, parseISO} from "date-fns";
-
+import { format, parseISO } from "date-fns";
 import styles from "./CustomTooltip.module.css";
 import { Col, Row } from "reactstrap";
+
+import { Formatter } from "./Formatter";
 
 export const CustomTooltip = ({
     active,
@@ -16,34 +17,39 @@ export const CustomTooltip = ({
 }: TooltipProps<ValueType, NameType>) => {
     const isVisible = active && payload?.length;
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
-
     const left = coordinate ? `${coordinate.x}px` : "50%";
 
     return (
+        <>
+            {/* Custom tooltip for date, fitness, fatigue, form at the top*/}
         <aside
             className={styles.customTooltip}
-            style={{ left, visibility: isVisible ? "visible" : "hidden" }}
+                style={{ left, visibility: isVisible ? "visible" : "hidden", position: "absolute", top: "-60px", transform: "translate(-50%, 0)", zIndex: 1000 }}
         >
             {isVisible && (
                 <section>
                     <Row className={styles.formFitnessFatigue}>
-                        <Col className="text-center">
-                            <div className={styles.topRow}>
-                                {format(parseISO(data.date), "EEE")}
-                            </div>
-                            <div className={`${styles.bottomRow} ${styles.date}`}>
-                                {format(parseISO(data.date), "MMM d")}
-                            </div>
+
+                            {/* Date */}
+                            <Col className="d-flex flex-column align-items-center justify-content-center">
+                                <div className={styles.topRow}>{format(parseISO(data.date), "EEE")}</div>
+                                <div className={`${styles.bottomRow} ${styles.date}`}>{format(parseISO(data.date), "MMM d")}</div>
                         </Col>
-                        <Col className="text-center">
+
+                            {/* Fitness */}
+                            <Col className="d-flex flex-column align-items-center justify-content-center">
                             <div className={styles.topRow}>Fitness</div>
                             <div className={`${styles.bottomRow} ${styles.fitness}`}>{data?.fitness}</div>
                         </Col>
-                        <Col className="text-center">
+
+                            {/* Fatigue */}
+                            <Col className="d-flex flex-column align-items-center justify-content-center">
                             <div className={styles.topRow}>Fatigue</div>
                             <div className={`${styles.bottomRow} ${styles.fatigue}`}>{data?.fatigue}</div>
                         </Col>
-                        <Col className="text-center">
+
+                            {/* Form */}
+                            <Col className="d-flex flex-column align-items-center justify-content-center">
                             <div className={styles.topRow}>Form</div>
                             <div className={`${styles.bottomRow} ${styles.form}`}>{data?.form}</div>
                         </Col>
