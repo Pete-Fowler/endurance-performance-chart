@@ -6,28 +6,50 @@ import type {
 import { format, parseISO} from "date-fns";
 
 import styles from "./CustomTooltip.module.css";
+import { Col, Row } from "reactstrap";
 
 export const CustomTooltip = ({
     active,
     payload,
     label,
+    coordinate
 }: TooltipProps<ValueType, NameType>) => {
     const isVisible = active && payload?.length;
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
 
+    const left = coordinate ? `${coordinate.x}px` : "50%";
+
     return (
         <aside
             className={styles.customTooltip}
-            style={{ visibility: isVisible ? "visible" : "hidden" }}
+            style={{ left, visibility: isVisible ? "visible" : "hidden" }}
         >
             {isVisible && (
-                <section className={styles.tooltipContent}>
-                    <div
-                        className={styles.date}
-                    >{format(parseISO(data.date), "EEE MMM d")}</div>
-                    <div className={styles.fitness}>{data?.fitness}</div>
-                    <div className={styles.fatigue}>{data?.fatigue}</div>
-                    <div className={styles.form}>{data?.form}</div>
+                <section className={styles.formFitnessFatigue} >
+                    <Row className={styles.date}>
+                        <Col>
+                            <Row><Col>Date</Col></Row>{" "}
+                            <Row><Col>{format(parseISO(data.date), "EEE MMM d")}</Col></Row>
+                        </Col>
+                    </Row>
+                    <Row className={styles.fitness}>
+                        <Col>
+                            <Row>Fitness</Row>
+                            <Row>{data?.fitness}</Row>
+                        </Col>
+                    </Row>
+                    <Row className={styles.fatigue}>
+                        <Col>
+                            <Row>Fatigue</Row>
+                            <Row>{data?.fatigue}</Row>
+                        </Col>
+                    </Row>
+                    <Row className={styles.form}>
+                        <Col>
+                            <Row>Form</Row>
+                            <Row>{data?.form}</Row>
+                        </Col>
+                    </Row>
                 </section>
             )}
         </aside>

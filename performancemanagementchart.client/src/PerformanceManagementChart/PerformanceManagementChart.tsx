@@ -36,6 +36,12 @@ export default function PerformanceManagementChart() {
                     </h1>
                 </Row>
                 <Row>
+                    {/* Creates vertical space for custom tooltip above chart */}
+                    <Col xs="12">
+                        <div style={{ height: "60px" }} />
+                    </Col>
+                </Row>
+                <Row>
                     <Col xs="11">
                         <ResponsiveContainer
                             minWidth="380px"
