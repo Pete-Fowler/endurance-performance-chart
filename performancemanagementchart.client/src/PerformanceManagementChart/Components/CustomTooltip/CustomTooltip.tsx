@@ -24,34 +24,51 @@ export const CustomTooltip = ({
             {/* Custom tooltip for date, fitness, fatigue, form at the top*/}
             <aside
                 className={styles.customTooltip}
-                style={{ left, visibility: isVisible ? "visible" : "hidden", position: "absolute", top: "-60px", transform: "translate(-50%, 0)", zIndex: 1000 }}
+                style={{ left, visibility: isVisible ? "visible" : "hidden" }}
             >
                 {isVisible && data && (
                     <section>
                         <Row className={styles.formFitnessFatigue}>
-
                             {/* Date */}
-                            <Col className="d-flex flex-column align-items-center justify-content-center">
-                                <div className={styles.topRow}>{format(parseISO(data.date), "EEE")}</div>
-                                <div className={`${styles.bottomRow} ${styles.date}`}>{format(parseISO(data.date), "MMM d")}</div>
+                            <Col className={styles.contentCenteredCol}>
+                                <div className={styles.topRow}>
+                                    {format(parseISO(data.date), "EEE")}
+                                </div>
+                                <div
+                                    className={`${styles.bottomRow} ${styles.date}`}
+                                >
+                                    {format(parseISO(data.date), "MMM d")}
+                                </div>
                             </Col>
 
                             {/* Fitness */}
-                            <Col className="d-flex flex-column align-items-center justify-content-center">
+                            <Col className={styles.contentCenteredCol}>
                                 <div className={styles.topRow}>Fitness</div>
-                                <div className={`${styles.bottomRow} ${styles.fitness}`}>{data?.fitness}</div>
+                                <div
+                                    className={`${styles.bottomRow} ${styles.fitness}`}
+                                >
+                                    {data?.fitness}
+                                </div>
                             </Col>
 
                             {/* Fatigue */}
-                            <Col className="d-flex flex-column align-items-center justify-content-center">
+                            <Col className={styles.contentCenteredCol}>
                                 <div className={styles.topRow}>Fatigue</div>
-                                <div className={`${styles.bottomRow} ${styles.fatigue}`}>{data?.fatigue}</div>
+                                <div
+                                    className={`${styles.bottomRow} ${styles.fatigue}`}
+                                >
+                                    {data?.fatigue}
+                                </div>
                             </Col>
 
                             {/* Form */}
-                            <Col className="d-flex flex-column align-items-center justify-content-center">
+                            <Col className={styles.contentCenteredCol}>
                                 <div className={styles.topRow}>Form</div>
-                                <div className={`${styles.bottomRow} ${styles.form}`}>{data?.form}</div>
+                                <div
+                                    className={`${styles.bottomRow} ${styles.form}`}
+                                >
+                                    {data?.form}
+                                </div>
                             </Col>
                         </Row>
                     </section>
@@ -60,33 +77,72 @@ export const CustomTooltip = ({
 
             {/* Activity section at bottom, moves horizontally with mouse */}
             {isVisible && data?.activity && (
-                <aside
-                    className={`${styles.activityTooltip}`}
-                    style={{ left }}
-                >
+                <aside className={`${styles.activityTooltip}`} style={{ left }}>
                     <Row className={styles.activityRow}>
+
                         {/* Duration & Distance */}
-                        <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div className={styles.activityLoad}>{Formatter.formatDuration(data.activity.duration)}</div>
-                            <div className={styles.activityDistance}>{data.activity.distance?.toFixed(2)}mi</div>
+                        <Col className={styles.contentCenteredCol}>
+                            <div className={styles.activityLoad}>
+                                {Formatter.formatDuration(
+                                    data.activity.duration
+                                )}
+                            </div>
+                            <div className={styles.activityDistance}>
+                                {data.activity.distance?.toFixed(2)}mi
+                            </div>
                         </Col>
+
                         {/* Load & Intensity */}
-                        <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div className={styles.activityIntensity} style={{ color: Formatter.getIntensityColor(data.activity.intensity) }}>{data.activity.load}</div>
-                            <div className={styles.activityIntensityFactor} style={{ color: Formatter.getIntensityColor(data.activity.intensity) }}>{data.activity.intensity.toFixed(2)}</div>
+                        <Col className={styles.contentCenteredCol}>
+                            <div
+                                className={styles.activityIntensity}
+                                style={{
+                                    color: Formatter.getIntensityColor(
+                                        data.activity.intensity
+                                    ),
+                                }}
+                            >
+                                {data.activity.load}
+                            </div>
+                            <div
+                                className={styles.activityIntensityFactor}
+                                style={{
+                                    color: Formatter.getIntensityColor(
+                                        data.activity.intensity
+                                    ),
+                                }}
+                            >
+                                {data.activity.intensity.toFixed(2)}
+                            </div>
                         </Col>
+
                         {/* Heart Rate */}
-                        <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div className={styles.activityHeartRate}>{data.activity.avgHeartRate}bpm</div>
+                        <Col className={styles.contentCenteredCol}>
+                            <div className={styles.activityHeartRate}>
+                                {data.activity.avgHeartRate}bpm
+                            </div>
                         </Col>
+
                         {/* Pace */}
-                        <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div className={styles.activityPace}>{Formatter.formatPace(data.activity.avgPace)}</div>
+                        <Col className={styles.contentCenteredCol}>
+                            <div className={styles.activityPace}>
+                                {Formatter.formatPace(data.activity.avgPace)}
+                            </div>
                         </Col>
+
                         {/* Name & Time */}
-                        <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div className={styles.activityName}>{data.activity.name}</div>
-                            <div className={styles.activityTime}>{data.activity.time ? format(parseISO(data.activity.time), "h:mmaaa") : ""}</div>
+                            <Col className={styles.contentCenteredCol}>
+                                <div className={styles.activityName}>
+                                {data.activity.name}
+                                </div>
+                                <div className={styles.activityTime}>
+                                    {data.activity.time
+                                    ? format(
+                                          parseISO(data.activity.time),
+                                          "h:mmaaa"
+                                      )
+                                    : ""}
+                            </div>
                         </Col>
                     </Row>
                 </aside>

@@ -1,7 +1,7 @@
 /* Form fitness fatigue tooltip at top */
 .customTooltip {
     position: absolute;
-    top: -500px;
+    top: -35px;
     transform: translate(-50%, 0);
     z-index: 100;
 }
@@ -10,6 +10,13 @@
 
     display: flex;
     flex-wrap: nowrap;
+}
+
+.contentCenteredCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .topRow {
@@ -44,7 +51,7 @@
 /* Activity tooltip at bottom */
 .activityTooltip {
     position: absolute;
-    top: 100%;
+    top: 650px;
     transform: translate(-50%, 0);
     z-index: 1000;
     min-width: 400px;
