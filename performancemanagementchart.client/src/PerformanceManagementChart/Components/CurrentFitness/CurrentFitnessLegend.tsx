@@ -15,7 +15,10 @@ export default function CurrentFitnessLegend({currentFitness}: IProps)
              */}
             <div className={styles.date}>
                 {currentFitness?.date
-                    ? format(parseISO(currentFitness.date), "EEE MMM d")
+                    ? format(
+                          parseISO(currentFitness.date.slice(0, 10)),
+                          "EEE MMM d"
+                      )
                     : "No date"}
             </div>
             <div style={{ color: colors.blue, fontWeight: "bold" }}>

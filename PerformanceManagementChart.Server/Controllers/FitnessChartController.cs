@@ -25,7 +25,6 @@ namespace PerformanceManagementChart.Server.Controllers
             _metricsService = metricsService;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ActivityDto>>> GetFitnessChartData(
             string? athleteId = "i360301",
@@ -33,10 +32,10 @@ namespace PerformanceManagementChart.Server.Controllers
             DateTime? endDate = null
         )
         {
-            // Using default values for simple demo app. Would be gotten from front 
+            // Using default values for simple demo app. Would be gotten from front
             // end duration selectors
             startDate ??= DateTime.UtcNow.AddMonths(-6);
-            endDate ??= DateTime.UtcNow;
+            endDate ??= DateTime.UtcNow.Date.AddDays(1).AddTicks(-1);
 
             try
             {
@@ -45,7 +44,7 @@ namespace PerformanceManagementChart.Server.Controllers
                     return BadRequest("Invalid parameters provided.");
                 }
 
-                // Hard coding the type of service for this demo. For a fully developed app, 
+                // Hard coding the type of service for this demo. For a fully developed app,
                 // this would come from user identity / claims info from JWT or session cookie.
 
                 IActivityApiService activityApiService =
@@ -74,7 +73,10 @@ namespace PerformanceManagementChart.Server.Controllers
                     return NotFound("No activities found for the specified date range.");
                 }
 
-                List<ActivityDto> activityData = _metricsService.TransformApiData(rawActivityData, (DateTime)endDate.Value);
+                List<ActivityDto> activityData = _metricsService.TransformApiData(
+                    rawActivityData,
+                    endDate.Value
+                );
 
                 _logger.LogInformation(
                     "Retrieved {ActivityCount} activities for athlete {AthleteId}",
