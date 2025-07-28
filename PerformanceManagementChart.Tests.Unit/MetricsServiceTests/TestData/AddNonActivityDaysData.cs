@@ -7,6 +7,7 @@ namespace PerformanceManagementChart.Tests.MetricsService_Test;
 
 public class AddNonActivityDaysData : IEnumerable<object[]>
 {
+    // Input, endDate, expected output
     public IEnumerator<object[]> GetEnumerator()
     {
         // One gap of zero activities
@@ -25,6 +26,9 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
                     Activity = new Activity { Load = 200 },
                 },
             },
+
+            new DateTime(2023, 1, 4),
+
             new List<ActivityDto>
             {
                 new ActivityDto
@@ -63,6 +67,9 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
                     Activity = new Activity { Load = 250 },
                 },
             },
+
+            new DateTime(2023, 1, 6),
+
             new List<ActivityDto>
             {
                 new ActivityDto
@@ -112,6 +119,9 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
                     Activity = new Activity { Load = 400 },
                 },
             },
+
+            new DateTime(2023, 1, 4),
+
             new List<ActivityDto>
             {
                 new ActivityDto
@@ -135,6 +145,41 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
                     Date = new DateTime(2023, 1, 4),
                     Activity = new Activity { Load = 400 },
                 },
+            },
+        };
+
+        // 2 activities, end date 2 days after last activity
+        yield return new object[]
+        {
+            new List<ActivityDto>
+            {
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 3),
+                    Activity = new Activity { Load = 200 },
+                },
+            },
+            new DateTime(2023, 1, 5),
+            new List<ActivityDto>
+            {
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1),
+                    Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto { Date = new DateTime(2023, 1, 2) },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 3),
+                    Activity = new Activity { Load = 200 },
+                },
+                new ActivityDto { Date = new DateTime(2023, 1, 4) },
+                new ActivityDto { Date = new DateTime(2023, 1, 5) },
             },
         };
     }

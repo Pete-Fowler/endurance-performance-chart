@@ -9,7 +9,7 @@ public class MetricsService : IMetricsService
     /// </summary>
     /// <param name="activities">The list of activities.</param>
     /// <returns>A list of transformed activity data.</returns>
-    public List<ActivityDto> TransformApiData(List<ActivityDto> activities)
+    public List<ActivityDto> TransformApiData(List<ActivityDto> activities, DateTime endDate)
     {
         if (activities == null || activities.Count == 0)
         {
@@ -24,7 +24,7 @@ public class MetricsService : IMetricsService
             }
         }
 
-        List<ActivityDto> activitiesWithNonActivityDays = AddNonActivityDays(activities);
+        List<ActivityDto> activitiesWithNonActivityDays = AddNonActivityDays(activities, endDate);
 
         List<ActivityDto> transformedActivities = GetFormFitnessFatigue(
             activitiesWithNonActivityDays
@@ -62,7 +62,7 @@ public class MetricsService : IMetricsService
     /// </summary>
     /// <param name="activities">The list of activities. Must be sorted by date ascending</param>
     /// <returns>A new list of activities with non-activity days added.</returns>
-    public List<ActivityDto> AddNonActivityDays(List<ActivityDto> activities)
+    public List<ActivityDto> AddNonActivityDays(List<ActivityDto> activities, DateTime endDate)
     {
         if (activities == null || activities.Count == 0)
         {
@@ -70,7 +70,6 @@ public class MetricsService : IMetricsService
         }
 
         DateTime startDate = activities[0].Date;
-        DateTime endDate = activities[activities.Count - 1].Date;
 
         List<ActivityDto> newActivityData = new List<ActivityDto>();
 

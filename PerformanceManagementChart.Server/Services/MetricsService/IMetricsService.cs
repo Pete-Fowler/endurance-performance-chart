@@ -9,7 +9,7 @@ public interface IMetricsService
     /// </summary>
     /// <param name="rawActivityData">The raw activity data.</param>
     /// <returns>A list of transformed activity data.</returns>
-    List<ActivityDto> TransformApiData(List<ActivityDto> rawActivityData);
+    List<ActivityDto> TransformApiData(List<ActivityDto> rawActivityData, DateTime endDate);
 
     /// <summary>
     /// Calculates the Load / Training Stress Score (TSS) for a single activity.
@@ -23,7 +23,7 @@ public interface IMetricsService
     /// </summary>
     /// <param name="activities">The list of activities.</param>
     /// <returns>A new list of activities with non-activity days added.</returns>
-    List<ActivityDto> AddNonActivityDays(List<ActivityDto> activities);
+    List<ActivityDto> AddNonActivityDays(List<ActivityDto> activities, DateTime endDate);
 
     /// <summary>
     /// Calculates the Form, Fitness, and Fatigue metrics for a list of activities.

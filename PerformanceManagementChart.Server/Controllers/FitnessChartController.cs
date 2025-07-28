@@ -29,14 +29,14 @@ namespace PerformanceManagementChart.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ActivityDto>>> GetFitnessChartData(
             string? athleteId = "i360301",
-            DateOnly? startDate = null,
-            DateOnly? endDate = null
+            DateTime? startDate = null,
+            DateTime? endDate = null
         )
         {
             // Using default values for simple demo app. Would be gotten from front 
             // end duration selectors
-            startDate ??= DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-6));
-            endDate ??= DateOnly.FromDateTime(DateTime.UtcNow);
+            startDate ??= DateTime.UtcNow.AddMonths(-6);
+            endDate ??= DateTime.UtcNow;
 
             try
             {
@@ -60,8 +60,8 @@ namespace PerformanceManagementChart.Server.Controllers
 
                 List<ActivityDto> rawActivityData = await activityApiService.LoadActivitiesAsync(
                     athleteId,
-                    (DateOnly)startDate,
-                    (DateOnly)endDate
+                    (DateTime)startDate,
+                    (DateTime)endDate
                 );
                 if (rawActivityData == null || rawActivityData.Count == 0)
                 {
@@ -74,7 +74,7 @@ namespace PerformanceManagementChart.Server.Controllers
                     return NotFound("No activities found for the specified date range.");
                 }
 
-                List<ActivityDto> activityData = _metricsService.TransformApiData(rawActivityData);
+                List<ActivityDto> activityData = _metricsService.TransformApiData(rawActivityData, (DateTime)endDate.Value);
 
                 _logger.LogInformation(
                     "Retrieved {ActivityCount} activities for athlete {AthleteId}",

@@ -1,4 +1,3 @@
-import { Col } from "reactstrap";
 import type { IActivityDto } from "../../Interfaces";
 import styles from "./CurrentFitnessLegend.module.css";
 import { colors } from "../../Colors";

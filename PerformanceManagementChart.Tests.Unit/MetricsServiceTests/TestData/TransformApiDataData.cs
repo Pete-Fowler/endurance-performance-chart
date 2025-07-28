@@ -8,6 +8,8 @@ namespace PerformanceManagementChart.Tests.MetricsService_Test.TestData;
 
 public class TransformApiDataData : IEnumerable<object[]>
 {
+    // Params: activityData, endDate, expected output
+
     // Test has no zero days between activity days for simplicity.
     // Don't call AddNonActivityDays in the test to keep the tests independent
     public IEnumerator<object[]> GetEnumerator()
@@ -31,6 +33,9 @@ public class TransformApiDataData : IEnumerable<object[]>
                     Activity = new Activity { GradeAdjustedPace = 7.5, Duration = 3600 },
                 },
             },
+    
+            new DateTime(2023, 1, 2),
+
             // Expected
             new List<ActivityDto>
             {

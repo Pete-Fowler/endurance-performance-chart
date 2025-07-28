@@ -18,6 +18,7 @@ public class MetricsService_AcuteChronicLoad
     [ClassData(typeof(AddNonActivityDaysData))]
     public void AddNonActivityDays_NormalData_ReturnsExpected(
         List<ActivityDto> activities,
+        DateTime endDate,
         List<ActivityDto> expectedActivityData
     )
     {
@@ -25,7 +26,7 @@ public class MetricsService_AcuteChronicLoad
         var svc = new MetricsService();
 
         // Act
-        var results = svc.AddNonActivityDays(activities);
+        var results = svc.AddNonActivityDays(activities, endDate);
 
         // Assert
         results
@@ -56,6 +57,7 @@ public class MetricsService_AcuteChronicLoad
     [ClassData(typeof(TransformApiDataData))]
     public void TransformApiData_AddsNonactivityDaysLoadAndFormFitnessFatigue(
         List<ActivityDto> activityData,
+        DateTime endDate,
         List<ActivityDto> expectedActivityData
     )
     {
@@ -63,7 +65,7 @@ public class MetricsService_AcuteChronicLoad
         var svc = new MetricsService();
 
         // Act
-        var transformedActivities = svc.TransformApiData(activityData);
+        var transformedActivities = svc.TransformApiData(activityData, endDate);
 
         // Assert
         transformedActivities

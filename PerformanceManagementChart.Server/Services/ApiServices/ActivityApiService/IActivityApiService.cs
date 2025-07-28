@@ -13,7 +13,7 @@ public interface IActivityApiService
     /// <returns>A task that represents the asynchronous operation, containing a list of activities.</returns
     Task<List<ActivityDto>> LoadActivitiesAsync(
         string athleteId,
-        DateOnly startDate,
-        DateOnly endDate
+        DateTime startDate,
+        DateTime endDate
     );
 }

@@ -14,8 +14,8 @@ public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
 
     public override async Task<List<ActivityDto>> LoadActivitiesAsync(
         string athleteId,
-        DateOnly startDate,
-        DateOnly endDate
+        DateTime startDate,
+        DateTime endDate
     )
     {
         var url = GetUrl(

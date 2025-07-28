@@ -49,8 +49,8 @@ public class FitnessChartControllerTests
         // Act
         var result = await _controller.GetFitnessChartData(
             "athleteId",
-            DateOnly.FromDateTime(DateTime.Now.AddDays(-30)),
-            DateOnly.FromDateTime(DateTime.Now)
+            DateTime.Now.AddDays(-30),
+            DateTime.Now
         );
         // Assert
         Assert.IsType<ActionResult<IEnumerable<ActivityDto>>>(result);
@@ -66,8 +66,8 @@ public class FitnessChartControllerTests
             .Setup(x =>
                 x.LoadActivitiesAsync(
                     It.IsAny<string>(),
-                    It.IsAny<DateOnly>(),
-                    It.IsAny<DateOnly>()
+                    It.IsAny<DateTime>(),
+                    It.IsAny<DateTime>()
                 )
             )
             .ReturnsAsync(new List<ActivityDto> { new ActivityDto() });
@@ -77,15 +77,15 @@ public class FitnessChartControllerTests
             .Returns(mockApiService.Object);
 
         _mockMetricsService
-            .Setup(x => x.TransformApiData(It.IsAny<List<ActivityDto>>()))
+            .Setup(x => x.TransformApiData(It.IsAny<List<ActivityDto>>(), It.IsAny<DateTime>()))
             .Returns(new List<ActivityDto> { new ActivityDto() });
 
 
         // Act
         var result = await _controller.GetFitnessChartData(
             "athleteId",
-            DateOnly.FromDateTime(DateTime.Now.AddDays(-30)),
-            DateOnly.FromDateTime(DateTime.Now)
+            DateTime.Now.AddDays(-30),
+            DateTime.Now
         );
 
         // Assert
@@ -93,13 +93,13 @@ public class FitnessChartControllerTests
             x =>
                 x.LoadActivitiesAsync(
                     It.IsAny<string>(),
-                    It.IsAny<DateOnly>(),
-                    It.IsAny<DateOnly>()
+                    It.IsAny<DateTime>(),
+                    It.IsAny<DateTime>()
                 ),
             Times.Once
         );
         _mockMetricsService.Verify(
-            x => x.TransformApiData(It.IsAny<List<ActivityDto>>()),
+            x => x.TransformApiData(It.IsAny<List<ActivityDto>>(), It.IsAny<DateTime>()),
             Times.Once
         );
     }
@@ -113,8 +113,8 @@ public class FitnessChartControllerTests
             .Setup(x =>
                 x.LoadActivitiesAsync(
                     It.IsAny<string>(),
-                    It.IsAny<DateOnly>(),
-                    It.IsAny<DateOnly>()
+                    It.IsAny<DateTime>(),
+                    It.IsAny<DateTime>()
                 )
             )
             .ReturnsAsync(new List<ActivityDto>());
@@ -126,8 +126,8 @@ public class FitnessChartControllerTests
         // Act
         var result = await _controller.GetFitnessChartData(
             "athleteId",
-            DateOnly.FromDateTime(DateTime.Now.AddDays(-30)),
-            DateOnly.FromDateTime(DateTime.Now)
+            DateTime.Now.AddDays(-30),
+            DateTime.Now
         );
 
         // Assert
@@ -135,8 +135,8 @@ public class FitnessChartControllerTests
             x =>
                 x.LoadActivitiesAsync(
                     It.IsAny<string>(),
-                    It.IsAny<DateOnly>(),
-                    It.IsAny<DateOnly>()
+                    It.IsAny<DateTime>(),
+                    It.IsAny<DateTime>()
                 ),
             Times.Once
         );
@@ -152,8 +152,8 @@ public class FitnessChartControllerTests
     {
         // Arrange
         string athleteId = null;
-        DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
-        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1));
+        DateTime startDate = DateTime.Now;
+        DateTime endDate = DateTime.Now.AddDays(-1);
 
         // Act
         var result = await _controller.GetFitnessChartData(athleteId, startDate, endDate);
@@ -171,8 +171,8 @@ public class FitnessChartControllerTests
     {
         // Arrange
         string athleteId = "athleteId";
-        DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
-        DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1));
+        DateTime startDate = DateTime.Now;
+        DateTime endDate = DateTime.Now.AddDays(-1);
 
         // Act
         var result = await _controller.GetFitnessChartData(athleteId, startDate, endDate);
