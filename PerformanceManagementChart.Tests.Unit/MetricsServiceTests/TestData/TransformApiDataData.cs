@@ -22,26 +22,26 @@ public class TransformApiDataData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     ThreshholdPace = 8.33,
                     Activity = new Activity { GradeAdjustedPace = 8, Duration = 2500 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2),
+                    Date = new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc),
                     ThreshholdPace = 8.33,
                     Activity = new Activity { GradeAdjustedPace = 7.5, Duration = 3600 },
                 },
             },
     
-            new DateTime(2023, 1, 2),
+            new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc),
 
             // Expected
             new List<ActivityDto>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Fatigue = 64,
                     Fitness = 64,
                     Form = 0,
@@ -54,7 +54,7 @@ public class TransformApiDataData : IEnumerable<object[]>
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2),
+                    Date = new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc),
                     Fatigue = 72,
                     Fitness = 72,
                     Form = 0,

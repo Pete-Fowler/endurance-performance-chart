@@ -17,30 +17,30 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 100 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 4),
+                    Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 200 },
                 },
             },
 
-            new DateTime(2023, 1, 4),
+            new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
 
             new List<ActivityDto>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 100 },
                 },
-                new ActivityDto { Date = new DateTime(2023, 1, 2) },
-                new ActivityDto { Date = new DateTime(2023, 1, 3) },
+                new ActivityDto { Date = new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc) },
+                new ActivityDto { Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc) },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 4),
+                    Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 200 },
                 },
             },
@@ -53,41 +53,41 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 150 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 3),
+                    Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 250 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 6),
+                    Date = new DateTime(2023, 1, 6, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 250 },
                 },
             },
 
-            new DateTime(2023, 1, 6),
+            new DateTime(2023, 1, 6, 0, 0, 0, DateTimeKind.Utc),
 
             new List<ActivityDto>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 150 },
                 },
-                new ActivityDto { Date = new DateTime(2023, 1, 2), Activity = null },
+                new ActivityDto { Date = new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc), Activity = null },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 3),
+                    Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 250 },
                 },
-                new ActivityDto { Date = new DateTime(2023, 1, 4), Activity = null },
-                new ActivityDto { Date = new DateTime(2023, 1, 5), Activity = null },
+                new ActivityDto { Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc), Activity = null },
+                new ActivityDto { Date = new DateTime(2023, 1, 5, 0, 0, 0, DateTimeKind.Utc), Activity = null },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 6),
+                    Date = new DateTime(2023, 1, 6, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 250 },
                 },
             },
@@ -100,49 +100,49 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 100 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2, 10, 0, 0),
+                    Date = new DateTime(2023, 1, 2, 10, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 200 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2, 12, 0, 0),
+                    Date = new DateTime(2023, 1, 2, 12, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 300 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 4),
+                    Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 400 },
                 },
             },
 
-            new DateTime(2023, 1, 4),
+            new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
 
             new List<ActivityDto>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 100 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2, 10, 0, 0),
+                    Date = new DateTime(2023, 1, 2, 10, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 200 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 2, 12, 0, 0),
+                    Date = new DateTime(2023, 1, 2, 12, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 300 },
                 },
-                new ActivityDto { Date = new DateTime(2023, 1, 3) },
+                new ActivityDto { Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc) },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 4),
+                    Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc   ),
                     Activity = new Activity { Load = 400 },
                 },
             },
@@ -155,31 +155,31 @@ public class AddNonActivityDaysData : IEnumerable<object[]>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 100 },
                 },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 3),
+                    Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 200 },
                 },
             },
-            new DateTime(2023, 1, 5),
+            new DateTime(2023, 1, 5, 0, 0, 0, DateTimeKind.Utc),
             new List<ActivityDto>
             {
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 1),
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 100 },
                 },
-                new ActivityDto { Date = new DateTime(2023, 1, 2) },
+                new ActivityDto { Date = new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc) },
                 new ActivityDto
                 {
-                    Date = new DateTime(2023, 1, 3),
+                    Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc),
                     Activity = new Activity { Load = 200 },
                 },
-                new ActivityDto { Date = new DateTime(2023, 1, 4) },
-                new ActivityDto { Date = new DateTime(2023, 1, 5) },
+                new ActivityDto { Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc) },
+                new ActivityDto { Date = new DateTime(2023, 1, 5, 0, 0, 0, DateTimeKind.Utc) },
             },
         };
     }
