@@ -110,6 +110,16 @@ public class MetricsService : IMetricsService
         for (int i = 0; i < activities.Count; i++)
         {
             var current = activities[i];
+            var activity = current.Activity;
+
+            if (activity != null)
+            {
+                double gap = activity.GradeAdjustedPace;
+                double threshholdPace = current.ThreshholdPace;
+
+                double intensityFactor = gap / threshholdPace;
+                current.Activity!.Intensity = Math.Round(intensityFactor * 100);
+            }
             var sevenDayAvg = GetRollingAverage(activities, i, 7);
             var fortyTwoDayAvg = GetRollingAverage(activities, i, 42);
 
