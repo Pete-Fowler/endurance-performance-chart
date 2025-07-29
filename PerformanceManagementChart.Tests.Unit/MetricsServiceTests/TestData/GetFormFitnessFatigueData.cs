@@ -30,7 +30,6 @@ public class GetFormFitnessFatigueData : IEnumerable<object[]>
                     Activity = new Activity { Load = 110 },
                 },
             },
-
             // Expected
             new List<ActivityDto>
             {
@@ -89,7 +88,7 @@ public class GetFormFitnessFatigueData : IEnumerable<object[]>
                     Form = 0,
                     Activity = new Activity { Load = 100 },
                 },
-                 new ActivityDto
+                new ActivityDto
                 {
                     Date = new DateTime(2023, 1, 1, 10, 0, 0),
                     Fatigue = 150,
@@ -156,13 +155,13 @@ public class GetFormFitnessFatigueData : IEnumerable<object[]>
                 {
                     Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc),
                     Fatigue = 70,
-                    Fitness = 70,  
-                    Form = 0,   
+                    Fitness = 70,
+                    Form = 0,
                     Activity = new Activity { Load = 110 },
                 },
             },
         };
-        
+
         // 2 activities 8 days apart
         yield return new object[]
         {
@@ -202,7 +201,7 @@ public class GetFormFitnessFatigueData : IEnumerable<object[]>
                     Activity = new Activity { Load = 110 },
                 },
             },
-};
+        };
 
         // 2 activities 43 days apart
         yield return new object[]
@@ -241,6 +240,153 @@ public class GetFormFitnessFatigueData : IEnumerable<object[]>
                     Fitness = 110,
                     Form = 0,
                     Activity = new Activity { Load = 110 },
+                },
+            },
+        };
+
+        // 4 activities over 7 days, then 3 days with no activity
+        yield return new object[]
+        {
+            // Input
+            new List<ActivityDto>
+            {
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 30 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 60 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 5, 0, 0, 0, DateTimeKind.Utc),
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 6, 0, 0, 0, DateTimeKind.Utc),
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 7, 0, 0, 0, DateTimeKind.Utc),
+                    ThreshholdPace = 8.33,
+                    Activity = new Activity { Load = 70 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 8, 0, 0, 0, DateTimeKind.Utc),
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 9, 0, 0, 0, DateTimeKind.Utc),
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 10, 0, 0, 0, DateTimeKind.Utc),
+                    Activity = new Activity { Load = 0 },
+                },
+            },
+            // Expected
+            new List<ActivityDto>
+            {
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 100,
+                    Fitness = 100,
+                    Form = 0,
+                    Activity = new Activity { Load = 100 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 2, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 65,
+                    Fitness = 65,
+                    Form = 0,
+                    Activity = new Activity { Load = 30 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 3, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 63,
+                    Fitness = 63,
+                    Form = 0,
+                    Activity = new Activity { Load = 60 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 47,
+                    Fitness = 47,
+                    Form = 0,
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 5, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 38,
+                    Fitness = 38,
+                    Form = 0,
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 6, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 31,
+                    Fitness = 31,
+                    Form = 0,
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 7, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 37,
+                    Fitness = 37,
+                    Form = 0,
+                    Activity = new Activity { Load = 70 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 8, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 22,
+                    Fitness = 32,
+                    Form = 10,
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 9, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 18,
+                    Fitness = 28,
+                    Form = 10,
+                    Activity = new Activity { Load = 0 },
+                },
+                new ActivityDto
+                {
+                    Date = new DateTime(2023, 1, 10, 0, 0, 0, DateTimeKind.Utc),
+                    Fatigue = 10,
+                    Fitness = 26,
+                    Form = 16,
+                    Activity = new Activity { Load = 0 },
                 },
             },
         };
