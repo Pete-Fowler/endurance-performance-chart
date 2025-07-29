@@ -1,6 +1,6 @@
 A minimal demo of an endurance performance management chart in the style of TrainingPeaks with TypeScript, React, Recharts, C# .NET, Jest, React Testing Library, xUnit, and Moq. Business logic was built with test-driven development. The demo app fetches some training data and performs its own calculations of intensity factor, training stress / load, fitness, and fatigue.
 
-<img width="1381" height="824" alt="image" src="https://github.com/user-attachments/assets/f2f6583c-8c45-4729-bbac-5dd4afb3215f" />
+<img width="1381" height="824" alt="image" src="https://github.com/user-attachments/assets/3456db81-00e2-4ca0-b7f9-b3453b953807" />
 
 The app uses training stress based on pace, since neither power nor a normalized power metric was available in the running data from the endurance activity API.
 
