@@ -26,14 +26,24 @@ export default function PerformanceManagementChart() {
 
     const { yellow, blue, gray, green, red, purple } = colors;
 
+    if (error) {
+        return (
+            <Container className={styles.chartContainer}>
+                <Row className="mt-5">
+                    <h1 className="text-center">Performance Management Chart</h1>
+                </Row>
+                <Row>
+                    <Col xs="12" className="text-center">
+                        <p className="text-danger">{error}</p>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+
     return (
         <>
-            {error && (
-                <div className="text-center mt-5">
-                    <h2>Error loading data</h2>
-                    <p>{error}</p>
-                </div>
-            )}
+
             {isLoading && <FullScreenSpinner />}
             <Container size="lg" className={styles.chartContainer}>
 
