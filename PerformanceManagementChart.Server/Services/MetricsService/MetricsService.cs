@@ -104,7 +104,6 @@ public class MetricsService : IMetricsService
             return new List<ActivityDto>();
         }
 
-        // Calculate the 7-day and 42-day rolling averages for Fatigue, Fitness, and Form
         var result = new List<ActivityDto>();
 
         for (int i = 0; i < activities.Count; i++)

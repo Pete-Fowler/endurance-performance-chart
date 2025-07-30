@@ -10,9 +10,7 @@ import { Col, Row } from "reactstrap";
 import { Formatter } from "./Formatter";
 
 export const CustomTooltip = ({
-    active,
     payload,
-    label,
     coordinate
 }: TooltipProps<ValueType, NameType>) => {
     const isVisible = true;
