@@ -4,3 +4,5 @@
 
 **package.g.props
 PerformanceManagementChart.Server/.env
+.env
+.dockerignore
