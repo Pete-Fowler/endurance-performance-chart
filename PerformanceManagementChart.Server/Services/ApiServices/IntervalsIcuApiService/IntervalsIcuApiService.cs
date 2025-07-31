@@ -8,7 +8,10 @@ namespace PerformanceManagementChart.Server.Services;
 public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
 {
     public IntervalsIcuApiService(IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory) { }
+        : base(httpClientFactory)
+    {
+        DotNetEnv.Env.Load();
+    }
 
     protected override string BaseUrl => "https://intervals.icu/api/v1/";
 
@@ -40,7 +43,9 @@ public class IntervalsIcuApiService : ActivityApiService, IActivityApiService
             {
                 Date = activity.start_date.Date,
                 ThreshholdPace =
-                    activity.threshhold_pace != null ? (double)activity.threshhold_pace * 2.23694 : 8.33,
+                    activity.threshhold_pace != null
+                        ? (double)activity.threshhold_pace * 2.23694
+                        : 8.33,
                 Activity = new Activity
                 {
                     Type = activity.type,

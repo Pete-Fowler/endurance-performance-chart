@@ -50,6 +50,7 @@ public class TransformApiDataData : IEnumerable<object[]>
                         GradeAdjustedPace = 8,
                         Duration = 2500,
                         Load = 64,
+                        Intensity = 96,
                     },
                 },
                 new ActivityDto
@@ -63,6 +64,7 @@ public class TransformApiDataData : IEnumerable<object[]>
                         GradeAdjustedPace = 7.5,
                         Duration = 3600,
                         Load = 81,
+                        Intensity = 90,
                     },
                 },
             },

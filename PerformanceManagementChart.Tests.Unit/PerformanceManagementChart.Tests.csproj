@@ -14,7 +14,12 @@
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
     <PackageReference Include="FluentAssertions" Version="8.5.0" />
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
   </ItemGroup>
+
+  <Target Name="CopyEnvFile" AfterTargets="Build">
+    <Copy SourceFiles="../.env" DestinationFiles="$(OutputPath).env" />
+  </Target>
 
   <ItemGroup>
     <ProjectReference Include="../PerformanceManagementChart.Server/PerformanceManagementChart.Server.csproj" />
@@ -27,6 +32,10 @@
   <ItemGroup>
   <None Update="IntervalsIcuApiServiceTests/TestData/ApiResults.json">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+  <None Update="../.env">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Link>.env</Link>
   </None>
 </ItemGroup>
 
