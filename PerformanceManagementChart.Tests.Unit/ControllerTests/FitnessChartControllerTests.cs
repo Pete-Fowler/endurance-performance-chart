@@ -151,7 +151,7 @@ public class FitnessChartControllerTests
     public async Task GetFitnessChartData_InvalidParameterString_ReturnsBadRequest()
     {
         // Arrange
-        string athleteId = null;
+        string athleteId = "";
         DateTime startDate = DateTime.Now;
         DateTime endDate = DateTime.Now.AddDays(-1);
 
