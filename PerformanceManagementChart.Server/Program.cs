@@ -1,7 +1,7 @@
 using PerformanceManagementChart.Server.Services;
 using PerformanceManagementChart.Server.Services.ApiServices.ActivityApiServiceFactory;
 
-DotNetEnv.Env.Load();
+DotNetEnv.Env.TraversePath().Load();
 
 var builder = WebApplication.CreateBuilder(args);
 

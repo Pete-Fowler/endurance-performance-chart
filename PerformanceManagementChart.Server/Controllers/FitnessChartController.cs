@@ -89,7 +89,7 @@ namespace PerformanceManagementChart.Server.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error retrieving fitness chart data");
-                return Problem("Internal server error");
+                return Problem(ex.Message);
             }
         }
     }

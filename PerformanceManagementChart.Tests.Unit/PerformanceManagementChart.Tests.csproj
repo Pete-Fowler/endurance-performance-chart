@@ -17,10 +17,6 @@
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
   </ItemGroup>
 
-  <Target Name="CopyEnvFile" AfterTargets="Build">
-    <Copy SourceFiles="../.env" DestinationFiles="$(OutputPath).env" />
-  </Target>
-
   <ItemGroup>
     <ProjectReference Include="../PerformanceManagementChart.Server/PerformanceManagementChart.Server.csproj" />
   </ItemGroup>

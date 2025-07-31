@@ -17,7 +17,7 @@ public class IntervalsIcuApiService_Activities
 
     public IntervalsIcuApiService_Activities()
     {
-        DotNetEnv.Env.Load();
+        DotNetEnv.Env.TraversePath().Load();
 
         _mockHandler = new Mock<HttpMessageHandler>();
         _mockHandler
