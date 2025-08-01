@@ -13,7 +13,6 @@ export const CustomTooltip = ({
     payload,
     coordinate
 }: TooltipProps<ValueType, NameType>) => {
-    const isVisible = true;
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
     const left = coordinate ? `${coordinate.x}px` : "50%";
 
@@ -22,9 +21,9 @@ export const CustomTooltip = ({
             {/* Custom tooltip for date, fitness, fatigue, form at the top*/}
             <aside
                 className={styles.customTooltip}
-                style={{ left, visibility: isVisible ? "visible" : "hidden" }}
+                style={{ left }}
             >
-                {isVisible && data && (
+                {data && (
                     <section>
                         <Row className={styles.formFitnessFatigue}>
                             {/* Date */}
@@ -74,7 +73,7 @@ export const CustomTooltip = ({
             </aside>
 
             {/* Activity section at bottom, moves horizontally with mouse */}
-            {isVisible && data?.activity && (
+            {data?.activity && (
                 <>
                     {/* Floating date above activityTooltip */}
                     <div
