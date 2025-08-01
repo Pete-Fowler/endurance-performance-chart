@@ -1,9 +1,16 @@
 /* Form fitness fatigue tooltip at top */
 .customTooltip {
-    position: absolute;
-    top: -35px;
+    position: fixed;
+    top: 100px;
+    left: 50vw;
     transform: translate(-50%, 0);
-    z-index: 100;
+    z-index: 1000;
+}
+
+@media (max-width: 455px) {
+    .customTooltip {
+        top: 130px;
+    }
 }
 
 .formFitnessFatigue {
@@ -49,9 +56,9 @@
 }
 
 .floatingDate {
-    position: absolute;
-    left: 50%;
-    top: 620px;
+    position: fixed;
+    left: 50vw;
+    top: 770px;
     transform: translate(-50%, 0);
     z-index: 1100;
     background: rgba(255,255,255,0.95);
@@ -67,8 +74,9 @@
 
 /* Activity tooltip at bottom */
 .activityTooltip {
-    position: absolute;
-    top: 650px;
+    position: fixed;
+    top: 785px;
+    left: 50vw;
     transform: translate(-50%, 0);
     z-index: 1000;
     min-width: 400px;
@@ -84,6 +92,15 @@
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
+}
+@media screen and (max-width: 468px) {
+    .activityRow {
+        flex-wrap: wrap;
+    }
+    .activityTooltip {
+        min-width: 0px;
+    }
+    
 }
 
 .activityDistance {

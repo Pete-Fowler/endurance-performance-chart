@@ -64,7 +64,6 @@ export default function PerformanceManagementChart() {
                 <Row>
                     <Col xs="11">
                         <ResponsiveContainer
-                            minWidth="380px"
                             width="100%"
                             height={400}
                         >

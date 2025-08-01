@@ -11,17 +11,14 @@ import { Formatter } from "./Formatter";
 
 export const CustomTooltip = ({
     payload,
-    coordinate
 }: TooltipProps<ValueType, NameType>) => {
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
-    const left = coordinate ? `${coordinate.x}px` : "50%";
 
     return (
         <>
             {/* Custom tooltip for date, fitness, fatigue, form at the top*/}
             <aside
                 className={styles.customTooltip}
-                style={{ left }}
             >
                 {data && (
                     <section>
@@ -78,7 +75,6 @@ export const CustomTooltip = ({
                     {/* Floating date above activityTooltip */}
                     <div
                         className={styles.floatingDate}
-                        style={{ left }}
                     >
                         {data.activity.time
                             ? format(parseISO(data.activity.time), "EEE MMM d")
@@ -86,7 +82,7 @@ export const CustomTooltip = ({
                     </div>
 
                     {/* Activity tooltip */}
-                    <aside className={`${styles.activityTooltip}`} style={{ left }}>
+                    <aside className={`${styles.activityTooltip}`}>
                         <Row className={styles.activityRow}>
 
                             {/* Duration & Distance */}
