@@ -56,10 +56,35 @@ export function usePerformanceManagementChart() {
         return ticks;
     };
 
+    const [toolTipState, setToolTipState] = useState<{
+        active: boolean;
+        payload?: any[];
+        label?: string;
+        coordinate?: { x: number; y: number };
+    }>({ active: false });
+
+    const handleMouseMove = (data: any) => {
+        if (data && data.activePayload) {
+            setToolTipState({
+                active: true,
+                payload: data.activePayload,
+                label: data.activeLabel,
+                coordinate: data.activeCoordinate,
+            });
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setToolTipState({ active: false });
+    };
+
     return {
         activities,
         isLoading,
         error,
         getMonthlyTicks,
+        toolTipState,
+        handleMouseMove,
+        handleMouseLeave,
     };
 }

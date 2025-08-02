@@ -4,7 +4,6 @@ import {
     XAxis,
     YAxis,
     CartesianGrid,
-    Tooltip,
     ResponsiveContainer,
     ComposedChart,
     Area,
@@ -20,12 +19,15 @@ import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
 import { usePerformanceManagementChart } from "./usePerformanceManagementChart";
 import { CustomTooltip } from "./Components/CustomTooltip/CustomTooltip";
+import { useState } from "react";
 
 export default function PerformanceManagementChart() {
-    const { activities, isLoading, error, getMonthlyTicks } = usePerformanceManagementChart();
+    const { activities, isLoading, error, getMonthlyTicks, toolTipState, handleMouseMove, handleMouseLeave } = usePerformanceManagementChart();
 
     const { yellow, blue, gray, green, red, purple } = colors;
 
+    
+    
     if (error) {
         return (
             <Container className={styles.chartContainer}>
@@ -43,10 +45,8 @@ export default function PerformanceManagementChart() {
 
     return (
         <>
-
             {isLoading && <FullScreenSpinner />}
             <Container size="lg" className={styles.chartContainer}>
-
                 {/* Header */}
                 <Row className="mt-5">
                     <h1 className="text-center">
@@ -56,21 +56,31 @@ export default function PerformanceManagementChart() {
                 <Row>
                     {/* Creates vertical space for custom tooltip above chart */}
                     <Col xs="12">
-                        <div style={{ height: "40px" }} />
+                        <div style={{ height: "40px" }}>
+                            {toolTipState.active && (
+                                <CustomTooltip
+                                    active={toolTipState.active}
+                                    payload={toolTipState.payload}
+                                    label={toolTipState.label}
+                                    coordinate={toolTipState.coordinate}
+                                />
+                            )}
+                        </div>
                     </Col>
                 </Row>
 
                 {/* Fitness / Fatigue Chart */}
                 <Row>
                     <Col xs="11">
-                        <ResponsiveContainer
-                            width="100%"
-                            height={400}
-                        >
-                            <ComposedChart data={activities} syncId="pmc">
+                        <ResponsiveContainer width="100%" height={400}>
+                            <ComposedChart
+                                data={activities}
+                                syncId="pmc"
+                                onMouseMove={handleMouseMove}
+                                onMouseLeave={handleMouseLeave}
+                            >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <YAxis />
-                                <Tooltip content={<CustomTooltip />} />
                                 {/* <Legend /> */}
                                 <Line
                                     type="basis"
@@ -103,7 +113,12 @@ export default function PerformanceManagementChart() {
                             height={250}
                             data-testid="form-chart"
                         >
-                            <LineChart data={activities} syncId="pmc">
+                            <LineChart
+                                data={activities}
+                                syncId="pmc"
+                                onMouseMove={handleMouseMove}
+                                onMouseLeave={handleMouseLeave}
+                            >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis
                                     dataKey="date"
