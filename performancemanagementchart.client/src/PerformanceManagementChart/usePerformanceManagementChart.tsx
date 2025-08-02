@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import type { IActivityDto } from "./Interfaces";
 import { format, parseISO } from "date-fns";
+import type {
+    Payload,
+    ValueType,
+    NameType,
+} from "recharts/types/component/DefaultTooltipContent";
+
+
 
 export function usePerformanceManagementChart() {
     const [activities, setActivities] = useState<IActivityDto[]>([]);
@@ -58,7 +65,7 @@ export function usePerformanceManagementChart() {
 
     const [toolTipState, setToolTipState] = useState<{
         active: boolean;
-        payload?: any[];
+        payload?: Payload<ValueType, NameType>[];
         label?: string;
         coordinate?: { x: number; y: number };
     }>({ active: false });
