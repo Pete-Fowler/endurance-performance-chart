@@ -26,12 +26,12 @@ export const CustomTooltip = ({
                             {/* Date */}
                             <Col className={styles.contentCenteredCol}>
                                 <div className={styles.topRow}>
-                                    {format(parseISO(data.date), "EEE")}
+                                    {format(parseISO(data.date.split("T")[0]), "EEE")}
                                 </div>
                                 <div
                                     className={`${styles.bottomRow} ${styles.date}`}
                                 >
-                                    {format(parseISO(data.date), "MMM d")}
+                                    {format(parseISO(data.date.split("T")[0]), "MMM d")}
                                 </div>
                             </Col>
 
