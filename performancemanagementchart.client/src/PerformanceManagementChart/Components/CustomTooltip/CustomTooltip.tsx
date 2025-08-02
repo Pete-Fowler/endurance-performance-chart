@@ -8,7 +8,7 @@ import styles from "./CustomTooltip.module.css";
 import { Col, Row } from "reactstrap";
 
 import { Formatter } from "./Formatter";
-import { useState, useRef, useEffect } from "react";
+import { useCustomTooltip } from "./useCustomTooltip";
 
 interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
     coordinate?: { x: number; y: number };
@@ -18,37 +18,19 @@ export const CustomTooltip = ({
     payload,
     coordinate,
 }: CustomTooltipProps) => {
+    const { tooltipX } = useCustomTooltip(coordinate ?? { x: 0, y: 0 });
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
 
     if (!data || !coordinate) return null;
 
-    const chartElement = document.querySelector(".recharts-cartesian-grid");
-    const tooltipWidth = 400;
-
-    let tooltipX = coordinate.x;
-
-    if (chartElement) {
-        const chartRect = chartElement.getBoundingClientRect();
-        const chartLeft = chartRect.left;
-        const chartRight = chartRect.right;
-
-        // Convert coordinate.x to absolute screen position
-        const absoluteX = chartLeft + coordinate.x;
-
-        // Keep tooltip within chart bounds using absolute coordinates
-        if (absoluteX - tooltipWidth / 2 < chartLeft) {
-            tooltipX = chartLeft + tooltipWidth / 2; // Fixed: use absolute position
-        } else if (absoluteX + tooltipWidth / 2 > chartRight) {
-            tooltipX = chartRight - tooltipWidth / 2; // Fixed: use absolute position
-        } else {
-            tooltipX = absoluteX; // Fixed: use absolute position
-        }
-    }
 
     return (
-        <div className={styles.tooltipContainer} style={{ left: tooltipX }}>
+        <>
             {/* Custom tooltip for date, fitness, fatigue, form at the top*/}
-            <aside className={styles.customTooltip}>
+            <aside
+                className={styles.customTooltip}
+                style={{ left: `${tooltipX}px` }}
+            >
                 {data && (
                     <section>
                         <Row className={styles.formFitnessFatigue}>
@@ -108,14 +90,20 @@ export const CustomTooltip = ({
             {data?.activity && (
                 <>
                     {/* Floating date above activityTooltip */}
-                    <div className={styles.floatingDate}>
+                    <div
+                        className={styles.floatingDate}
+                        style={{ left: `${tooltipX}px` }}
+                    >
                         {data.activity.time
                             ? format(parseISO(data.activity.time), "EEE MMM d")
                             : format(parseISO(data.date), "EEE MMM d")}
                     </div>
 
                     {/* Activity tooltip */}
-                    <aside className={`${styles.activityTooltip}`}>
+                    <aside
+                        className={`${styles.activityTooltip}`}
+                        style={{ left: `${tooltipX}px` }}
+                    >
                         <Row className={styles.activityRow}>
                             {/* Duration & Distance */}
                             <Col className={styles.contentCenteredCol}>
@@ -187,7 +175,7 @@ export const CustomTooltip = ({
                     </aside>
                 </>
             )}
-        </div>
+        </>
     );
 };
 

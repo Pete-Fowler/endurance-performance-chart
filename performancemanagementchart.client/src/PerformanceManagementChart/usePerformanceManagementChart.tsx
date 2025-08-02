@@ -64,7 +64,7 @@ export function usePerformanceManagementChart() {
     }>({ active: false });
 
     const handleMouseMove = (data: any) => {
-        if (data && data.activePayload) {
+        if (data?.activePayload) {
             setToolTipState({
                 active: true,
                 payload: data.activePayload,

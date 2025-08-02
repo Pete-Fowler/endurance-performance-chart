@@ -1,8 +1,3 @@
-.tooltipContainer {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-}
 
 /* Form fitness fatigue tooltip at top */
 .customTooltip {
