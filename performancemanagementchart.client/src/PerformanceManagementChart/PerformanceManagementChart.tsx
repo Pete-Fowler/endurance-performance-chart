@@ -11,7 +11,7 @@ import {
     ReferenceArea,
 } from "recharts";
 import { Col, Container, Row } from "reactstrap";
-import {  format, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 import { FullScreenSpinner } from "./Components/FullScreenSpinner";
 import { colors } from "./Colors";
@@ -22,7 +22,15 @@ import { usePerformanceManagementChart } from "./usePerformanceManagementChart";
 import { CustomTooltip } from "./Components/CustomTooltip/CustomTooltip";
 
 export default function PerformanceManagementChart() {
-    const { activities, isLoading, error, getMonthlyTicks } = usePerformanceManagementChart();
+    const {
+        activities,
+        isLoading,
+        error,
+        getMonthlyTicks,
+        tooltipState,
+        handleChartMouseMove,
+        handleChartMouseLeave,
+    } = usePerformanceManagementChart();
 
     const { yellow, blue, gray, green, red, purple } = colors;
 
@@ -30,7 +38,9 @@ export default function PerformanceManagementChart() {
         return (
             <Container className={styles.chartContainer}>
                 <Row className="mt-5">
-                    <h1 className="text-center">Performance Management Chart</h1>
+                    <h1 className="text-center">
+                        Performance Management Chart
+                    </h1>
                 </Row>
                 <Row>
                     <Col xs="12" className="text-center">
@@ -43,10 +53,8 @@ export default function PerformanceManagementChart() {
 
     return (
         <>
-
             {isLoading && <FullScreenSpinner />}
             <Container size="lg" className={styles.chartContainer}>
-
                 {/* Header */}
                 <Row className="mt-5">
                     <h1 className="text-center">
@@ -57,21 +65,26 @@ export default function PerformanceManagementChart() {
                     {/* Creates vertical space for custom tooltip above chart */}
                     <Col xs="12">
                         <div style={{ height: "40px" }} />
+                        <CustomTooltip
+                            active={tooltipState.active}
+                            payload={tooltipState.payload}
+                            label={tooltipState.label}
+                        />
                     </Col>
                 </Row>
 
                 {/* Fitness / Fatigue Chart */}
                 <Row>
                     <Col xs="11">
-                        <ResponsiveContainer
-                            width="100%"
-                            height={400}
-                        >
-                            <ComposedChart data={activities} syncId="pmc">
+                        <ResponsiveContainer width="100%" height={400}>
+                            <ComposedChart
+                                data={activities}
+                                syncId="pmc"
+                                onMouseMove={handleChartMouseMove}
+                                onMouseLeave={handleChartMouseLeave}
+                            >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <YAxis />
-                                <Tooltip content={<CustomTooltip />} />
-                                {/* <Legend /> */}
                                 <Line
                                     type="basis"
                                     dataKey="fatigue"
@@ -95,7 +108,7 @@ export default function PerformanceManagementChart() {
                     </Col>
                 </Row>
 
-                {/* Form */}
+                {/* Form Chart */}
                 <Row>
                     <Col>
                         <ResponsiveContainer
@@ -103,7 +116,12 @@ export default function PerformanceManagementChart() {
                             height={250}
                             data-testid="form-chart"
                         >
-                            <LineChart data={activities} syncId="pmc">
+                            <LineChart
+                                data={activities}
+                                syncId="pmc"
+                                onMouseMove={handleChartMouseMove}
+                                onMouseLeave={handleChartMouseLeave}
+                            >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis
                                     dataKey="date"
@@ -128,7 +146,6 @@ export default function PerformanceManagementChart() {
                                     domain={[-40, 30]}
                                     ticks={[-30, -10, 5, 20]}
                                 />
-                                {/* <Tooltip /> */}
                                 {/* Transition (yellow) */}
                                 <ReferenceArea
                                     y1={20}
@@ -182,4 +199,3 @@ export default function PerformanceManagementChart() {
         </>
     );
 }
-

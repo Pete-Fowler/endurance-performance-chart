@@ -7,6 +7,30 @@ export function usePerformanceManagementChart() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const [tooltipState, setTooltipState] = useState({
+        active: false,
+        payload: [],
+        label: null,
+    });
+
+    const handleChartMouseMove = (e) => {
+        if (e?.activePayload) {
+            setTooltipState({
+                active: true,
+                payload: e.activePayload,
+                label: e.activeLabel,
+            });
+        }
+    };
+
+    const handleChartMouseLeave = () => {
+        setTooltipState({
+            active: false,
+            payload: [],
+            label: null,
+        });
+    };
+
     useEffect(() => {
         fetchActivities();
 
@@ -61,5 +85,8 @@ export function usePerformanceManagementChart() {
         isLoading,
         error,
         getMonthlyTicks,
+        tooltipState,
+        handleChartMouseMove,
+        handleChartMouseLeave,
     };
 }

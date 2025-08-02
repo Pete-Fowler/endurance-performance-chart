@@ -11,6 +11,8 @@ import { Formatter } from "./Formatter";
 
 export const CustomTooltip = ({
     payload,
+    active, 
+    label,
 }: TooltipProps<ValueType, NameType>) => {
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
 
