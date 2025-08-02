@@ -10,7 +10,7 @@ import {
     ReferenceArea,
 } from "recharts";
 import { Col, Container, Row } from "reactstrap";
-import {  format, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 import { FullScreenSpinner } from "./Components/FullScreenSpinner";
 import { colors } from "./Colors";
@@ -19,20 +19,27 @@ import { FormLegend } from "./Components/FormLegend/FormLegend";
 import CurrentFitnessLegend from "./Components/CurrentFitness/CurrentFitnessLegend";
 import { usePerformanceManagementChart } from "./usePerformanceManagementChart";
 import { CustomTooltip } from "./Components/CustomTooltip/CustomTooltip";
-import { useState } from "react";
 
 export default function PerformanceManagementChart() {
-    const { activities, isLoading, error, getMonthlyTicks, toolTipState, handleMouseMove, handleMouseLeave } = usePerformanceManagementChart();
+    const {
+        activities,
+        isLoading,
+        error,
+        getMonthlyTicks,
+        toolTipState,
+        handleMouseMove,
+        handleMouseLeave,
+    } = usePerformanceManagementChart();
 
     const { yellow, blue, gray, green, red, purple } = colors;
 
-    
-    
     if (error) {
         return (
             <Container className={styles.chartContainer}>
                 <Row className="mt-5">
-                    <h1 className="text-center">Performance Management Chart</h1>
+                    <h1 className="text-center">
+                        Performance Management Chart
+                    </h1>
                 </Row>
                 <Row>
                     <Col xs="12" className="text-center">
@@ -197,4 +204,3 @@ export default function PerformanceManagementChart() {
         </>
     );
 }
-

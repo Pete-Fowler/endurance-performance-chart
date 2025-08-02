@@ -1,8 +1,14 @@
+.tooltipContainer {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+}
+
 /* Form fitness fatigue tooltip at top */
 .customTooltip {
     position: fixed;
     top: 100px;
-    left: 50vw;
+    /* left: 50vw; */
     transform: translate(-50%, 0);
     z-index: 1000;
 }
@@ -57,7 +63,7 @@
 
 .floatingDate {
     position: fixed;
-    left: 50vw;
+    /* left: 50vw; */
     top: 770px;
     transform: translate(-50%, 0);
     z-index: 1100;
@@ -76,7 +82,7 @@
 .activityTooltip {
     position: fixed;
     top: 785px;
-    left: 50vw;
+    /* left: 50vw; */
     transform: translate(-50%, 0);
     z-index: 1000;
     min-width: 400px;

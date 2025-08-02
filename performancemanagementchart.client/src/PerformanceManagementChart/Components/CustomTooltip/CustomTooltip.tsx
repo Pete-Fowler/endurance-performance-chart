@@ -8,30 +8,65 @@ import styles from "./CustomTooltip.module.css";
 import { Col, Row } from "reactstrap";
 
 import { Formatter } from "./Formatter";
+import { useState, useRef, useEffect } from "react";
+
+interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
+    coordinate?: { x: number; y: number };
+}
 
 export const CustomTooltip = ({
     payload,
-}: TooltipProps<ValueType, NameType>) => {
+    coordinate,
+}: CustomTooltipProps) => {
     const data = payload && payload.length > 0 ? payload[0].payload : undefined;
 
+    if (!data || !coordinate) return null;
+
+    const chartElement = document.querySelector(".recharts-cartesian-grid");
+    const tooltipWidth = 400;
+
+    let tooltipX = coordinate.x;
+
+    if (chartElement) {
+        const chartRect = chartElement.getBoundingClientRect();
+        const chartLeft = chartRect.left;
+        const chartRight = chartRect.right;
+
+        // Convert coordinate.x to absolute screen position
+        const absoluteX = chartLeft + coordinate.x;
+
+        // Keep tooltip within chart bounds using absolute coordinates
+        if (absoluteX - tooltipWidth / 2 < chartLeft) {
+            tooltipX = chartLeft + tooltipWidth / 2; // Fixed: use absolute position
+        } else if (absoluteX + tooltipWidth / 2 > chartRight) {
+            tooltipX = chartRight - tooltipWidth / 2; // Fixed: use absolute position
+        } else {
+            tooltipX = absoluteX; // Fixed: use absolute position
+        }
+    }
+
     return (
-        <>
+        <div className={styles.tooltipContainer} style={{ left: tooltipX }}>
             {/* Custom tooltip for date, fitness, fatigue, form at the top*/}
-            <aside
-                className={styles.customTooltip}
-            >
+            <aside className={styles.customTooltip}>
                 {data && (
                     <section>
                         <Row className={styles.formFitnessFatigue}>
                             {/* Date */}
                             <Col className={styles.contentCenteredCol}>
                                 <div className={styles.topRow}>
-                                    {format(parseISO(data.date.split("T")[0]), "EEE")}
+                                    {format(
+                                        parseISO(data.date.split("T")[0]),
+                                        "EEE"
+                                    )}
                                 </div>
                                 <div
                                     className={`${styles.bottomRow} ${styles.date}`}
                                 >
-                                    {format(parseISO(data.date.split("T")[0]), "MMM d")}
+                                    {format(
+                                        parseISO(data.date.split("T")[0]),
+                                        "MMM d"
+                                    )}
                                 </div>
                             </Col>
 
@@ -73,9 +108,7 @@ export const CustomTooltip = ({
             {data?.activity && (
                 <>
                     {/* Floating date above activityTooltip */}
-                    <div
-                        className={styles.floatingDate}
-                    >
+                    <div className={styles.floatingDate}>
                         {data.activity.time
                             ? format(parseISO(data.activity.time), "EEE MMM d")
                             : format(parseISO(data.date), "EEE MMM d")}
@@ -84,7 +117,6 @@ export const CustomTooltip = ({
                     {/* Activity tooltip */}
                     <aside className={`${styles.activityTooltip}`}>
                         <Row className={styles.activityRow}>
-
                             {/* Duration & Distance */}
                             <Col className={styles.contentCenteredCol}>
                                 <div className={styles.activityDuration}>
@@ -131,17 +163,19 @@ export const CustomTooltip = ({
                             {/* Pace */}
                             <Col className={styles.contentCenteredCol}>
                                 <div className={styles.activityPace}>
-                                    {Formatter.formatPace(data.activity.avgPace)}
+                                    {Formatter.formatPace(
+                                        data.activity.avgPace
+                                    )}
                                 </div>
                             </Col>
 
                             {/* Name & Time */}
-                                <Col className={styles.contentCenteredCol}>
-                                    <div className={styles.activityName}>
+                            <Col className={styles.contentCenteredCol}>
+                                <div className={styles.activityName}>
                                     {data.activity.name}
-                                    </div>
-                                    <div className={styles.activityTime}>
-                                        {data.activity.time
+                                </div>
+                                <div className={styles.activityTime}>
+                                    {data.activity.time
                                         ? format(
                                               parseISO(data.activity.time),
                                               "h:mmaaa"
@@ -153,7 +187,7 @@ export const CustomTooltip = ({
                     </aside>
                 </>
             )}
-        </>
+        </div>
     );
 };
 
