@@ -51,15 +51,29 @@ export function usePerformanceManagementChart() {
 
     const getMonthlyTicks = () => {
         if (!activities.length) return [];
+
+        const firstActivity = activities[0];
+        const firstDate = parseISO(firstActivity.date);
+        const firstMonth = format(firstDate, "yyyy-MM");
+
         const seenMonths = new Set();
         const ticks = [];
+
         for (const activity of activities) {
             const month = format(parseISO(activity.date), "yyyy-MM");
             if (!seenMonths.has(month)) {
+                // Skip first month if it starts after the 5th to avoid really
+                // narrow spacing
+                if (month === firstMonth && firstDate.getDate() > 5) {
+                    seenMonths.add(month);
+                    continue;
+                }
+
                 seenMonths.add(month);
                 ticks.push(activity.date);
             }
         }
+
         return ticks;
     };
 

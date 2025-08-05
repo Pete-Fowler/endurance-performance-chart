@@ -130,6 +130,8 @@ export default function PerformanceManagementChart() {
                                 <XAxis
                                     dataKey="date"
                                     ticks={getMonthlyTicks()}
+                                    
+                                    interval={0}
                                     tick={({ x, y, payload }) => (
                                         <text
                                             x={x}
