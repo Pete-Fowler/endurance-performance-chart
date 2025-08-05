@@ -4,11 +4,12 @@ A demo of an endurance performance management chart in the style of TrainingPeak
 
 The back end fetches my running data from Intervals ICU and performs its own calculations of intensity factor, training stress/load, fitness, and fatigue. The app uses training stress based on pace, since neither power nor a normalized power metric was available. It then sends that data to the front-end, where it is displayed on charts using the Recharts library with custom tooltips. It uses Intervals ICU since neither Garmin nor TrainingPeaks allows API access without business approval.
 
-The app was deployed on a free Render tier with Docker, and a build/test run by GitHub Actions. Due to Render's free tier hosting, it can have some spin up time on a Render loading page when the instance is put to sleep.
+The app was deployed on Render with Docker, and a build/test run by GitHub Actions.
 
-Improvements that could be made:
+Improvements that could be made include:
 - Improve the front-end design/layout/color
 - Add front-end functionality such as date filters instead of defaulting to the past 6 months, activity type, etc.
+- Display more detailed activity data
 - Make sure accessibility concerns are met
 - Better handle varying screen sizes
 - Handle multiple activity types beyond running and their edge cases (for example, virtual cycling with no distance or pace data from the activity data provider)
